@@ -3,8 +3,6 @@ import VueResource from 'vue-resource'
 
 Vue.use(VueResource)
 
-Vue.http.options.root = window.global_config.remote_url;
-
 export default {
     getRegion (cb) {
         if (window.global_config.mode == "dev") {

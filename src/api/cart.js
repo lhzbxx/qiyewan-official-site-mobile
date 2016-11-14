@@ -3,8 +3,6 @@ import VueResource from 'vue-resource'
 
 Vue.use(VueResource)
 
-Vue.http.options.root = window.global_config.remote_url;
-
 export default {
     getCarts (token, page, cb, errorCb) {
         Vue.http.headers.common['Authorization'] = token;
