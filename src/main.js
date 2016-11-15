@@ -18,9 +18,11 @@ Vue.component(SwipeItem.name, SwipeItem);
 
 import TableHeader from './components/TableHeader.vue'
 import TableEntry from './components/TableEntry.vue'
+import Product from './components/Product.vue'
 
 Vue.component('lh-table-header', TableHeader)
 Vue.component('lh-table-entry', TableEntry)
+Vue.component('lh-product', Product)
 
 import App from './App'
 import Home from './pages/Home.vue'
