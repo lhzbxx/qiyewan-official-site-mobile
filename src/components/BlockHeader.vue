@@ -1,5 +1,5 @@
 <template>
-  <div id="block-header">
+  <div id="block-header" class="clearfix">
     <div class="block-header">
       <img src="../assets/mobile-icon-hot.png" alt="recommends">
       {{ name }}
