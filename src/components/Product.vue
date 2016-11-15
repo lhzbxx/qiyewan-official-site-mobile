@@ -29,7 +29,7 @@
   #product {
     float: left;
     background: white;
-    padding: 5px 0;
+    padding: 0 5px;
   }
 
   #product-cover {
@@ -37,8 +37,11 @@
   }
 
   #product-name {
-    font-size: 13px;
+    font-size: 12px;
     margin-top: 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   #product-price {

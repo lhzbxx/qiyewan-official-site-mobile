@@ -1,5 +1,3 @@
-
-
 <style scoped>
   #slides {
     height: 200px;
@@ -25,10 +23,28 @@
     margin-top: 5px;
     font-size: 13px;
     padding-bottom: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
+
+  #recommends {
+    background: white;
+  }
+
+  .recommend-first {
+    padding: 0 5px;
+  }
+
+  .recommend-second {
+    padding: 0 5px;
+    background: #000;
+  }
+
   .recommend-first-product {
     width: 50%;
   }
+
   .recommend-second-product {
     width: 33.3%;
   }
@@ -44,7 +60,7 @@
         <img :src="item.image" :alt="index">
       </mt-swipe-item>
     </mt-swipe>
-    <div id="categories">
+    <div id="categories" class="clearfix">
       <div class="category"
            v-for="item in categories">
         <img class="category-image"
@@ -55,7 +71,7 @@
         </p>
       </div>
     </div>
-    <div id="recommends">
+    <div id="recommends" class="clearfix">
       <div class="recommend-first">
         <lh-product class="recommend-first-product"
                     :cover="item.cover"
@@ -96,7 +112,7 @@
           },
           {
             cover: "http://ofw6tmkxn.bkt.clouddn.com/finance_02.jpg",
-            name: "税务报到，税种认定",
+            name: "税务报到，税种认定，测试过长的情况",
             price: 10
           },
           {

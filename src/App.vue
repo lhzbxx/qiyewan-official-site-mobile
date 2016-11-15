@@ -64,4 +64,11 @@
   body {
     background: #eee;
   }
+
+  .clearfix:after {
+    content: ' ';
+    display: block;
+    height: 0;
+    clear: both;
+  }
 </style>
