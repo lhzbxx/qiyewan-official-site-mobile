@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
-    "deploy": "node build/build.js && scp -r dist/ root@106.75.11.210:/home/www/official-site-mobile"
+    "deploy": "node build/build.js && scp -r dist/ root@106.75.11.210:/home/www/official-site-mobile && curl 'https://hook.bearychat.com/=bw9xW/incoming/688ad6b1210fdab506ec7923b848eb67' -X POST -d 'payload={\"text\": \"官网已更新！\"}'"
   },
   "dependencies": {
     "mint-ui": "^2.0.4",

@@ -19,10 +19,12 @@ Vue.component(SwipeItem.name, SwipeItem);
 import TableHeader from './components/TableHeader.vue'
 import TableEntry from './components/TableEntry.vue'
 import Product from './components/Product.vue'
+import BlockHeader from './components/BlockHeader.vue'
 
 Vue.component('lh-table-header', TableHeader)
 Vue.component('lh-table-entry', TableEntry)
 Vue.component('lh-product', Product)
+Vue.component('lh-block-header', BlockHeader)
 
 import App from './App'
 import Home from './pages/Home.vue'

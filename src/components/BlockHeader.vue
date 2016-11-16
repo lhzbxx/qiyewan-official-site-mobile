@@ -1,12 +1,12 @@
 <template>
   <div id="block-header" class="clearfix">
-    <div class="block-header">
+    <div id="block-header-title">
       <img src="../assets/mobile-icon-hot.png" alt="recommends">
-      {{ name }}
-      <span id="block-header-more">
-          更多
-          <img src="../assets/mobile-icon-more.png" alt="more">
-        </span>
+      <span>{{ name }}</span>
+    </div>
+    <div id="block-header-more">
+      <span>更多</span>
+      <img src="../assets/mobile-icon-more.png" alt="more">
     </div>
   </div>
 </template>
@@ -22,16 +22,33 @@
 <style scoped>
   #block-header {
     background-color: white;
-    margin: 5px 0;
-    padding: 0 10px;
+    margin: 10px 0;
+    padding: 10px 10px 0;
+    height: 32px;
+  }
+
+  #block-header-title span {
+    font-size: 16px;
+  }
+
+  #block-header-title {
+    height: 100%;
+    float: left;
+    width: 50%;
   }
 
   #block-header-more {
+    height: 100%;
     float: right;
     color: #aaa;
   }
 
+  #block-header-more span {
+    font-size: 13px
+  }
+
   #block-header img {
     height: 100%;
+    vertical-align: middle;
   }
 </style>
