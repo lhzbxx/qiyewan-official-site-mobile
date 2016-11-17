@@ -58,9 +58,11 @@
     line-height: 15px;
     font-size: 13px;
     color: #aaa;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
   }
 
   #table-entry-price {
