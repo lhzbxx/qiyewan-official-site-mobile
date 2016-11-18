@@ -1,6 +1,7 @@
 <style scoped>
   #home {
     margin-bottom: 60px;
+    background: #eee;
   }
 
   #slides {
@@ -52,7 +53,7 @@
   .recommend-second-product {
     width: 33.3%;
   }
-  
+
   #hot-products {
     background: white;
   }

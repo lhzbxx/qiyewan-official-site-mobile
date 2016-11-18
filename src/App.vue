@@ -61,10 +61,6 @@
     box-sizing: border-box;
   }
 
-  body {
-    background: #eee;
-  }
-
   .clearfix:after {
     content: ' ';
     display: block;

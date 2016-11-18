@@ -13,6 +13,8 @@ import { Swipe, SwipeItem } from 'mint-ui';
 import { TabContainer, TabContainerItem } from 'mint-ui';
 import { Lazyload } from 'mint-ui';
 import { Header } from 'mint-ui';
+import { Button } from 'mint-ui';
+import { Field } from 'mint-ui';
 
 Vue.component(Navbar.name, Navbar);
 Vue.component(Tabbar.name, Tabbar);
@@ -23,6 +25,8 @@ Vue.component(TabContainer.name, TabContainer);
 Vue.component(TabContainerItem.name, TabContainerItem);
 Vue.use(Lazyload);
 Vue.component(Header.name, Header);
+Vue.component(Button.name, Button);
+Vue.component(Field.name, Field);
 
 import TableHeader from './components/TableHeader.vue'
 import TableEntry from './components/TableEntry.vue'
@@ -40,6 +44,7 @@ import Orders from './pages/Orders.vue'
 import Carts from './pages/Carts.vue'
 import Mine from './pages/Mine.vue'
 import ProductDetail from './pages/ProductDetail.vue'
+import Auth from './pages/Auth.vue'
 
 function requireAuth(to, from, next) {
   if (!store.getters.isLogin) {
@@ -72,18 +77,23 @@ const routes = [
     name: 'product-detail',
     component: ProductDetail
   },
+  {
+    path: '/auth',
+    name: 'auth',
+    component: Auth
+  },
   // {
   //   path: '/order',
   //   name: 'order',
   //   beforeEnter: requireAuth,
   //   component: OrderList
   // },
-  // {
-  //   path: '/cart',
-  //   name: 'cart',
-  //   beforeEnter: requireAuth,
-  //   component: MyCart
-  // },
+  {
+    path: '/cart',
+    name: 'cart',
+    // beforeEnter: requireAuth,
+    component: Carts
+  },
   // {
   //   path: '/pay',
   //   name: 'pay',
