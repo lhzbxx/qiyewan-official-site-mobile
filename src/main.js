@@ -15,6 +15,7 @@ import { Lazyload } from 'mint-ui';
 import { Header } from 'mint-ui';
 import { Button } from 'mint-ui';
 import { Field } from 'mint-ui';
+import { Cell, Radio } from 'mint-ui';
 
 Vue.component(Navbar.name, Navbar);
 Vue.component(Tabbar.name, Tabbar);
@@ -27,6 +28,8 @@ Vue.use(Lazyload);
 Vue.component(Header.name, Header);
 Vue.component(Button.name, Button);
 Vue.component(Field.name, Field);
+Vue.component(Cell.name, Cell);
+Vue.component(Radio.name, Radio);
 
 import TableHeader from './components/TableHeader.vue'
 import TableEntry from './components/TableEntry.vue'
@@ -45,6 +48,7 @@ import Carts from './pages/Carts.vue'
 import Mine from './pages/Mine.vue'
 import ProductDetail from './pages/ProductDetail.vue'
 import Auth from './pages/Auth.vue'
+import Pay from './pages/Pay.vue'
 
 function requireAuth(to, from, next) {
   if (!store.getters.isLogin) {
@@ -94,12 +98,12 @@ const routes = [
     // beforeEnter: requireAuth,
     component: Carts
   },
-  // {
-  //   path: '/pay',
-  //   name: 'pay',
-  //   beforeEnter: requireAuth,
-  //   component: Pay
-  // },
+  {
+    path: '/pay',
+    name: 'pay',
+    // beforeEnter: requireAuth,
+    component: Pay
+  },
   // {
   //   path: '/account',
   //   beforeEnter: requireAuth,
