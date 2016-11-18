@@ -9,6 +9,9 @@
       <p id="table-entry-price">
         <span>&yen;</span>
         {{ price.toFixed(2) }}
+        <span v-if="amount && unit" style="color: #aaa; margin-left: 20px;">
+          {{ amount }}&times;{{ unit }}
+        </span>
       </p>
     </div>
   </div>
@@ -27,15 +30,16 @@
       summary: String,
       price: Number,
       reviews: Number,
-      rate: Number
+      rate: Number,
+      amount: Number,
+      unit: String
     }
   }
 </script>
 
 <style scoped>
   #table-entry {
-    background: white;
-    padding: 0 10px;
+    background: transparent;
     height: 90px;
   }
 

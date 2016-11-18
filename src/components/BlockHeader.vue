@@ -23,7 +23,7 @@
   #block-header {
     background-color: white;
     margin: 10px 0;
-    padding: 10px 10px 0;
+    padding-top: 10px;
     height: 32px;
   }
 
