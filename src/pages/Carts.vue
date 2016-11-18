@@ -1,15 +1,19 @@
 <template>
   <div id="carts">
     <div id="carts-header">
-      <div class="choice"></div>
+      <div class="choice"
+           :class="isAllSelected ? 'active' : ''"
+           v-on:click="selectAll()"></div>
       <span>全选</span>
       <img src="../assets/logo.png"
            id="delete-icon">
       <span>删除</span>
     </div>
     <div class="cart"
-         v-for="item in hot_products">
-      <div class="choice"></div>
+         v-for="(item, index) in carts"
+         v-on:click="select(index)">
+      <div class="choice"
+           :class="isSelected(index) ? 'active' : ''"></div>
       <lh-table-entry :name="item.name"
                       :cover="item.cover"
                       :summary="item.summary"
@@ -23,12 +27,12 @@
       <div class="bottom-info" style="min-width: 150px;">
         <span style="font-size: 16px;">总计</span>
         <span style="color: red;">
-          <span style="font-size: 10px;">&yen;</span><b>10000.00</b>
+          <span style="font-size: 10px;">&yen;</span><b>{{ totalPrice }}</b>
         </span>
       </div>
       <div class="bottom-info" style="max-width: 90px;">
         <span>已选</span>
-        <span><b>24</b> 个</span>
+        <span><b>{{ totalAmount }}</b> 个</span>
       </div>
       <div id="bottom-button">结 算
       </div>
@@ -40,7 +44,7 @@
   export default {
     data() {
       return {
-        hot_products: [
+        carts: [
           {
             name: "注册财税一条龙",
             cover: "http://ofw6tmkxn.bkt.clouddn.com/finance_02.jpg",
@@ -80,6 +84,45 @@
     methods: {
       isSelected(index) {
         return this.selection.findIndex(item => item == index) > -1
+      },
+      select(index) {
+        let i = this.selection.findIndex(item => item == index)
+        if (i < 0) {
+          this.selection.push(index)
+          this.selection.sort()
+        } else {
+          this.selection.splice(i)
+        }
+      },
+      selectAll() {
+        if (this.selection.length == this.carts.length) {
+          this.selection = []
+        } else {
+          this.selection = []
+          for (let i of [...Array(this.carts.length).keys()]) {
+            this.selection.push(i)
+          }
+        }
+      }
+    },
+    computed: {
+      isAllSelected() {
+        return this.selection.length == this.carts.length
+      },
+      totalAmount() {
+        return this.selection.length
+      },
+      totalPrice() {
+        var result = 0
+        for (let i of this.selection) {
+          result += this.carts[i].amount * this.carts[i].price
+        }
+        return result
+      }
+    },
+    mounted() {
+      for (let i of [...Array(this.carts.length).keys()]) {
+        this.selection.push(i)
       }
     }
   }
