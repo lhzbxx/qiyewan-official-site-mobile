@@ -2,7 +2,7 @@
   <div id="carts">
     <div id="carts-header">
       <div class="choice"
-           :class="isAllSelected ? 'active' : ''"
+           v-bind:class="{ active: isAllSelected }"
            v-on:click="selectAll()"></div>
       <span>全选</span>
       <img src="../assets/logo.png"
@@ -13,7 +13,7 @@
          v-for="(item, index) in carts"
          v-on:click="select(index)">
       <div class="choice"
-           :class="isSelected(index) ? 'active' : ''"></div>
+           v-bind:class="{ active: isSelected(index) }"></div>
       <lh-table-entry :name="item.name"
                       :cover="item.cover"
                       :summary="item.summary"

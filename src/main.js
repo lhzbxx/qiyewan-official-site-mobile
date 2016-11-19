@@ -46,9 +46,11 @@ import Home from './pages/Home.vue'
 import Orders from './pages/Orders.vue'
 import Carts from './pages/Carts.vue'
 import Mine from './pages/Mine.vue'
+import ProductList from './pages/ProductList.vue'
 import ProductDetail from './pages/ProductDetail.vue'
 import Auth from './pages/Auth.vue'
 import Pay from './pages/Pay.vue'
+import NotFound from './pages/NotFound.vue'
 
 function requireAuth(to, from, next) {
   if (!store.getters.isLogin) {
@@ -71,11 +73,11 @@ const routes = [
   //   beforeEnter: requireAuth,
   //   component: Review
   // },
-  // {
-  //   path: '/product/list/:regionCode/:category',
-  //   name: 'product-list',
-  //   component: ProductList
-  // },
+  {
+    path: '/product/list/:classificationCode',
+    name: 'product-list',
+    component: ProductList
+  },
   {
     path: '/product/detail/:serialId',
     name: 'product-detail',
@@ -115,11 +117,6 @@ const routes = [
   //   component: PersonalCenter
   // },
   // {
-  //   path: '/article/:id',
-  //   name: 'article',
-  //   component: Article
-  // },
-  // {
   //   path: '/news',
   //   component: NewsList
   // },
@@ -131,10 +128,15 @@ const routes = [
   //   path: '/recruitment',
   //   component: Recruitment
   // },
-  // {
-  //   path: '*',
-  //   component: NotFound
-  // }
+  {
+    path: '/404',
+    component: NotFound,
+    name: 'not-found'
+  },
+  {
+    path: '*',
+    component: NotFound
+  }
 ]
 
 const router = new VueRouter({
