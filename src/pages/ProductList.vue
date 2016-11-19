@@ -10,8 +10,17 @@
       </div>
     </div>
     <div id="content">
-      <div class="classification" v-for="item in list">
-        {{ item }}
+      <div class="classification" v-for="(item, index) in list">
+        <div class="content-header">
+          <div class="dot">&#8226;</div>
+          <div>{{ currentClassification.subs[index] }}</div>
+        </div>
+        <div class="content-body">
+          <div v-for="i in item"
+               class="product">
+            {{ i.name }}
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -21,10 +30,12 @@
   export default {
     data() {
       return {
+        currentClassification: null,
         classifications: [
           {
             name: '人事服务',
             code: 'HR',
+//            todo: 需要替换icon！
             icon: '',
             subs: [
               '社保',
@@ -347,6 +358,15 @@
       }
     },
     methods: {
+      init() {
+        let index = this.classifications.findIndex(
+          item => item.code == this.$route.params.classificationCode)
+        if (index < 0) {
+          this.$router.replace({name: 'not-found'})
+        } else {
+          this.currentClassification = this.classifications[index]
+        }
+      },
       isCurrent(code) {
         return code == this.$route.params.classificationCode
       },
@@ -359,19 +379,18 @@
         let list = this.lists.filter(
           item => item.classificationCode == this.$route.params.classificationCode)
         var result = []
-        var currentClassification = [];
-        let index = this.classifications.findIndex(
-          item => item.code == this.$route.params.classificationCode)
-        if (index < 0) {
-          this.$router.replace({name: 'not-found'})
-        } else {
-          currentClassification = this.classifications[index]
-        }
-        for (let i of currentClassification.subs) {
+        for (let i of this.currentClassification.subs) {
           result.push(list.filter(item => item.classificationName == i))
         }
         return result
       }
+    },
+    watch: {
+      '$route': 'init'
+    },
+    created() {
+      this.init()
+//      todo: 对接API。
     }
   }
 </script>
@@ -412,5 +431,35 @@
 
   #content {
     background: #eee;
+    flex-grow: 1;
+  }
+
+  .content-header {
+    display: flex;
+    padding: 0 10px;
+    height: 30px;
+    align-items: center;
+    color: #666;
+  }
+
+  .dot {
+    margin-right: 5px;
+  }
+
+  .content-body {
+    display: flex;
+    align-items: center;
+    background: white;
+    flex-wrap: wrap;
+    padding: 0 10px 10px;
+  }
+
+  .product {
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 13px;
+    margin-top: 10px;
+    margin-right: 10px;
   }
 </style>
