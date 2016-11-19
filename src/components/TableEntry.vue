@@ -3,7 +3,8 @@
     <img id="table-entry-cover"
          :src="cover"
          :alt="name">
-    <div id="table-entry-body">
+    <div id="table-entry-body"
+         v-bind:class="{ 'no-border': !isSplit }">
       <p id="table-entry-name">{{ name }}</p>
       <p id="table-entry-summary">{{ summary }}</p>
       <p id="table-entry-price">
@@ -20,9 +21,7 @@
 <script>
   export default {
     data() {
-      return {
-
-      }
+      return {}
     },
     props: {
       name: String,
@@ -32,7 +31,11 @@
       reviews: Number,
       rate: Number,
       amount: Number,
-      unit: String
+      unit: String,
+      isSplit: {
+        type: Boolean,
+        default: true
+      }
     }
   }
 </script>
@@ -51,6 +54,10 @@
     border-bottom: 1px solid #eee;
     margin-bottom: 8px;
     overflow: hidden;
+  }
+
+  #table-entry-body.no-border {
+    border: none;
   }
 
   #table-entry-name {
@@ -78,10 +85,12 @@
     width: 30%;
     height: 80px;
   }
+
   #table-entry-price {
     color: red;
     font-size: 20px;
   }
+
   span {
     font-size: 13px;
   }

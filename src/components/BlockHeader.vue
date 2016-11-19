@@ -25,6 +25,8 @@
     margin: 10px 0;
     padding-top: 10px;
     height: 32px;
+    display: flex;
+    align-items: center;
   }
 
   #block-header-title span {
@@ -32,15 +34,13 @@
   }
 
   #block-header-title {
-    height: 100%;
     float: left;
     width: 50%;
   }
 
   #block-header-more {
-    height: 100%;
-    float: right;
     color: #aaa;
+    margin-left: auto;
   }
 
   #block-header-more span {
@@ -48,7 +48,7 @@
   }
 
   #block-header img {
-    height: 100%;
+    height: 20px;
     vertical-align: middle;
   }
 </style>

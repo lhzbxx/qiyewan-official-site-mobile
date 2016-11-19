@@ -1,61 +1,3 @@
-<style scoped>
-  #home {
-    margin-bottom: 60px;
-    background: #eee;
-  }
-
-  #slides {
-    height: 200px;
-  }
-
-  .slide {
-    background-color: gray;
-  }
-
-  .category {
-    width: 20%;
-    float: left;
-    text-align: center;
-    background: white;
-    padding-top: 10px;
-  }
-
-  .category-image {
-    width: 80%;
-  }
-
-  .category-desc {
-    margin-top: 5px;
-    font-size: 13px;
-    padding-bottom: 10px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-
-  #recommends {
-    background: white;
-    padding: 0 5px;
-  }
-
-  .recommend-second {
-    background: #000;
-  }
-
-  .recommend-first-product {
-    width: 50%;
-  }
-
-  .recommend-second-product {
-    width: 33.3%;
-  }
-
-  #hot-products {
-    background: white;
-    padding: 0 10px;
-  }
-</style>
-
 <template>
   <div id="home">
     <mt-swipe id="slides"
@@ -68,6 +10,7 @@
     </mt-swipe>
     <div id="categories" class="clearfix">
       <div class="category"
+           v-on:click="jumpToList(item.code)"
            v-for="item in categories">
         <img class="category-image"
              :src="item.image"
@@ -208,6 +151,71 @@
           }
         ]
       }
+    },
+    methods: {
+      jumpToList(code) {
+        this.$router.push({name: 'product-list', params: {classificationCode: code}})
+      }
     }
   }
 </script>
+
+<style scoped>
+  #home {
+    background: #eee;
+  }
+
+  #slides {
+    height: 200px;
+  }
+
+  .slide {
+    background-color: gray;
+  }
+
+  #categories {
+    display: flex;
+  }
+
+  .category {
+    flex: 1;
+    text-align: center;
+    background: white;
+    padding-top: 10px;
+  }
+
+  .category-image {
+    width: 80%;
+  }
+
+  .category-desc {
+    margin-top: 5px;
+    font-size: 13px;
+    padding-bottom: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  #recommends {
+    background: white;
+    padding: 0 5px;
+  }
+
+  .recommend-second {
+    background: #000;
+  }
+
+  .recommend-first-product {
+    width: 50%;
+  }
+
+  .recommend-second-product {
+    width: 33.3%;
+  }
+
+  #hot-products {
+    background: white;
+    padding: 0 10px;
+  }
+</style>

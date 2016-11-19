@@ -1,27 +1,39 @@
 <template>
   <div id="carts">
-    <div id="carts-header">
-      <div class="choice"
-           v-bind:class="{ active: isAllSelected }"
-           v-on:click="selectAll()"></div>
-      <span>全选</span>
-      <img src="../assets/logo.png"
-           id="delete-icon">
-      <span>删除</span>
+    <div id="no-carts"
+         v-if="carts.length == 0">
+      <img src="../assets/logo.png" alt="暂无">
+      <br>
+      <mt-button type="primary"
+                 size="small">
+        去逛逛
+      </mt-button>
     </div>
-    <div class="cart"
-         v-for="(item, index) in carts"
-         v-on:click="select(index)">
-      <div class="choice"
-           v-bind:class="{ active: isSelected(index) }"></div>
-      <lh-table-entry :name="item.name"
-                      :cover="item.cover"
-                      :summary="item.summary"
-                      :price="item.price"
-                      :amount="item.amount"
-                      :unit="item.unit"
-                      style="padding-left: 10px;">
-      </lh-table-entry>
+    <div v-else>
+      <div id="carts-header">
+        <div class="choice"
+             v-bind:class="{ active: isAllSelected }"
+             v-on:click="selectAll()"></div>
+        <span>全选</span>
+        <img src="../assets/logo.png"
+             id="delete-icon">
+        <span>删除</span>
+      </div>
+      <div class="cart"
+           v-for="(item, index) in carts"
+           v-on:click="select(index)">
+        <div class="choice"
+             v-bind:class="{ active: isSelected(index) }"></div>
+        <lh-table-entry :name="item.name"
+                        :cover="item.cover"
+                        :summary="item.summary"
+                        :price="item.price"
+                        :amount="item.amount"
+                        :unit="item.unit"
+                        :isSplit=false
+                        style="padding-left: 10px;">
+        </lh-table-entry>
+      </div>
     </div>
     <div id="bottom">
       <div class="bottom-info" style="min-width: 150px;">
@@ -91,7 +103,7 @@
           this.selection.push(index)
           this.selection.sort()
         } else {
-          this.selection.splice(i)
+          this.selection.splice(i, 1)
         }
       },
       selectAll() {
@@ -130,7 +142,6 @@
 
 <style scoped>
   #carts {
-    background: #f9f9f9;
     padding-top: 15px;
     padding-bottom: 1px;
   }
@@ -166,7 +177,6 @@
   }
 
   .cart {
-    background: #f9f9f9;
     display: flex;
     align-items: center;
     border-bottom: 1px solid #ddd;
@@ -208,5 +218,14 @@
     font-size: 20px;
     font-weight: 700;
     font-family: arial, serif;
+  }
+
+  #no-carts {
+    margin: 50px auto 0;
+    text-align: center;
+  }
+
+  #no-carts img {
+    width: 50%;
   }
 </style>

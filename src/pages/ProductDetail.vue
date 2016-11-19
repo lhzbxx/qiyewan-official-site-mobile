@@ -1,11 +1,5 @@
 <template>
   <div id="product-detail">
-    <mt-header title="long long long long title">
-      <router-link to="/" slot="left">
-        <mt-button icon="back">back</mt-button>
-      </router-link>
-      <mt-button icon="more" slot="right"></mt-button>
-    </mt-header>
     <mt-navbar v-model="selected">
       <mt-tab-item id="1">商品详情</mt-tab-item>
       <mt-tab-item id="2">常见问题</mt-tab-item>
@@ -25,6 +19,7 @@
         <p id="product-detail-comment">（我们价格为平台服务费，官费指国家行政收费，刻章工本费由客户承担。注：不用不同，详情请咨询我公司客服，电话：400-716-8896）</p>
         <div id="service-list" class="clearfix">
           <div class="service" v-for="item in services">
+            <!--todo: 需要替换！-->
             <img src="../assets/logo.png" alt="">
             <p>{{ item }}</p>
           </div>
@@ -313,6 +308,7 @@
   }
 
   #bottom {
+    display: flex;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -329,7 +325,6 @@
     text-align: center;
     color: white;
     font-size: 18px;
-    margin-left: -4px;
     border-top: 1px solid #199cd8;
   }
 

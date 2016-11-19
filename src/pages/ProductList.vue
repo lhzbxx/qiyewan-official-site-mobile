@@ -17,6 +17,7 @@
         </div>
         <div class="content-body">
           <div v-for="i in item"
+               v-on:click="jumpToDetail(i.serialId)"
                class="product">
             {{ i.name }}
           </div>
@@ -372,6 +373,9 @@
       },
       switchClassification(code) {
         this.$router.replace({name: 'product-list', params: {'classificationCode': code}})
+      },
+      jumpToDetail(serialId) {
+        this.$router.push({name: 'product-detail', params: {serialId: serialId}})
       }
     },
     computed: {
