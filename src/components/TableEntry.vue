@@ -81,6 +81,7 @@
     -webkit-line-clamp: 2;
     display: -webkit-box;
     -webkit-box-orient: vertical;
+    min-height: 24px;
   }
 
   #table-entry-price {

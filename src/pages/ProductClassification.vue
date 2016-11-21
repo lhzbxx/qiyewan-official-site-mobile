@@ -1,32 +1,23 @@
 <template>
-  <div id="product-list">
-    <lh-page-header :title="currentClassification"></lh-page-header>
-    <div id="wrapper">
-      <div id="lists">
-        <div class="list"
-             v-bind:class="{ active: isCurrent(item.code) }"
-             v-for="item in classifications"
-             v-on:click="switchClassification(item.code)">
-          <img :src="item.icon" :alt="item.name">
-          {{ item.name }}
-        </div>
-      </div>
-      <div id="content">
-        <div class="classification" v-for="(item, index) in list">
-          <div class="content-header">
-            <div class="dot">&#8226;</div>
-            <div>{{ currentClassification.subs[index] }}</div>
-          </div>
-          <div class="content-body">
-            <div v-for="i in item"
-                 v-on:click="jumpToDetail(i.serialId)"
-                 class="product">
-              {{ i.name }}
-            </div>
-          </div>
-        </div>
-      </div>
+  <div id="product-classification">
+    <lh-page-header :title="currentClassification.name"></lh-page-header>
+    <div id="tabs">
+      <p
+        class="tab"
+        v-bind:class="{ active: isCurrent(item) }"
+        v-on:click="switchClassification(item)"
+        v-for="item in currentClassification.subs">
+        {{ item }}
+      </p>
     </div>
+    <lh-list-header :title="currentClassificationName"
+                    :amount="list.length"></lh-list-header>
+    <lh-table-entry :name="item.name"
+                    :cover="item.cover"
+                    :summary="item.summary"
+                    :price="item.price"
+                    @click="jumpToDetail(item.serialId)"
+                    v-for="item in list"></lh-table-entry>
   </div>
 </template>
 
@@ -35,12 +26,11 @@
     data() {
       return {
         currentClassification: null,
+        currentClassificationName: null,
         classifications: [
           {
             name: '人事服务',
             code: 'HR',
-//            todo: 需要替换icon！
-            icon: 'http://ac-mhke0kuv.clouddn.com/de3199020488745300c2.png?imageView2/1/w/164/h/164/q/85/format/jpg/interlace/1',
             subs: [
               '社保',
               '公司人事'
@@ -49,7 +39,6 @@
           {
             name: '财税服务',
             code: 'FC',
-            icon: 'http://ac-mhke0kuv.clouddn.com/de3199020488745300c2.png?imageView2/1/w/164/h/164/q/85/format/jpg/interlace/1',
             subs: [
               '财务服务',
               '税务服务'
@@ -58,7 +47,6 @@
           {
             name: '工商服务',
             code: 'IC',
-            icon: 'http://ac-mhke0kuv.clouddn.com/de3199020488745300c2.png?imageView2/1/w/164/h/164/q/85/format/jpg/interlace/1',
             subs: [
               '工商变更',
               '工商注销'
@@ -67,7 +55,6 @@
           {
             name: '法律服务',
             code: 'LD',
-            icon: 'http://ac-mhke0kuv.clouddn.com/de3199020488745300c2.png?imageView2/1/w/164/h/164/q/85/format/jpg/interlace/1',
             subs: [
               '法律服务',
               '知识产权'
@@ -76,288 +63,111 @@
           {
             name: 'IT&设计',
             code: 'IT',
-            icon: 'http://ac-mhke0kuv.clouddn.com/de3199020488745300c2.png?imageView2/1/w/164/h/164/q/85/format/jpg/interlace/1',
             subs: [
               '网站设计',
               'LOGO设计'
             ]
           }
         ],
+//        lists: []
         lists: [{
-          "name": "注册财税一条龙",
-          "serialId": "SHSHPS0001",
-          "classificationName": "套餐",
-          "classificationCode": "PS"
-        }, {
-          "name": "法财宝",
-          "serialId": "SHSHPS0002",
-          "classificationName": "套餐",
-          "classificationCode": "PS"
-        }, {
-          "name": "商标宝",
-          "serialId": "SHSHPS0003",
-          "classificationName": "套餐",
-          "classificationCode": "PS"
-        }, {
-          "name": "人事宝",
-          "serialId": "SHSHPS0004",
-          "classificationName": "套餐",
-          "classificationCode": "PS"
-        }, {
           "name": "公司注册(园区)",
           "serialId": "SHSHIC0001",
-          "classificationName": "工商变更",
-          "classificationCode": "IC"
+          "cover": "product-SHSHIC0001-cover.jpg",
+          "summary": "代理注册（使用企业湾提供地址注册） 至拿到营业执照和三章",
+          "price": 400.0,
+          "classificationName": "工商变更"
         }, {
           "name": "公司注册(非园区)",
           "serialId": "SHSHIC0002",
-          "classificationName": "工商变更",
-          "classificationCode": "IC"
+          "cover": "product-SHSHIC0002-cover.jpg",
+          "summary": "代理注册（客户自己提供注册地址） 至拿到营业执照和三章",
+          "price": 1200.0,
+          "classificationName": "工商变更"
         }, {
           "name": "1元公司注册(园区)+零申报代理记账(1年)",
           "serialId": "SHSHIC0003",
-          "classificationName": "工商变更",
-          "classificationCode": "IC"
+          "cover": "product-SHSHIC0003-cover.jpg",
+          "summary": "注册公司一元免费代理（使用企业湾提供地址） 但必须签约代账合同 1 年及以上。到拿到一证三章",
+          "price": 1177.0,
+          "classificationName": "工商变更"
         }, {
           "name": "公司名称变更",
           "serialId": "SHSHIC0004",
-          "classificationName": "工商变更",
-          "classificationCode": "IC"
+          "cover": "product-SHSHIC0004-cover.jpg",
+          "summary": "办理工商变更",
+          "price": 800.0,
+          "classificationName": "工商变更"
         }, {
           "name": "经营范围变更",
           "serialId": "SHSHIC0005",
-          "classificationName": "工商变更",
-          "classificationCode": "IC"
+          "cover": "product-SHSHIC0005-cover.jpg",
+          "summary": "办理工商变更",
+          "price": 800.0,
+          "classificationName": "工商变更"
         }, {
           "name": "法人代表变更",
           "serialId": "SHSHIC0006",
-          "classificationName": "工商变更",
-          "classificationCode": "IC"
+          "cover": "product-SHSHIC0006-cover.jpg",
+          "summary": "办理工商变更",
+          "price": 800.0,
+          "classificationName": "工商变更"
         }, {
           "name": "经营地址变更(不跨区)",
           "serialId": "SHSHIC0007",
-          "classificationName": "工商变更",
-          "classificationCode": "IC"
+          "cover": "product-SHSHIC0007-cover.jpg",
+          "summary": "办理工商变更 不包括税务迁移或变更",
+          "price": 800.0,
+          "classificationName": "工商变更"
         }, {
           "name": "经营地址变更(跨区)",
           "serialId": "SHSHIC0008",
-          "classificationName": "工商变更",
-          "classificationCode": "IC"
+          "cover": "product-SHSHIC0008-cover.jpg",
+          "summary": "办理工商变更 不包括税务迁移或变更",
+          "price": 3000.0,
+          "classificationName": "工商变更"
         }, {
           "name": "注册资本变更",
           "serialId": "SHSHIC0009",
-          "classificationName": "工商变更",
-          "classificationCode": "IC"
+          "cover": "product-SHSHIC0009-cover.jpg",
+          "summary": "办理工商变更 不包括注册资本减资服务",
+          "price": 800.0,
+          "classificationName": "工商变更"
         }, {
           "name": "股东 股权变更",
           "serialId": "SHSHIC0010",
-          "classificationName": "工商变更",
-          "classificationCode": "IC"
+          "cover": "product-SHSHIC0010-cover.jpg",
+          "summary": "办理工商变更 不包括股权转让协议撰写",
+          "price": 800.0,
+          "classificationName": "工商变更"
         }, {
           "name": "公司高管变更",
           "serialId": "SHSHIC0011",
-          "classificationName": "工商变更",
-          "classificationCode": "IC"
+          "cover": "product-SHSHIC0011-cover.jpg",
+          "summary": "办理工商变更",
+          "price": 800.0,
+          "classificationName": "工商变更"
         }, {
           "name": "三证/五证合一",
           "serialId": "SHSHIC0012",
-          "classificationName": "工商变更",
-          "classificationCode": "IC"
+          "cover": "product-SHSHIC0012-cover.jpg",
+          "summary": "办理营业执照、税务登记证、组织机构代码证三证合一服务",
+          "price": 400.0,
+          "classificationName": "工商变更"
         }, {
           "name": "内资企业注销",
           "serialId": "SHSHIC0013",
-          "classificationName": "工商注销",
-          "classificationCode": "IC"
+          "cover": "product-SHSHIC0013-cover.jpg",
+          "summary": "办理工商税务等行政机关注销事项 本服务收费不包括专项审计及官费",
+          "price": 5000.0,
+          "classificationName": "工商注销"
         }, {
           "name": "1元补差产品",
           "serialId": "SHSHIC0014",
-          "classificationName": "工商注销",
-          "classificationCode": "IC"
-        }, {
-          "name": "零申报代理记账",
-          "serialId": "SHSHFC0001",
-          "classificationName": "财务服务",
-          "classificationCode": "FC"
-        }, {
-          "name": "小规模纳税人代理记账",
-          "serialId": "SHSHFC0002",
-          "classificationName": "财务服务",
-          "classificationCode": "FC"
-        }, {
-          "name": "一般纳税人代理记账",
-          "serialId": "SHSHFC0003",
-          "classificationName": "财务服务",
-          "classificationCode": "FC"
-        }, {
-          "name": "企业基本户开户",
-          "serialId": "SHSHFC0004",
-          "classificationName": "财务服务",
-          "classificationCode": "FC"
-        }, {
-          "name": "企业一般户开户",
-          "serialId": "SHSHFC0005",
-          "classificationName": "财务服务",
-          "classificationCode": "FC"
-        }, {
-          "name": "税务报道 税种认定",
-          "serialId": "SHSHFC0006",
-          "classificationName": "税务服务",
-          "classificationCode": "FC"
-        }, {
-          "name": "代领CA证书",
-          "serialId": "SHSHFC0007",
-          "classificationName": "税务服务",
-          "classificationCode": "FC"
-        }, {
-          "name": "一般纳税人认定",
-          "serialId": "SHSHFC0008",
-          "classificationName": "税务服务",
-          "classificationCode": "FC"
-        }, {
-          "name": "税务登记信息变更",
-          "serialId": "SHSHFC0009",
-          "classificationName": "税务服务",
-          "classificationCode": "FC"
-        }, {
-          "name": "代开发票服务",
-          "serialId": "SHSHFC0010",
-          "classificationName": "税务服务",
-          "classificationCode": "FC"
-        }, {
-          "name": "合同撰写与审查（普通）",
-          "serialId": "SHSHLD0001",
-          "classificationName": "法律服务",
-          "classificationCode": "LD"
-        }, {
-          "name": "合同撰写与审查（定制）",
-          "serialId": "SHSHLD0002",
-          "classificationName": "法律服务",
-          "classificationCode": "LD"
-        }, {
-          "name": "公司章程",
-          "serialId": "SHSHLD0003",
-          "classificationName": "法律服务",
-          "classificationCode": "LD"
-        }, {
-          "name": "股东 合伙协议",
-          "serialId": "SHSHLD0004",
-          "classificationName": "法律服务",
-          "classificationCode": "LD"
-        }, {
-          "name": "股权激励协议",
-          "serialId": "SHSHLD0005",
-          "classificationName": "法律服务",
-          "classificationCode": "LD"
-        }, {
-          "name": "法律咨询",
-          "serialId": "SHSHLD0006",
-          "classificationName": "法律服务",
-          "classificationCode": "LD"
-        }, {
-          "name": "法律咨询(包月)",
-          "serialId": "SHSHLD0007",
-          "classificationName": "法律服务",
-          "classificationCode": "LD"
-        }, {
-          "name": "法律包服务(三个月)",
-          "serialId": "SHSHLD0008",
-          "classificationName": "法律服务",
-          "classificationCode": "LD"
-        }, {
-          "name": "法律包服务(半年)",
-          "serialId": "SHSHLD0009",
-          "classificationName": "法律服务",
-          "classificationCode": "LD"
-        }, {
-          "name": "法律包服务(一年)",
-          "serialId": "SHSHLD0010",
-          "classificationName": "法律服务",
-          "classificationCode": "LD"
-        }, {
-          "name": "实用新型专利申请",
-          "serialId": "SHSHLD0011",
-          "classificationName": "知识产权",
-          "classificationCode": "LD"
-        }, {
-          "name": "发明专利申请",
-          "serialId": "SHSHLD0012",
-          "classificationName": "知识产权",
-          "classificationCode": "LD"
-        }, {
-          "name": "商标注册",
-          "serialId": "SHSHLD0013",
-          "classificationName": "知识产权",
-          "classificationCode": "LD"
-        }, {
-          "name": "计算机软件著作权",
-          "serialId": "SHSHLD0014",
-          "classificationName": "知识产权",
-          "classificationCode": "LD"
-        }, {
-          "name": "文字或美术著作权",
-          "serialId": "SHSHLD0015",
-          "classificationName": "知识产权",
-          "classificationCode": "LD"
-        }, {
-          "name": "企业社保账户开户",
-          "serialId": "SHSHHR0001",
-          "classificationName": "社保",
-          "classificationCode": "HR"
-        }, {
-          "name": "企业公积金账户开户",
-          "serialId": "SHSHHR0002",
-          "classificationName": "社保",
-          "classificationCode": "HR"
-        }, {
-          "name": "委托代缴社保公积金服务",
-          "serialId": "SHSHHR0003",
-          "classificationName": "社保",
-          "classificationCode": "HR"
-        }, {
-          "name": "个人社保开户",
-          "serialId": "SHSHHR0004",
-          "classificationName": "社保",
-          "classificationCode": "HR"
-        }, {
-          "name": "个人社保公积金代缴",
-          "serialId": "SHSHHR0005",
-          "classificationName": "社保",
-          "classificationCode": "HR"
-        }, {
-          "name": "人力资源基础文档",
-          "serialId": "SHSHHR0006",
-          "classificationName": "公司人事",
-          "classificationCode": "HR"
-        }, {
-          "name": "标准网站",
-          "serialId": "SHSHIT0001",
-          "classificationName": "网站设计",
-          "classificationCode": "IT"
-        }, {
-          "name": "定制网站",
-          "serialId": "SHSHIT0002",
-          "classificationName": "网站设计",
-          "classificationCode": "IT"
-        }, {
-          "name": "差旅及费用管理平台服务（SaaS）",
-          "serialId": "SHSHIT0003",
-          "classificationName": "网站设计",
-          "classificationCode": "IT"
-        }, {
-          "name": "VI设计",
-          "serialId": "SHSHIT0004",
-          "classificationName": "LOGO设计",
-          "classificationCode": "IT"
-        }, {
-          "name": "LOGO设计(一个方案)",
-          "serialId": "SHSHIT0005",
-          "classificationName": "LOGO设计",
-          "classificationCode": "IT"
-        }, {
-          "name": "LOGO设计(三个方案)",
-          "serialId": "SHSHIT0006",
-          "classificationName": "LOGO设计",
-          "classificationCode": "IT"
+          "cover": "product-SHSHIC0014-cover.jpg",
+          "summary": "服务差价补充产品",
+          "price": 1.0,
+          "classificationName": "工商注销"
         }]
       }
     },
@@ -369,13 +179,14 @@
           this.$router.replace({name: 'not-found'})
         } else {
           this.currentClassification = this.classifications[index]
+          this.currentClassificationName = this.currentClassification.subs[0]
         }
       },
-      isCurrent(code) {
-        return code == this.$route.params.classificationCode
+      isCurrent(name) {
+        return name == this.currentClassificationName
       },
-      switchClassification(code) {
-        this.$router.replace({name: 'product-list', params: {'classificationCode': code}})
+      switchClassification(name) {
+        this.currentClassificationName = name
       },
       jumpToDetail(serialId) {
         this.$router.push({name: 'product-detail', params: {serialId: serialId}})
@@ -383,17 +194,8 @@
     },
     computed: {
       list() {
-        let list = this.lists.filter(
-          item => item.classificationCode == this.$route.params.classificationCode)
-        var result = []
-        for (let i of this.currentClassification.subs) {
-          result.push(list.filter(item => item.classificationName == i))
-        }
-        return result
+        return this.lists.filter(item => item.classificationName == this.currentClassificationName)
       }
-    },
-    watch: {
-      '$route': 'init'
     },
     created() {
       this.init()
@@ -403,74 +205,27 @@
 </script>
 
 <style scoped>
-  #product-list {
+  #product-classification {
     margin-top: 50px;
   }
 
-  #wrapper {
+  #tabs {
     display: flex;
-  }
-
-  #lists {
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    min-width: 90px;
-    max-width: 90px;
-  }
-
-  .list {
-    padding-bottom: 15px;
-    width: 70px;
-    text-align: center;
-    border-bottom: 1px solid #aaa;
-    color: #aaa;
-  }
-
-  .list.active {
-    color: #199cd8;
-    border-bottom: 3px solid #199cd8;
-  }
-
-  .list img {
-    margin: 15px auto 8px;
-    width: 35px;
-    height: 35px;
-    text-align: center;
-    display: block;
-  }
-
-  #content {
-    background: #eee;
-    flex-grow: 1;
-  }
-
-  .content-header {
-    display: flex;
+    height: 60px;
     padding: 0 10px;
-    height: 30px;
-    align-items: center;
-    color: #666;
+    border-bottom: 1px solid #eee;
   }
 
-  .dot {
-    margin-right: 5px;
-  }
-
-  .content-body {
-    display: flex;
-    align-items: center;
-    background: white;
-    flex-wrap: wrap;
-    padding: 0 10px 10px;
-  }
-
-  .product {
-    border: 1px solid #aaa;
-    border-radius: 5px;
-    padding: 5px;
-    font-size: 13px;
-    margin-top: 10px;
+  .tab {
+    font-size: 16px;
     margin-right: 10px;
+    padding: 8px 10px;
+    border: 1px solid #eee;
+  }
+
+  .tab.active {
+    color: #26a2ff;
+    border-color: #26a2ff;
   }
 </style>

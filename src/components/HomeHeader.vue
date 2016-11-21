@@ -1,5 +1,5 @@
 <template>
-  <div id="header">
+  <div id="home-header">
     <div id="menu">
       <img src=""
            alt="≡"
@@ -29,7 +29,7 @@
 </script>
 
 <style scoped>
-  #header {
+  #home-header {
     height: 50px;
     display: flex;
     align-items: center;

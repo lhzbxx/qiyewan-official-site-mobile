@@ -1,5 +1,5 @@
 <template>
-  <div id="header">
+  <div id="page-header">
     <div id="back">
       <!--todo: 添加icon！-->
       <img src="" alt="back" v-on:click="back">
@@ -30,7 +30,7 @@
 </script>
 
 <style scoped>
-  #header {
+  #page-header {
     height: 50px;
     display: flex;
     align-items: center;
