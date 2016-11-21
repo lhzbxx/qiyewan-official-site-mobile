@@ -37,7 +37,7 @@
             name: '人事服务',
             code: 'HR',
 //            todo: 需要替换icon！
-            icon: '',
+            icon: 'http://ac-mhke0kuv.clouddn.com/de3199020488745300c2.png?imageView2/1/w/164/h/164/q/85/format/jpg/interlace/1',
             subs: [
               '社保',
               '公司人事'
@@ -46,7 +46,7 @@
           {
             name: '财税服务',
             code: 'FC',
-            icon: '',
+            icon: 'http://ac-mhke0kuv.clouddn.com/de3199020488745300c2.png?imageView2/1/w/164/h/164/q/85/format/jpg/interlace/1',
             subs: [
               '财务服务',
               '税务服务'
@@ -55,7 +55,7 @@
           {
             name: '工商服务',
             code: 'IC',
-            icon: '',
+            icon: 'http://ac-mhke0kuv.clouddn.com/de3199020488745300c2.png?imageView2/1/w/164/h/164/q/85/format/jpg/interlace/1',
             subs: [
               '工商变更',
               '工商注销'
@@ -64,7 +64,7 @@
           {
             name: '法律服务',
             code: 'LD',
-            icon: '',
+            icon: 'http://ac-mhke0kuv.clouddn.com/de3199020488745300c2.png?imageView2/1/w/164/h/164/q/85/format/jpg/interlace/1',
             subs: [
               '法律服务',
               '知识产权'
@@ -73,7 +73,7 @@
           {
             name: 'IT&设计',
             code: 'IT',
-            icon: '',
+            icon: 'http://ac-mhke0kuv.clouddn.com/de3199020488745300c2.png?imageView2/1/w/164/h/164/q/85/format/jpg/interlace/1',
             subs: [
               '网站设计',
               'LOGO设计'

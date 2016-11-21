@@ -1,5 +1,7 @@
 <template>
-  <div id="table-entry" class="clearfix">
+  <div id="table-entry"
+       class="clearfix"
+       v-on:click="jump">
     <img id="table-entry-cover"
          :src="cover"
          :alt="name">
@@ -35,6 +37,11 @@
       isSplit: {
         type: Boolean,
         default: true
+      }
+    },
+    methods: {
+      jump() {
+        this.$emit('click')
       }
     }
   }

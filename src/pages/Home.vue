@@ -25,18 +25,20 @@
                        style="padding-left: 5px; padding-right: 5px;"></lh-block-header>
       <div class="recommend-first">
         <lh-product class="recommend-first-product"
-                    :cover="item.cover"
+                    :cover="cdnPrefix + item.cover"
                     :name="item.name"
                     :price="item.price"
-                    v-for="item in recommends.slice(0, 2)">
+                    @click="jumpToDetail(item.serialId)"
+                    v-for="item in hotProducts.slice(0, 2)">
         </lh-product>
       </div>
       <div class="recommend-second">
         <lh-product class="recommend-second-product"
-                    :cover="item.cover"
+                    :cover="cdnPrefix + item.cover"
                     :name="item.name"
                     :price="item.price"
-                    v-for="item in recommends.slice(2)">
+                    @click="jumpToDetail(item.serialId)"
+                    v-for="item in hotProducts.slice(2, 5)">
         </lh-product>
       </div>
     </div>
@@ -46,6 +48,7 @@
                       :name="item.name"
                       :cover="item.cover"
                       :summary="item.summary"
+                      @click="jumpToDetail(item.serialId)"
                       :price="item.price">
       </lh-table-entry>
     </div>
@@ -53,60 +56,35 @@
 </template>
 
 <script>
+  import {mapGetters} from 'vuex'
+
   export default {
     data() {
-        return {
-          hot_products: [
-            {
-              name: "注册财税一条龙",
-              cover: "http://ofw6tmkxn.bkt.clouddn.com/finance_02.jpg",
-              summary: "注册+银行开户+核定税种（税务报到+代购CA+代拿三方）+一年代账（零申报），报价中不含官费。",
-              price: 100
-            },
-            {
-              name: "注册财税一条龙",
-              cover: "http://ofw6tmkxn.bkt.clouddn.com/finance_02.jpg",
-              summary: "注册+银行开户+核定税种（税务报到+代购CA+代拿三方）+一年代账（零申报），报价中不含官费。",
-              price: 100
-            },
-            {
-              name: "注册财税一条龙",
-              cover: "http://ofw6tmkxn.bkt.clouddn.com/finance_02.jpg",
-              summary: "注册+银行开户+核定税种（税务报到+代购CA+代拿三方）+一年代账（零申报），报价中不含官费。",
-              price: 100
-            },
-            {
-              name: "注册财税一条龙",
-              cover: "http://ofw6tmkxn.bkt.clouddn.com/finance_02.jpg",
-              summary: "注册+银行开户+核定税种（税务报到+代购CA+代拿三方）+一年代账（零申报），报价中不含官费。",
-              price: 100
-            }
-          ],
-        recommends: [
+      return {
+        hot_products: [
           {
+            name: "注册财税一条龙",
             cover: "http://ofw6tmkxn.bkt.clouddn.com/finance_02.jpg",
-            name: "税务报到，税种认定",
-            price: 10
+            summary: "注册+银行开户+核定税种（税务报到+代购CA+代拿三方）+一年代账（零申报），报价中不含官费。",
+            price: 100
           },
           {
+            name: "注册财税一条龙",
             cover: "http://ofw6tmkxn.bkt.clouddn.com/finance_02.jpg",
-            name: "税务报到，税种认定",
-            price: 10
+            summary: "注册+银行开户+核定税种（税务报到+代购CA+代拿三方）+一年代账（零申报），报价中不含官费。",
+            price: 100
           },
           {
+            name: "注册财税一条龙",
             cover: "http://ofw6tmkxn.bkt.clouddn.com/finance_02.jpg",
-            name: "税务报到，税种认定",
-            price: 10
+            summary: "注册+银行开户+核定税种（税务报到+代购CA+代拿三方）+一年代账（零申报），报价中不含官费。",
+            price: 100
           },
           {
+            name: "注册财税一条龙",
             cover: "http://ofw6tmkxn.bkt.clouddn.com/finance_02.jpg",
-            name: "税务报到，税种认定，测试过长的情况",
-            price: 10
-          },
-          {
-            cover: "http://ofw6tmkxn.bkt.clouddn.com/finance_02.jpg",
-            name: "税务报到，税种认定",
-            price: 10
+            summary: "注册+银行开户+核定税种（税务报到+代购CA+代拿三方）+一年代账（零申报），报价中不含官费。",
+            price: 100
           }
         ],
         slides: [
@@ -152,9 +130,18 @@
         ]
       }
     },
+    computed: {
+      ...mapGetters([
+        'cdnPrefix',
+        'hotProducts'
+      ])
+    },
     methods: {
       jumpToList(code) {
         this.$router.push({name: 'product-list', params: {classificationCode: code}})
+      },
+      jumpToDetail(serialId) {
+        this.$router.push({name: 'product-detail', params: {serialId: serialId}})
       }
     }
   }

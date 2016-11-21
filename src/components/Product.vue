@@ -1,5 +1,6 @@
 <template>
-  <div id="product">
+  <div id="product"
+       v-on:click="jump">
     <img :src="cover"
          :alt="name"
          id="product-cover">
@@ -21,6 +22,11 @@
       name: String,
       cover: String,
       price: Number,
+    },
+    methods: {
+      jump() {
+        this.$emit('click')
+      }
     }
   }
 </script>
@@ -34,6 +40,7 @@
 
   #product-cover {
     width: 100%;
+    height:100px;
   }
 
   #product-name {
