@@ -20,6 +20,7 @@
     </mt-radio>
     <div style="margin: 15px 10px 0;">
       <mt-button type="primary"
+                 @click.native="pay()"
                  size="large">
         确认付款
       </mt-button>
@@ -28,6 +29,8 @@
 </template>
 
 <script>
+  import {Indicator} from 'mint-ui';
+  
   export default {
     data() {
       return {
@@ -69,11 +72,6 @@
         ]
       }
     },
-    methods: {
-      subtotalPrice(checkout) {
-        return checkout.amount * checkout.unitPrice
-      }
-    },
     computed: {
       headerTitle() {
         switch (this.state) {
@@ -102,6 +100,19 @@
         }
         return result
       }
+    },
+    methods: {
+      subtotalPrice(checkout) {
+        return checkout.amount * checkout.unitPrice
+      },
+      pay() {
+        Indicator.open({
+          text: '跳转中...',
+        });
+      }
+    },
+    beforeDestroy() {
+      Indicator.close();
     }
   }
 </script>

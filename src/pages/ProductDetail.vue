@@ -68,9 +68,11 @@
         <img>
       </div>
       <div class="bottom-button"
+           v-on:click="jumpToPay()"
            style="background: #199cd8;">立即购买
       </div>
       <div class="bottom-button"
+           v-on:click="addToCart()"
            style="background: #f7a82d;">加入购物车
       </div>
     </div>
@@ -78,6 +80,8 @@
 </template>
 
 <script>
+  import {Toast} from 'mint-ui';
+
   export default {
     data() {
       return {
@@ -164,6 +168,20 @@
           "question": "社保有什么用？",
           "answer": "社保可以说是国家为每个公民提供的一种福利制度，社保有以下几方面基本作用：\n养老保险：退休工资\n医疗保险：医疗报销，大病统筹\n生育保险：女性可以在生产期间费用报销、领取补贴，男性生育结扎、生殖健康等享受费用报销和津贴\n失业保险：失业时可拿一定时间的失业救济金\n工伤保险：出了工伤时给予补偿\n社保可以说是国家为每个公民提供的一种福利制度，社保有以下几方面基本作用：\n养老保险：退休工资\n医疗保险：医疗报销，大病统筹\n生育保险：女性可以在生产期间费用报销、领取补贴，男性生育结扎、生殖健康等享受费用报销和津贴\n失业保"
         }]
+      }
+    },
+    methods: {
+      jumpToPay() {
+        this.$router.push({name: 'pay'})
+      },
+      addToCart() {
+        let instance = Toast({
+          message: '操作成功',
+          iconClass: 'mintui mintui-success'
+        });
+        setTimeout(() => {
+          instance.close();
+        }, 2000);
       }
     }
   }

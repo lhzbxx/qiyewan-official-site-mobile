@@ -8,14 +8,14 @@ Vue.use(Vuex)
 Vue.use(VueRouter)
 Vue.use(VueResource)
 
-import { Navbar, Tabbar, TabItem } from 'mint-ui';
-import { Swipe, SwipeItem } from 'mint-ui';
-import { TabContainer, TabContainerItem } from 'mint-ui';
-import { Lazyload } from 'mint-ui';
-import { Header } from 'mint-ui';
-import { Button } from 'mint-ui';
-import { Field } from 'mint-ui';
-import { Cell, Radio } from 'mint-ui';
+import {Navbar, Tabbar, TabItem} from 'mint-ui';
+import {Swipe, SwipeItem} from 'mint-ui';
+import {TabContainer, TabContainerItem} from 'mint-ui';
+import {Lazyload} from 'mint-ui';
+import {Header} from 'mint-ui';
+import {Button} from 'mint-ui';
+import {Field} from 'mint-ui';
+import {Cell, Radio} from 'mint-ui';
 
 Vue.component(Navbar.name, Navbar);
 Vue.component(Tabbar.name, Tabbar);
@@ -143,7 +143,7 @@ const router = new VueRouter({
   mode: 'hash',
   routes: routes,
   scrollBehavior (to, from, savedPosition) {
-    return { x: 0, y: 0 }
+    return {x: 0, y: 0}
   }
 })
 
