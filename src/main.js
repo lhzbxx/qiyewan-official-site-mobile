@@ -50,8 +50,9 @@ import Home from './pages/Home.vue'
 import Orders from './pages/Orders.vue'
 import Carts from './pages/Carts.vue'
 import Mine from './pages/Mine.vue'
-import ProductList from './pages/ProductList.vue'
+import ProductClassification from './pages/ProductClassification.vue'
 import ProductDetail from './pages/ProductDetail.vue'
+import ProductList from './pages/ProductList.vue'
 import Auth from './pages/Auth.vue'
 import Pay from './pages/Pay.vue'
 import NotFound from './pages/NotFound.vue'
@@ -80,13 +81,18 @@ const routes = [
   // },
   {
     path: '/product/list/:classificationCode',
-    name: 'product-list',
-    component: ProductList
+    name: 'product-classification',
+    component: ProductClassification
   },
   {
     path: '/product/detail/:serialId',
     name: 'product-detail',
     component: ProductDetail
+  },
+  {
+    path: '/product/list',
+    name: 'product-list',
+    component: ProductList
   },
   {
     path: '/auth',

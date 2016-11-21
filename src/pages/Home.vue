@@ -11,7 +11,7 @@
     </mt-swipe>
     <div id="categories" class="clearfix">
       <div class="category"
-           v-on:click="jumpToList(item.code)"
+           v-on:click="jumpToClassification(item.code)"
            v-for="item in categories">
         <img class="category-image"
              :src="item.image"
@@ -138,8 +138,8 @@
       ])
     },
     methods: {
-      jumpToList(code) {
-        this.$router.push({name: 'product-list', params: {classificationCode: code}})
+      jumpToClassification(code) {
+        this.$router.push({name: 'product-classification', params: {classificationCode: code}})
       },
       jumpToDetail(serialId) {
         this.$router.push({name: 'product-detail', params: {serialId: serialId}})

@@ -1,12 +1,12 @@
 <template>
   <div id="product-list">
-    <lh-page-header title="分类"></lh-page-header>
+    <lh-page-header :title="currentClassification"></lh-page-header>
     <div id="wrapper">
       <div id="lists">
         <div class="list"
              v-bind:class="{ active: isCurrent(item.code) }"
              v-for="item in classifications"
-             v-on:click="switchClassification(item)">
+             v-on:click="switchClassification(item.code)">
           <img :src="item.icon" :alt="item.name">
           {{ item.name }}
         </div>
@@ -34,6 +34,7 @@
   export default {
     data() {
       return {
+        currentClassification: null,
         classifications: [
           {
             name: '人事服务',
@@ -48,7 +49,6 @@
           {
             name: '财税服务',
             code: 'FC',
-//            todo: 需要替换icon！
             icon: 'http://ac-mhke0kuv.clouddn.com/de3199020488745300c2.png?imageView2/1/w/164/h/164/q/85/format/jpg/interlace/1',
             subs: [
               '财务服务',
@@ -58,7 +58,6 @@
           {
             name: '工商服务',
             code: 'IC',
-//            todo: 需要替换icon！
             icon: 'http://ac-mhke0kuv.clouddn.com/de3199020488745300c2.png?imageView2/1/w/164/h/164/q/85/format/jpg/interlace/1',
             subs: [
               '工商变更',
@@ -68,7 +67,6 @@
           {
             name: '法律服务',
             code: 'LD',
-//            todo: 需要替换icon！
             icon: 'http://ac-mhke0kuv.clouddn.com/de3199020488745300c2.png?imageView2/1/w/164/h/164/q/85/format/jpg/interlace/1',
             subs: [
               '法律服务',
@@ -78,7 +76,6 @@
           {
             name: 'IT&设计',
             code: 'IT',
-//            todo: 需要替换icon！
             icon: 'http://ac-mhke0kuv.clouddn.com/de3199020488745300c2.png?imageView2/1/w/164/h/164/q/85/format/jpg/interlace/1',
             subs: [
               '网站设计',
@@ -86,16 +83,6 @@
             ]
           }
         ],
-        currentClassification: {
-          name: '人事服务',
-          code: 'HR',
-//            todo: 需要替换icon！
-          icon: 'http://ac-mhke0kuv.clouddn.com/de3199020488745300c2.png?imageView2/1/w/164/h/164/q/85/format/jpg/interlace/1',
-          subs: [
-            '社保',
-            '公司人事'
-          ]
-        },
         lists: [{
           "name": "注册财税一条龙",
           "serialId": "SHSHPS0001",
@@ -375,11 +362,20 @@
       }
     },
     methods: {
-      isCurrent(code) {
-        return code == this.currentClassification.code
+      init() {
+        let index = this.classifications.findIndex(
+          item => item.code == this.$route.params.classificationCode)
+        if (index < 0) {
+          this.$router.replace({name: 'not-found'})
+        } else {
+          this.currentClassification = this.classifications[index]
+        }
       },
-      switchClassification(classification) {
-        this.currentClassification = classification
+      isCurrent(code) {
+        return code == this.$route.params.classificationCode
+      },
+      switchClassification(code) {
+        this.$router.replace({name: 'product-list', params: {'classificationCode': code}})
       },
       jumpToDetail(serialId) {
         this.$router.push({name: 'product-detail', params: {serialId: serialId}})
@@ -387,7 +383,8 @@
     },
     computed: {
       list() {
-        let list = this.lists.filter(item => item.classificationCode == this.currentClassification.code)
+        let list = this.lists.filter(
+          item => item.classificationCode == this.$route.params.classificationCode)
         var result = []
         for (let i of this.currentClassification.subs) {
           result.push(list.filter(item => item.classificationName == i))
@@ -395,7 +392,11 @@
         return result
       }
     },
+    watch: {
+      '$route': 'init'
+    },
     created() {
+      this.init()
 //      todo: 对接API。
     }
   }

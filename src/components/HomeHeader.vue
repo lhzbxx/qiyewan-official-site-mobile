@@ -1,7 +1,9 @@
 <template>
   <div id="header">
     <div id="menu">
-      <img src="" alt="≡">
+      <img src=""
+           alt="≡"
+           v-on:click="jumpToList">
     </div>
     <img src="http://cdn.qiyewan.com/logo.png"
          alt="logo"
@@ -16,6 +18,9 @@
 <script>
   export default {
     methods: {
+      jumpToList() {
+        this.$router.push({name: 'product-list'})
+      },
       jumpToAreas() {
         this.$router.push({name: 'areas'})
       }
