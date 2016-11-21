@@ -59,6 +59,7 @@ import Auth from './pages/Auth.vue'
 import Pay from './pages/Pay.vue'
 import NotFound from './pages/NotFound.vue'
 import Areas from './pages/Areas.vue'
+import Review from './pages/Review.vue'
 
 function requireAuth(to, from, next) {
   if (!store.getters.isLogin) {
@@ -75,12 +76,12 @@ const routes = [
     name: 'home',
     component: Home
   },
-  // {
-  //   path: '/order/:orderSerialId/product/:productSerialId/review',
-  //   name: 'review',
-  //   beforeEnter: requireAuth,
-  //   component: Review
-  // },
+  {
+    path: '/order/:orderSerialId/product/:productSerialId/review',
+    name: 'review',
+    // beforeEnter: requireAuth,
+    component: Review
+  },
   {
     path: '/product/list/:classificationCode',
     name: 'product-classification',
