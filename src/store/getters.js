@@ -35,11 +35,19 @@ export const getToken = state => {
 }
 
 export const cartNum = state => {
-    return state.carts.info.total
+    if (state.carts.info) {
+        return state.carts.info.total
+    } else {
+        return 0
+    }
 }
 
 export const orderNum = state => {
-    return state.orders.info.total
+    if (state.orders.info) {
+        return state.orders.info.total
+    } else {
+        return 0
+    }
 }
 
 export const needLogin = state => {

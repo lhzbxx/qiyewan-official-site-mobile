@@ -14,7 +14,11 @@
       <mt-field label="验证码"
                 v-if="state > 0"
                 placeholder="请输入验证码">
-        <div id="captcha-button">获取验证码</div>
+        <div id="captcha-button"
+             v-bind:class="{inactive: isCounting}"
+             v-on:click="getCaptcha()">
+          {{ isCounting ? counter + '秒' : '获取验证码' }}
+        </div>
       </mt-field>
       <mt-button type="primary"
                  id="submitButton"
@@ -52,10 +56,28 @@
           phone: null,
           password: null,
           captcha: null
-        }
+        },
+        isCounting: false,
+        counter: 60
       }
     },
     methods: {
+      getCaptcha() {
+        if (this.isCounting) return
+        else this.isCounting = true
+        this.counting()
+      },
+      counting() {
+        setTimeout(() => {
+          if (this.counter == 0) {
+            this.counter = 60
+            this.isCounting = false
+          } else {
+            this.counter--
+            this.counting()
+          }
+        }, 1000)
+      }
     },
     computed: {
       headerTitle() {
@@ -136,5 +158,9 @@
     background: #26a2ff;
     color: white;
     text-align: center;
+  }
+
+  #captcha-button.inactive {
+    opacity: 0.5;
   }
 </style>

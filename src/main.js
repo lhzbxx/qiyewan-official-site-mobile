@@ -51,6 +51,7 @@ import ProductDetail from './pages/ProductDetail.vue'
 import Auth from './pages/Auth.vue'
 import Pay from './pages/Pay.vue'
 import NotFound from './pages/NotFound.vue'
+import Areas from './pages/Areas.vue'
 
 function requireAuth(to, from, next) {
   if (!store.getters.isLogin) {
@@ -105,6 +106,12 @@ const routes = [
     name: 'pay',
     // beforeEnter: requireAuth,
     component: Pay
+  },
+  {
+    path: '/areas',
+    name: 'areas',
+    // beforeEnter: requireAuth,
+    component: Areas
   },
   // {
   //   path: '/account',
