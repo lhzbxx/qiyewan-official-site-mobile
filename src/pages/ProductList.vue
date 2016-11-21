@@ -1,25 +1,28 @@
 <template>
   <div id="product-list">
-    <div id="lists">
-      <div class="list"
-           v-bind:class="{ active: isCurrent(item.code) }"
-           v-for="item in classifications"
-           v-on:click="switchClassification(item.code)">
-        <img :src="item.icon" :alt="item.name">
-        {{ item.name }}
-      </div>
-    </div>
-    <div id="content">
-      <div class="classification" v-for="(item, index) in list">
-        <div class="content-header">
-          <div class="dot">&#8226;</div>
-          <div>{{ currentClassification.subs[index] }}</div>
+    <lh-page-header title="分类"></lh-page-header>
+    <div id="wrapper">
+      <div id="lists">
+        <div class="list"
+             v-bind:class="{ active: isCurrent(item.code) }"
+             v-for="item in classifications"
+             v-on:click="switchClassification(item.code)">
+          <img :src="item.icon" :alt="item.name">
+          {{ item.name }}
         </div>
-        <div class="content-body">
-          <div v-for="i in item"
-               v-on:click="jumpToDetail(i.serialId)"
-               class="product">
-            {{ i.name }}
+      </div>
+      <div id="content">
+        <div class="classification" v-for="(item, index) in list">
+          <div class="content-header">
+            <div class="dot">&#8226;</div>
+            <div>{{ currentClassification.subs[index] }}</div>
+          </div>
+          <div class="content-body">
+            <div v-for="i in item"
+                 v-on:click="jumpToDetail(i.serialId)"
+                 class="product">
+              {{ i.name }}
+            </div>
           </div>
         </div>
       </div>
@@ -400,7 +403,7 @@
 </script>
 
 <style scoped>
-  #product-list {
+  #wrapper {
     display: flex;
   }
 

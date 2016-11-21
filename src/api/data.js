@@ -1,5 +1,5 @@
 export default {
-  cdnPrefix: 'http://ofw6tmkxn.bkt.clouddn.com/',
+  cdnPrefix: 'http://cdn.qiyewan.com/',
   subTotalPrice: (checkout) => {
     let amount = checkout.amount
     let member = checkout.member

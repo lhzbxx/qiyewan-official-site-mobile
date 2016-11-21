@@ -35,11 +35,15 @@ import TableHeader from './components/TableHeader.vue'
 import TableEntry from './components/TableEntry.vue'
 import Product from './components/Product.vue'
 import BlockHeader from './components/BlockHeader.vue'
+import HomeHeader from './components/HomeHeader.vue'
+import PageHeader from './components/PageHeader.vue'
 
 Vue.component('lh-table-header', TableHeader)
 Vue.component('lh-table-entry', TableEntry)
 Vue.component('lh-product', Product)
 Vue.component('lh-block-header', BlockHeader)
+Vue.component('lh-home-header', HomeHeader)
+Vue.component('lh-page-header', PageHeader)
 
 import App from './App'
 import Home from './pages/Home.vue'
