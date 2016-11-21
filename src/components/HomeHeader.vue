@@ -1,10 +1,15 @@
 <template>
   <div id="header">
-    <img src="" alt="≡" id="menu">
+    <div id="menu">
+      <img src="" alt="≡">
+    </div>
     <img src="http://cdn.qiyewan.com/logo.png"
          alt="logo"
          id="logo">
-    <div v-on:click="jumpToAreas">上海</div>
+    <div id="area"
+         v-on:click="jumpToAreas">
+      上海
+    </div>
   </div>
 </template>
 
@@ -25,13 +30,21 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 10px;
+    box-shadow: 0 0 10px #aaa;
+    position: relative;
+    z-index: 100;
   }
 
   #menu {
-    height: 36px;
+    width: 70px;
   }
 
   #logo {
     height: 36px;
+  }
+
+  #area {
+    width: 70px;
+    text-align: right;
   }
 </style>

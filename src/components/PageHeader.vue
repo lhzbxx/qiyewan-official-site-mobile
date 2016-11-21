@@ -35,13 +35,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 0 10px #aaa;
     padding: 0 10px;
+    box-shadow: 0 0 10px #aaa;
     position: relative;
+    z-index: 100;
   }
 
   #back {
-    width: 100px;
+    width: 70px;
   }
 
   #title {
@@ -51,6 +52,6 @@
   }
 
   #more {
-    width: 100px;
+    width: 70px;
   }
 </style>

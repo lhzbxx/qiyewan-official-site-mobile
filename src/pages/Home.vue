@@ -158,7 +158,7 @@
   }
 
   .slide {
-    background-color: gray;
+    background-color: #eee;
   }
 
   #categories {

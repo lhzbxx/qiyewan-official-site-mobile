@@ -1,5 +1,6 @@
 <template>
   <div id="auth">
+    <lh-page-header :title="headerTitle"></lh-page-header>
     <div id="auth-body">
       <mt-field label="手机号"
                 placeholder="请输入手机号"

@@ -1,5 +1,6 @@
 <template>
   <div id="product-detail">
+    <lh-page-header title="详情"></lh-page-header>
     <mt-navbar v-model="selected">
       <mt-tab-item id="1">商品详情</mt-tab-item>
       <mt-tab-item id="2">常见问题</mt-tab-item>

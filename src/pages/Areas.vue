@@ -1,5 +1,6 @@
 <template>
   <div id="areas">
+    <lh-page-header title="选择地区"></lh-page-header>
     <label class="mint-radiolist-title">当前位置</label>
     <mt-cell
       :title="getRegion.name"

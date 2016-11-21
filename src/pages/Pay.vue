@@ -1,5 +1,6 @@
 <template>
   <div id="pay">
+    <lh-page-header title="结算"></lh-page-header>
     <div>
       <mt-cell v-for="item in checkouts"
                :title="item.name"
@@ -30,7 +31,7 @@
 
 <script>
   import {Indicator} from 'mint-ui';
-  
+
   export default {
     data() {
       return {
