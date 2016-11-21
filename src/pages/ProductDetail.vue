@@ -26,7 +26,19 @@
           </div>
         </div>
         <p class="product-detail-title">您将得到</p>
+        <div id="product-detail-what-obtain">
+          <p class="product-detail-block"
+             v-for="item in JSON.parse(product.tWhatObtain)">
+            {{ item }}
+          </p>
+        </div>
         <p class="product-detail-title">所需材料</p>
+        <div id="product-detail-what-need">
+          <p class="product-detail-block"
+             v-for="item in JSON.parse(product.tWhatNeed)">
+            {{ item }}
+          </p>
+        </div>
         <p class="product-detail-title">服务流程&服务周期</p>
         <div id="product-detail-processes">
           <p class="product-detail-process"
@@ -111,6 +123,8 @@
           "whatNeed": "product-SHSHPS0002-what-need.png",
           "whatObtain": "product-SHSHPS0002-what-obtain.png",
           "process": "[\"核税流程\", \"法律咨询流程\", \"代理结账流程\", \"完成\"]",
+          "tWhatNeed": "[\"核税流程\", \"法律咨询流程\", \"代理结账流程\", \"完成\", \"法律咨询流程\", \"代理结账流程\", \"完成\"]",
+          "tWhatObtain": "[\"核税流程\", \"法律咨询流程\", \"代理结账流程\", \"完成\"]",
           "info": "",
           "rate": 5.0,
           "purchaseNumber": 1,
@@ -168,7 +182,8 @@
           "serialId": "SHSHHR0004",
           "question": "社保有什么用？",
           "answer": "社保可以说是国家为每个公民提供的一种福利制度，社保有以下几方面基本作用：\n养老保险：退休工资\n医疗保险：医疗报销，大病统筹\n生育保险：女性可以在生产期间费用报销、领取补贴，男性生育结扎、生殖健康等享受费用报销和津贴\n失业保险：失业时可拿一定时间的失业救济金\n工伤保险：出了工伤时给予补偿\n社保可以说是国家为每个公民提供的一种福利制度，社保有以下几方面基本作用：\n养老保险：退休工资\n医疗保险：医疗报销，大病统筹\n生育保险：女性可以在生产期间费用报销、领取补贴，男性生育结扎、生殖健康等享受费用报销和津贴\n失业保"
-        }]
+        }],
+        toastInstance: null
       }
     },
     methods: {
@@ -176,13 +191,14 @@
         this.$router.push({name: 'pay'})
       },
       addToCart() {
-        let instance = Toast({
+        if (this.toastInstance) this.toastInstance.close()
+        this.toastInstance = Toast({
           message: '操作成功',
           iconClass: 'mintui mintui-success'
         });
         setTimeout(() => {
-          instance.close();
-        }, 2000);
+          this.toastInstance.close()
+        }, 2000)
       }
     }
   }
@@ -266,7 +282,7 @@
   }
 
   .product-detail-title {
-    margin-top: 15px;
+    margin-top: 10px;
     margin-left: 10px;
     font-size: 18px;
     color: #333;
@@ -309,6 +325,28 @@
 
   .product-detail-process:last-child:before {
     border: none;
+  }
+
+  #product-detail-what-obtain {
+    display: flex;
+    padding: 0 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+
+  #product-detail-what-need {
+    display: flex;
+    padding: 0 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+
+  .product-detail-block {
+    padding: 10px 5px;
+    font-size: 13px;
+    border: 1px solid #eee;
+    margin-bottom: 8px;
+    margin-right: 8px;
   }
 
   .faq {
@@ -372,13 +410,16 @@
     margin-left: 8px;
     color: #666;
   }
+
   .review-create-at {
     margin-left: auto;
     color: #aaa;
   }
+
   .review-content {
     margin-top: 15px;
   }
+
   .review-details {
     margin-top: 15px;
     color: #aaa;
