@@ -74,26 +74,6 @@
       }
     },
     computed: {
-      headerTitle() {
-        switch (this.state) {
-          case 0:
-            return '登 录'
-          case 1:
-            return '注 册'
-          case 2:
-            return '重置密码'
-        }
-      },
-      submitButton() {
-        switch (this.state) {
-          case 0:
-            return '登 录'
-          case 1:
-            return '注 册'
-          case 2:
-            return '确 认'
-        }
-      },
       totalPrice() {
         var result = 0
         for (let i of this.checkouts) {
@@ -121,6 +101,7 @@
 <style scoped>
   #pay {
     background: #f9f9f9;
+    margin-top: 50px;
   }
 
   p {

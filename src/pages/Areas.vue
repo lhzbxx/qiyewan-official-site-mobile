@@ -43,5 +43,7 @@
 </script>
 
 <style scoped>
-
+  #areas {
+    margin-top: 50px;
+  }
 </style>

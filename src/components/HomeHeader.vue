@@ -31,7 +31,10 @@
     justify-content: space-between;
     padding: 0 10px;
     box-shadow: 0 0 10px #aaa;
-    position: relative;
+    position: fixed;
+    width: 100%;
+    background: white;
+    top: 0;
     z-index: 100;
   }
 

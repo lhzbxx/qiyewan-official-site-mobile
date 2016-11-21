@@ -403,6 +403,10 @@
 </script>
 
 <style scoped>
+  #product-list {
+    margin-top: 50px;
+  }
+
   #wrapper {
     display: flex;
   }
