@@ -41,6 +41,7 @@
     float: left;
     background: white;
     padding: 0 5px;
+    margin-bottom: 5px;
   }
 
   #product-cover {
@@ -59,5 +60,7 @@
   #product-price {
     color: red;
     margin: 5px 0;
+    font-size: 15px;
+    line-height: 15px;
   }
 </style>

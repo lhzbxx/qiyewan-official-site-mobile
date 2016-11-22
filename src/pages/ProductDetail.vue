@@ -276,8 +276,9 @@
   #details-header {
     margin-top: 20px;
     margin-bottom: 8px;
-    padding: 0 60px 10px 10px;
+    padding: 0 60px 0 10px;
     border-bottom: 1px solid #eee;
+    min-height: 99px;
   }
 
   .details-content {
