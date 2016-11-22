@@ -1,25 +1,27 @@
 <template>
-  <div id="areas">
-    <lh-page-header title="选择地区"></lh-page-header>
-    <label class="mint-radiolist-title">当前位置</label>
-    <div>
-      <mt-cell
-        :title="getRegion.name"
-        :label="getRegion.pName"
-        value="已选地区">
-      </mt-cell>
+  <transition name="slide-right">
+    <div id="areas">
+      <lh-page-header title="选择地区"></lh-page-header>
+      <label class="mint-radiolist-title">当前位置</label>
+      <div>
+        <mt-cell
+          :title="getRegion.name"
+          :label="getRegion.pName"
+          value="已选地区">
+        </mt-cell>
+      </div>
+      <label class="mint-radiolist-title">全部地区</label>
+      <div>
+        <mt-cell
+          :title="item.name"
+          :label="item.pName"
+          :value="isSelected(item) ? '已选地区' : ''"
+          @click.native="selectRegion(item)"
+          v-for="item in getRegions">
+        </mt-cell>
+      </div>
     </div>
-    <label class="mint-radiolist-title">全部地区</label>
-    <div>
-      <mt-cell
-        :title="item.name"
-        :label="item.pName"
-        :value="isSelected(item) ? '已选地区' : ''"
-        @click.native="selectRegion(item)"
-        v-for="item in getRegions">
-      </mt-cell>
-    </div>
-  </div>
+  </transition>
 </template>
 
 <script>

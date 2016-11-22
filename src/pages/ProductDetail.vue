@@ -18,13 +18,7 @@
           {{ product.unitPrice.toFixed(2) }}
         </p>
         <p id="product-detail-comment">（我们价格为平台服务费，官费指国家行政收费，刻章工本费由客户承担。注：不用不同，详情请咨询我公司客服，电话：400-716-8896）</p>
-        <div id="service-list" class="clearfix">
-          <div class="service" v-for="item in services">
-            <!--todo: 需要替换！-->
-            <img src="../assets/logo.png" alt="">
-            <p>{{ item }}</p>
-          </div>
-        </div>
+        <lh-services></lh-services>
         <p class="product-detail-title">您将得到</p>
         <div id="product-detail-what-obtain">
           <p class="product-detail-block"
@@ -168,12 +162,6 @@
           amount: 1,
           member: 1
         },
-        services: [
-          '一站式服务',
-          '实时短信',
-          '实时提醒',
-          '一对一服务'
-        ],
         product: {
           "id": 2,
           "serialId": "SHSHPS0002",
@@ -363,12 +351,13 @@
     background: black;
     z-index: -1;
     top: 50px;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out, z-index 0s 0.5s;
   }
 
   #mask.active {
     opacity: 0.6;
     z-index: 100;
+    transition: opacity 0.5s ease-in-out, z-index 0s 0s;
   }
 
   #details {
@@ -424,40 +413,6 @@
     margin-top: 8px;
     font-size: 13px;
     padding: 0 10px;
-  }
-
-  #service-list {
-    margin-top: 20px;
-    overflow: hidden;
-  }
-
-  .service {
-    width: 25%;
-    display: inline-block;
-    height: 40px;
-    text-align: center;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-  }
-
-  .service:first-child {
-    padding-left: 10px;
-  }
-
-  .service:last-child {
-    padding-right: 10px;
-  }
-
-  .service img {
-    height: 10px;
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  .service p {
-    font-size: 13px;
-    display: inline-block;
-    line-height: 38px;
   }
 
   span {
