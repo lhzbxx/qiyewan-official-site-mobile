@@ -85,9 +85,16 @@
            style="background: #199cd8;">立即购买
       </div>
       <div class="bottom-button"
-           v-on:click="addToCart()"
+           v-on:click="showDetails = true"
            style="background: #f7a82d;">加入购物车
       </div>
+    </div>
+    <div id="details"
+         v-bind:class="{ active: showDetails }">
+    </div>
+    <div id="mask"
+         v-on:click="showDetails = false"
+         v-bind:class="{ active: showDetails }">
     </div>
   </div>
 </template>
@@ -99,6 +106,7 @@
     data() {
       return {
         selected: "1",
+        showDetails: false,
         services: [
           '一站式服务',
           '实时短信',
@@ -205,6 +213,37 @@
 </script>
 
 <style scoped>
+  #mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    opacity: 0;
+    background: black;
+    z-index: 0;
+    top: 50px;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  #mask.active {
+    opacity: 0.6;
+    z-index: 100;
+  }
+
+  #details {
+    width: 100%;
+    height: 0;
+    position: fixed;
+    bottom: 0;
+    background: white;
+    z-index: 101;
+    transition: all 0.5s ease-in-out;
+  }
+
+  #details.active {
+    height: 70%;
+    min-height: 300px;
+  }
+
   #product-detail {
     background: white;
     margin-top: 50px;

@@ -3,6 +3,7 @@
        v-on:click="jump">
     <img :src="cover"
          :alt="name"
+         v-bind:style="{ height: coverHeight + 'px' }"
          id="product-cover">
     <p id="product-name">
       {{ name }}
@@ -22,6 +23,10 @@
       name: String,
       cover: String,
       price: Number,
+      coverHeight: {
+        type: Number,
+        default: 100
+      }
     },
     methods: {
       jump() {
@@ -40,7 +45,6 @@
 
   #product-cover {
     width: 100%;
-    height:100px;
   }
 
   #product-name {

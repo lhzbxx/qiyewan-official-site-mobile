@@ -30,6 +30,7 @@
                     :name="item.name"
                     :price="item.price"
                     @click="jumpToDetail(item.serialId)"
+                    :coverHeight=125
                     v-for="item in hotProducts.slice(0, 2)">
         </lh-product>
       </div>
