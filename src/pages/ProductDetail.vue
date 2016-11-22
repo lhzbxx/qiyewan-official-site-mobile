@@ -143,6 +143,8 @@
         <div></div>
         <div id="confirm-button">确 定</div>
       </div>
+      <div style="position: relative; height: auto;">
+      </div>
     </div>
     <div id="mask"
          v-on:click="showDetails = false"
@@ -283,6 +285,7 @@
     margin: 0 10px;
     align-items: center;
     height: 50px;
+    min-height: 50px;
   }
 
   #details-content-region {
@@ -343,12 +346,14 @@
 
   #details-bottom {
     display: flex;
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
     background: #efefef;
     align-items: center;
     border-top: 1px solid #ddd;
+    min-height: 50px;
+    margin-top: auto;
   }
 
   #confirm-button {
@@ -386,13 +391,16 @@
     bottom: -50px;
     background: #fafafa;
     z-index: 101;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
     transition: height 0.25s ease-in-out;
   }
 
   #details.active {
     bottom: 0;
     height: 70%;
-    min-height: 180px;
+    min-height: 128px;
     transition: height 0.5s ease-in-out;
   }
 

@@ -30,7 +30,7 @@
                     :name="item.name"
                     :price="item.price"
                     @click="jumpToDetail(item.serialId)"
-                    :coverHeight=125
+                    :coverHeight="(screenWidth - 20) / 2 * 0.8"
                     v-for="item in hotProducts.slice(0, 2)">
         </lh-product>
       </div>
@@ -40,6 +40,7 @@
                     :name="item.name"
                     :price="item.price"
                     @click="jumpToDetail(item.serialId)"
+                    :coverHeight="(screenWidth - 20) / 3 * 0.8"
                     v-for="item in hotProducts.slice(2, 5)">
         </lh-product>
       </div>
@@ -63,6 +64,7 @@
   export default {
     data() {
       return {
+        screenWidth: window.screen.width,
         hot_products: [
           {
             name: "注册财税一条龙",
