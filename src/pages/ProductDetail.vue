@@ -116,9 +116,33 @@
       </div>
       <div class="details-content">
         <p class="details-content-title">服务时长</p>
+        <p class="details-content-period"
+           v-on:click="form.amount = 6"
+           v-bind:class="{ active: form.amount == 6}"
+           style="margin-left: 5px;">半年</p>
+        <p class="details-content-period"
+           v-on:click="form.amount = 12"
+           v-bind:class="{ active: form.amount == 12 }">一年</p>
       </div>
       <div class="details-content">
         <p class="details-content-title">数量</p>
+        <p class="details-content-amount"
+           v-on:click="form.amount > 1 ? form.amount-- : pass"
+           v-bind:class="{ active: form.amount > 1 }"
+           style="margin-left: 5px;">&minus;</p>
+        <p class="details-content-amount">{{ form.amount }}</p>
+        <p class="details-content-amount active"
+           v-on:click="form.amount++">&plus;</p>
+      </div>
+      <div class="details-content">
+        <p class="details-content-title">人数</p>
+        <p class="details-content-amount"
+           v-on:click="form.member > 1 ? form.member-- : pass"
+           v-bind:class="{ active: form.member > 1 }"
+           style="margin-left: 5px;">&minus;</p>
+        <p class="details-content-amount">{{ form.member }}</p>
+        <p class="details-content-amount active"
+           v-on:click="form.member++">&plus;</p>
       </div>
       <div id="details-bottom">
         <div></div>
@@ -140,6 +164,10 @@
       return {
         selected: "1",
         showDetails: false,
+        form: {
+          amount: 1,
+          member: 1
+        },
         services: [
           '一站式服务',
           '实时短信',
@@ -264,6 +292,38 @@
   .details-content {
     display: flex;
     margin: 0 10px;
+    align-items: center;
+    height: 50px;
+  }
+
+  .details-content-amount:first-child {
+    margin-left: 20px;
+  }
+
+  .details-content-amount {
+    line-height: 30px;
+    padding: 0 8px;
+    margin-left: -1px;
+    font-size: 18px;
+    border: 1px solid #ddd;
+  }
+
+  .details-content-amount.active {
+    color: #26a2ff;
+  }
+
+  .details-content-period {
+    font-size: 14px;
+    line-height: 24px;
+    padding: 3px 10px;
+    margin-left: 15px;
+    width: 70px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+
+  .details-content-period.active {
+    border-color: #26a2ff;
   }
 
   .details-content-title {
@@ -271,6 +331,7 @@
     font-size: 16px;
     line-height: 40px;
     text-align: right;
+    margin-right: 10px;
   }
 
   #details-bottom {
@@ -300,7 +361,7 @@
     position: fixed;
     opacity: 0;
     background: black;
-    z-index: 0;
+    z-index: -1;
     top: 50px;
     transition: opacity 0.5s ease-in-out;
   }
@@ -323,7 +384,7 @@
   #details.active {
     bottom: 0;
     height: 70%;
-    min-height: 300px;
+    min-height: 180px;
     transition: height 0.5s ease-in-out;
   }
 
