@@ -91,6 +91,39 @@
     </div>
     <div id="details"
          v-bind:class="{ active: showDetails }">
+      <img src=""
+           alt="×"
+           id="close-button"
+           v-on:click="showDetails = false">
+      <div id="details-header">
+        <lh-table-entry :name="product.name"
+                        :cover="product.cover"
+                        :summary="product.summary"
+                        :price="product.unitPrice"
+                        :isSplit=false>
+        </lh-table-entry>
+      </div>
+      <div class="details-content">
+        <p class="details-content-title">服务区域</p>
+        <select>
+          <option>1</option>
+          <option>1</option>
+          <option>1</option>
+          <option>1</option>
+          <option>1</option>
+          <option>1</option>
+        </select>
+      </div>
+      <div class="details-content">
+        <p class="details-content-title">服务时长</p>
+      </div>
+      <div class="details-content">
+        <p class="details-content-title">数量</p>
+      </div>
+      <div id="details-bottom">
+        <div></div>
+        <div id="confirm-button">确 定</div>
+      </div>
     </div>
     <div id="mask"
          v-on:click="showDetails = false"
@@ -213,6 +246,54 @@
 </script>
 
 <style scoped>
+  #close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+  }
+
+  #details-header {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    padding: 0 60px 10px 10px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .details-content {
+    display: flex;
+    margin: 0 10px;
+  }
+
+  .details-content-title {
+    width: 70px;
+    font-size: 16px;
+    line-height: 40px;
+    text-align: right;
+  }
+
+  #details-bottom {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #efefef;
+    align-items: center;
+    border-top: 1px solid #ddd;
+  }
+
+  #confirm-button {
+    height: 50px;
+    background: #26a2ff;
+    color: white;
+    width: 40%;
+    line-height: 50px;
+    text-align: center;
+    font-size: 18px;
+    margin-left: auto;
+  }
+
   #mask {
     width: 100%;
     height: 100%;
@@ -233,15 +314,17 @@
     width: 100%;
     height: 0;
     position: fixed;
-    bottom: 0;
-    background: white;
+    bottom: -50px;
+    background: #fafafa;
     z-index: 101;
-    transition: all 0.5s ease-in-out;
+    transition: height 0.25s ease-in-out;
   }
 
   #details.active {
+    bottom: 0;
     height: 70%;
     min-height: 300px;
+    transition: height 0.5s ease-in-out;
   }
 
   #product-detail {

@@ -12,12 +12,15 @@
     </div>
     <lh-list-header :title="currentClassificationName"
                     :amount="list.length"></lh-list-header>
-    <lh-table-entry :name="item.name"
-                    :cover="item.cover"
-                    :summary="item.summary"
-                    :price="item.price"
-                    @click="jumpToDetail(item.serialId)"
-                    v-for="item in list"></lh-table-entry>
+    <div style="padding: 0 10px;">
+      <lh-table-entry :name="item.name"
+                      :cover="item.cover"
+                      :summary="item.summary"
+                      :price="item.price"
+                      @click="jumpToDetail(item.serialId)"
+                      v-for="item in list">
+      </lh-table-entry>
+    </div>
   </div>
 </template>
 
