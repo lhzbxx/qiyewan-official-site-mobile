@@ -99,14 +99,15 @@
       </div>
       <div class="details-content">
         <p class="details-content-title">服务区域</p>
-        <select>
-          <option>1</option>
-          <option>1</option>
-          <option>1</option>
-          <option>1</option>
-          <option>1</option>
-          <option>1</option>
-        </select>
+        <span id="details-content-region">闵行区
+          <select value="闵行区">
+            <option value="闵行区">闵行区</option>
+            <option value="闵行区">闵行区</option>
+            <option value="闵行区">闵行区</option>
+            <option value="闵行区">闵行区</option>
+            <option value="闵行区">闵行区</option>
+          </select>
+        </span>
       </div>
       <div class="details-content">
         <p class="details-content-title">服务时长</p>
@@ -272,7 +273,7 @@
 
   #details-header {
     margin-top: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
     padding: 0 60px 10px 10px;
     border-bottom: 1px solid #eee;
   }
@@ -282,6 +283,24 @@
     margin: 0 10px;
     align-items: center;
     height: 50px;
+  }
+
+  #details-content-region {
+    margin-left: 5px;
+    padding: 0 15px;
+    line-height: 30px;
+    font-size: 14px;
+    border: 1px solid #26a2ff;
+    position: relative;
+  }
+
+  select {
+    position: absolute;
+    opacity: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
   }
 
   .details-content-amount:first-child {
