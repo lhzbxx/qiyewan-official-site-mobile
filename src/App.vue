@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <!--<transition name="fade" mode="out-in">-->
-      <router-view class="child-view"></router-view>
-    <!--</transition>-->
+    <router-view class="child-view"></router-view>
     <!--<mt-tabbar v-model="selectedTab" :fixed="true">-->
       <!--<mt-tab-item id="tab-home">-->
         <!--<img slot="icon"-->

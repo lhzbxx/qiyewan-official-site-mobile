@@ -1,6 +1,7 @@
 <template>
   <div id="home">
     <lh-home-header></lh-home-header>
+    <lh-home-footer :index="1"></lh-home-footer>
     <mt-swipe id="slides"
               :auto="4000"
               :show-indicators="true">
@@ -154,6 +155,7 @@
   #home {
     background: #eee;
     padding-top: 50px;
+    padding-bottom: 50px;
   }
 
   #slides {

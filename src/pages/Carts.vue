@@ -1,6 +1,7 @@
 <template>
   <div id="carts">
     <lh-page-header title="购物车"></lh-page-header>
+    <lh-home-footer :index="3"></lh-home-footer>
     <div id="no-carts"
          v-if="carts.length == 0">
       <img src="../assets/logo.png" alt="暂无">
@@ -201,7 +202,7 @@
     position: fixed;
     align-items: baseline;
     justify-content: flex-end;
-    bottom: 0;
+    bottom: 50px;
     width: 100%;
     height: 50px;
     z-index: 100;

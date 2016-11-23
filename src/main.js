@@ -36,6 +36,7 @@ import TableEntry from './components/TableEntry.vue'
 import Product from './components/Product.vue'
 import BlockHeader from './components/BlockHeader.vue'
 import HomeHeader from './components/HomeHeader.vue'
+import HomeFooter from './components/HomeFooter.vue'
 import PageHeader from './components/PageHeader.vue'
 import ListHeader from './components/ListHeader.vue'
 import Services from './components/Services.vue'
@@ -46,6 +47,7 @@ Vue.component('lh-table-entry', TableEntry)
 Vue.component('lh-product', Product)
 Vue.component('lh-block-header', BlockHeader)
 Vue.component('lh-home-header', HomeHeader)
+Vue.component('lh-home-footer', HomeFooter)
 Vue.component('lh-page-header', PageHeader)
 Vue.component('lh-list-header', ListHeader)
 Vue.component('lh-services', Services)
@@ -106,12 +108,12 @@ const routes = [
     name: 'auth',
     component: Auth
   },
-  // {
-  //   path: '/order',
-  //   name: 'order',
-  //   beforeEnter: requireAuth,
-  //   component: OrderList
-  // },
+  {
+    path: '/order',
+    name: 'order',
+    beforeEnter: requireAuth,
+    component: Orders
+  },
   {
     path: '/cart',
     name: 'cart',
@@ -130,11 +132,12 @@ const routes = [
     // beforeEnter: requireAuth,
     component: Areas
   },
-  // {
-  //   path: '/account',
-  //   beforeEnter: requireAuth,
-  //   component: AccountProfile
-  // },
+  {
+    path: '/mine',
+    name: 'mine',
+    beforeEnter: requireAuth,
+    component: Mine
+  },
   // {
   //   path: '/person',
   //   beforeEnter: requireAuth,
