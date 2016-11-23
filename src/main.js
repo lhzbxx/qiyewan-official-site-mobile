@@ -39,6 +39,7 @@ import HomeHeader from './components/HomeHeader.vue'
 import HomeFooter from './components/HomeFooter.vue'
 import PageHeader from './components/PageHeader.vue'
 import ListHeader from './components/ListHeader.vue'
+import TabsHeader from './components/TabsHeader.vue'
 import Services from './components/Services.vue'
 import CartDetail from './components/CartDetail.vue'
 
@@ -52,6 +53,7 @@ Vue.component('lh-page-header', PageHeader)
 Vue.component('lh-list-header', ListHeader)
 Vue.component('lh-services', Services)
 Vue.component('lh-cart-detail', CartDetail)
+Vue.component('lh-tabs-header', TabsHeader)
 
 import App from './App'
 import Home from './pages/Home.vue'

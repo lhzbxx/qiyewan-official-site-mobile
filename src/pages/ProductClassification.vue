@@ -1,15 +1,8 @@
 <template>
   <div id="product-classification">
     <lh-page-header :title="currentClassification.name"></lh-page-header>
-    <div id="tabs">
-      <p
-        class="tab"
-        v-bind:class="{ active: isCurrent(item) }"
-        v-on:click="switchClassification(item)"
-        v-for="item in currentClassification.subs">
-        {{ item }}
-      </p>
-    </div>
+    <lh-tabs-header :tabs="currentClassification.subs"
+                    @change-current="changeCurrent"></lh-tabs-header>
     <lh-list-header :title="currentClassificationName"
                     :amount="list.length"></lh-list-header>
     <div style="padding: 0 10px;">
@@ -185,14 +178,11 @@
           this.currentClassificationName = this.currentClassification.subs[0]
         }
       },
-      isCurrent(name) {
-        return name == this.currentClassificationName
-      },
-      switchClassification(name) {
-        this.currentClassificationName = name
-      },
       jumpToDetail(serialId) {
         this.$router.push({name: 'product-detail', params: {serialId: serialId}})
+      },
+      changeCurrent(current) {
+        this.currentClassificationName = current
       }
     },
     computed: {
@@ -210,25 +200,5 @@
 <style scoped>
   #product-classification {
     padding-top: 50px;
-  }
-
-  #tabs {
-    display: flex;
-    align-items: center;
-    height: 60px;
-    padding: 0 10px;
-    border-bottom: 1px solid #eee;
-  }
-
-  .tab {
-    font-size: 16px;
-    margin-right: 10px;
-    padding: 8px 10px;
-    border: 1px solid #eee;
-  }
-
-  .tab.active {
-    color: #26a2ff;
-    border-color: #26a2ff;
   }
 </style>

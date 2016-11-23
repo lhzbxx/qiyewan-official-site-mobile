@@ -148,6 +148,8 @@ export default {
     {
       name: "成都", code: 'SCCD', pName: "四川",
       areas: [
+        {name: "高新区"},
+        {name: "天府新区"},
         {name: "青羊区"},
         {name: "锦江区"},
         {name: "金牛区"},
