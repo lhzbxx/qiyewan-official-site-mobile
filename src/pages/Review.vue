@@ -1,6 +1,6 @@
 <template>
   <div id="review">
-    <lh-page-header title="评论"></lh-page-header>
+    <lh-page-header title="评 论"></lh-page-header>
     <div id="wrapper">
       <mt-button type="primary"
                  id="submitButton"

@@ -1,6 +1,6 @@
 <template>
   <div id="product-detail">
-    <lh-page-header title="详情"></lh-page-header>
+    <lh-page-header title="产品详情"></lh-page-header>
     <mt-navbar v-model="selected">
       <mt-tab-item id="1">商品详情</mt-tab-item>
       <mt-tab-item id="2">常见问题</mt-tab-item>
@@ -55,7 +55,7 @@
       <mt-tab-container-item id="3">
         <div class="review" v-for="item in 4">
           <div class="review-info">
-            <img src="http://ofw6tmkxn.bkt.clouddn.com/finance_02.jpg"
+            <img :src="product.cover | cdn-filter"
                  alt=""
                  class="user-avatar">
             <span class="user-nickname">尼古拉斯`赵四</span>

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <transition name="fade">
-      <router-view></router-view>
+    <transition name="fade" mode="out-in">
+      <router-view class="child-view"></router-view>
     </transition>
     <!--<mt-tabbar v-model="selectedTab" :fixed="true">-->
       <!--<mt-tab-item id="tab-home">-->

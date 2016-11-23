@@ -70,6 +70,9 @@
   #table-entry-name {
     line-height: 25px;
     font-size: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   #table-entry-summary {

@@ -1,6 +1,6 @@
 <template>
   <div id="pay">
-    <lh-page-header title="结算"></lh-page-header>
+    <lh-page-header title="结 算"></lh-page-header>
     <div>
       <mt-cell v-for="item in checkouts"
                :title="item.name"

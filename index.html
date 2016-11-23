@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=0">
     <meta name="renderer" content="webkit">
     <meta name="description" content="企业湾整合业内优秀的财务、法务、人事、IT技术等资源，通过线上线下的服务方式，优化服务流程，降低服务成本，为中国千万中小企业、创新创业者提供一站超值的服务。">
     <meta name="keywords" content="企业湾,注册公司,代理记账,商标注册,个人社保,企业社保,创业法律服务,网站建设">
@@ -13,6 +13,20 @@
     <link rel="icon"
           type="image/png"
           href="/static/logo.png">
+    <style>
+      .child-view {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        background: white;
+      }
+      .fade-enter-active, .fade-leave-active {
+        transition: opacity .25s ease;
+      }
+      .fade-enter, .fade-leave-active {
+        opacity: 0
+      }
+    </style>
   </head>
   <body>
     <div id="app"></div>

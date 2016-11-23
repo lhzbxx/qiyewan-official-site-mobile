@@ -1,6 +1,6 @@
 <template>
   <div id="product-list">
-    <lh-page-header title="分类"></lh-page-header>
+    <lh-page-header title="产品列表"></lh-page-header>
     <div id="wrapper">
       <div id="lists">
         <div class="list"
@@ -404,10 +404,12 @@
 <style scoped>
   #product-list {
     padding-top: 50px;
+    height: 100%;
   }
 
   #wrapper {
     display: flex;
+    height: 100%;
   }
 
   #lists {
