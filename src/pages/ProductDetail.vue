@@ -234,8 +234,8 @@
 <style scoped>
   #product-detail {
     background: white;
-    margin-top: 50px;
     margin-bottom: 60px;
+    padding-top: 50px;
   }
 
   #product-detail-cover {

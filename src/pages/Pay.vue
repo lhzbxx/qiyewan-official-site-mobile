@@ -101,7 +101,7 @@
 <style scoped>
   #pay {
     background: #f9f9f9;
-    margin-top: 50px;
+    padding-top: 50px;
   }
 
   p {

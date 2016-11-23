@@ -107,7 +107,7 @@
 
 <style scoped>
   #auth {
-    margin-top: 50px;
+    padding-top: 50px;
     background: white;
   }
 

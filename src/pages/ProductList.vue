@@ -403,7 +403,7 @@
 
 <style scoped>
   #product-list {
-    margin-top: 50px;
+    padding-top: 50px;
   }
 
   #wrapper {

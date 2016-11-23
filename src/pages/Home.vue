@@ -154,7 +154,7 @@
 <style scoped>
   #home {
     background: #eee;
-    margin-top: 50px;
+    padding-top: 50px;
   }
 
   #slides {
