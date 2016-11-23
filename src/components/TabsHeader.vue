@@ -42,6 +42,7 @@
     height: 60px;
     padding: 0 10px;
     border-bottom: 1px solid #eee;
+    background: white;
   }
 
   .tab {
