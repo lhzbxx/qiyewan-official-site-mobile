@@ -26,7 +26,7 @@
                        style="padding-left: 5px; padding-right: 5px;"></lh-block-header>
       <div class="recommend-first">
         <lh-product class="recommend-first-product"
-                    :cover="cdnPrefix + item.cover"
+                    :cover="item.cover"
                     :name="item.name"
                     :price="item.price"
                     @click="jumpToDetail(item.serialId)"
@@ -36,7 +36,7 @@
       </div>
       <div class="recommend-second">
         <lh-product class="recommend-second-product"
-                    :cover="cdnPrefix + item.cover"
+                    :cover="item.cover"
                     :name="item.name"
                     :price="item.price"
                     @click="jumpToDetail(item.serialId)"
@@ -47,7 +47,7 @@
     </div>
     <div id="hot-products" class="clearfix">
       <lh-block-header name="套餐服务"></lh-block-header>
-      <lh-table-entry v-for="item in hot_products"
+      <lh-table-entry v-for="item in combos"
                       :name="item.name"
                       :cover="item.cover"
                       :summary="item.summary"
@@ -65,28 +65,28 @@
     data() {
       return {
         screenWidth: window.screen.width,
-        hot_products: [
+        combos: [
           {
             name: "注册财税一条龙",
-            cover: "http://ofw6tmkxn.bkt.clouddn.com/finance_02.jpg",
+            cover: "finance_02.jpg",
             summary: "注册+银行开户+核定税种（税务报到+代购CA+代拿三方）+一年代账（零申报），报价中不含官费。",
             price: 100
           },
           {
             name: "注册财税一条龙",
-            cover: "http://ofw6tmkxn.bkt.clouddn.com/finance_02.jpg",
+            cover: "finance_02.jpg",
             summary: "注册+银行开户+核定税种（税务报到+代购CA+代拿三方）+一年代账（零申报），报价中不含官费。",
             price: 100
           },
           {
             name: "注册财税一条龙",
-            cover: "http://ofw6tmkxn.bkt.clouddn.com/finance_02.jpg",
+            cover: "finance_02.jpg",
             summary: "注册+银行开户+核定税种（税务报到+代购CA+代拿三方）+一年代账（零申报），报价中不含官费。",
             price: 100
           },
           {
             name: "注册财税一条龙",
-            cover: "http://ofw6tmkxn.bkt.clouddn.com/finance_02.jpg",
+            cover: "finance_02.jpg",
             summary: "注册+银行开户+核定税种（税务报到+代购CA+代拿三方）+一年代账（零申报），报价中不含官费。",
             price: 100
           }
@@ -136,7 +136,6 @@
     },
     computed: {
       ...mapGetters([
-        'cdnPrefix',
         'hotProducts'
       ])
     },

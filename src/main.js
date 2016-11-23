@@ -171,6 +171,18 @@ const router = new VueRouter({
   }
 })
 
+Vue.filter('cdn-filter', (value) => 'http://cdn.qiyewan.com/' + value)
+
+Vue.filter('sub-total-price-filter', (checkout) => {
+  let amount = checkout.amount
+  let member = checkout.member
+  if (checkout.product.serialId.substr(4) === 'HR0003') {
+    return member > 3 ? ((98.8 + 18.8 * (member - 3)) * amount).toFixed(2) : (98.8 * amount).toFixed(2)
+  } else {
+    return (amount * checkout.product.unitPrice).toFixed(2)
+  }
+})
+
 new Vue({
   router,
   store,

@@ -3,7 +3,7 @@
        class="clearfix"
        v-on:click="jump">
     <img id="table-entry-cover"
-         :src="cover"
+         :src="cover | cdn-filter"
          :alt="name">
     <div id="table-entry-body"
          v-bind:class="{ 'no-border': !isSplit }">

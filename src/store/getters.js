@@ -61,7 +61,3 @@ export const getCheckout = state => {
 export const regions = () => {
     return dataApi.regions
 }
-
-export const cdnPrefix = () => {
-    return dataApi.cdnPrefix
-}

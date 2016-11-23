@@ -1,7 +1,7 @@
 <template>
   <div id="product"
        v-on:click="jump">
-    <img :src="cover"
+    <img :src="cover | cdn-filter"
          :alt="name"
          v-bind:style="{ height: coverHeight + 'px' }"
          id="product-cover">
