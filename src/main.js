@@ -164,7 +164,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'hash',
+  mode: 'history',
   routes: routes,
   scrollBehavior (to, from, savedPosition) {
     return {x: 0, y: 0}
