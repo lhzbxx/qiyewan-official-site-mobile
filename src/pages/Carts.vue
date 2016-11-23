@@ -1,5 +1,6 @@
 <template>
   <div id="carts">
+    <lh-page-header title="购物车"></lh-page-header>
     <div id="no-carts"
          v-if="carts.length == 0">
       <img src="../assets/logo.png" alt="暂无">
@@ -20,17 +21,18 @@
         <span>删除</span>
       </div>
       <div class="cart"
-           v-for="(item, index) in carts"
-           v-on:click="select(index)">
+           v-for="(item, index) in carts">
         <div class="choice"
+             v-on:click="select(index)"
              v-bind:class="{ active: isSelected(index) }"></div>
-        <lh-table-entry :name="item.name"
-                        :cover="item.cover"
-                        :summary="item.summary"
-                        :price="item.price"
+        <lh-table-entry :name="item.product.name"
+                        :cover="item.product.cover"
+                        :summary="item.product.summary"
+                        :price="item.product.unitPrice"
                         :amount="item.amount"
-                        :unit="item.unit"
+                        :unit="item.product.unit"
                         :isSplit=false
+                        @click="openDetails(index)"
                         style="padding-left: 10px;">
         </lh-table-entry>
       </div>
@@ -49,6 +51,9 @@
       <div id="bottom-button">结 算
       </div>
     </div>
+    <lh-cart-detail :form="form"
+                    :product="product"
+                    ref="details"></lh-cart-detail>
   </div>
 </template>
 
@@ -56,40 +61,43 @@
   export default {
     data() {
       return {
-        carts: [
-          {
-            name: "注册财税一条龙",
-            cover: "http://ofw6tmkxn.bkt.clouddn.com/finance_02.jpg",
-            summary: "注册+银行开户+核定税种（税务报到+代购CA+代拿三方）+一年代账（零申报），报价中不含官费。",
-            price: 100,
-            amount: 6,
-            unit: "月"
+        carts: [{
+          "id": "NjQ=",
+          "serialId": "SHSHPS0004",
+          "product": {
+            "id": 4,
+            "serialId": "SHSHPS0004",
+            "name": "人事宝",
+            "classificationCode": "PS",
+            "classificationName": "套餐",
+            "regionCode": "SHSH",
+            "heat": 0,
+            "productState": "PutAway",
+            "unitPrice": 1688.00,
+            "unit": "个",
+            "isHot": true,
+            "isInstant": true,
+            "summary": "社保开户+公积金开户+一年社保公积金代缴（三人及以下）",
+            "cover": "product-SHSHPS0004-cover.jpg",
+            "whatNeed": "product-SHSHPS0004-what-need.jpg",
+            "whatObtain": "product-SHSHPS0004-what-obtain.jpg",
+            "process": "[\"社保开户流程\",\"公积金开户流程\",\"社保公积金代缴流程\"]",
+            "info": "",
+            "rate": 5.0,
+            "purchaseNumber": 1,
+            "comment": "",
+            "createAt": 1478055060000,
+            "updateAt": 1478055060000
           },
-          {
-            name: "注册财税一条龙",
-            cover: "http://ofw6tmkxn.bkt.clouddn.com/finance_02.jpg",
-            summary: "注册+银行开户+核定税种（税务报到+代购CA+代拿三方）+一年代账（零申报），报价中不含官费。",
-            price: 100,
-            amount: 18,
-            unit: "个"
-          },
-          {
-            name: "注册财税一条龙",
-            cover: "http://ofw6tmkxn.bkt.clouddn.com/finance_02.jpg",
-            summary: "注册+银行开户+核定税种（税务报到+代购CA+代拿三方）+一年代账（零申报），报价中不含官费。",
-            price: 100,
-            amount: 6,
-            unit: "月"
-          },
-          {
-            name: "注册财税一条龙",
-            cover: "http://ofw6tmkxn.bkt.clouddn.com/finance_02.jpg",
-            summary: "注册+银行开户+核定税种（税务报到+代购CA+代拿三方）+一年代账（零申报），报价中不含官费。",
-            price: 100,
-            amount: 6,
-            unit: "月"
-          }
-        ],
+          "regionCode": "SH",
+          "region": "XXXX",
+          "amount": 1,
+          "createAt": 1478600549000,
+          "updateAt": 1478600549000
+        }],
+        form: {
+
+        },
         selection: []
       }
     },
@@ -115,6 +123,11 @@
             this.selection.push(i)
           }
         }
+      },
+      openDetails(index) {
+        this.form = this.carts[index]
+        this.product = this.carts[index].product
+        this.$refs.details.open()
       }
     },
     computed: {
@@ -127,7 +140,7 @@
       totalPrice() {
         var result = 0
         for (let i of this.selection) {
-          result += this.carts[i].amount * this.carts[i].price
+          result += this.carts[i].product.amount * this.carts[i].product.price
         }
         return result
       }
