@@ -473,5 +473,6 @@
     font-size: 13px;
     margin-top: 10px;
     margin-right: 10px;
+    line-height: 15px;
   }
 </style>

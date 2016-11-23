@@ -186,6 +186,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    line-height: 13px;
   }
 
   #recommends {

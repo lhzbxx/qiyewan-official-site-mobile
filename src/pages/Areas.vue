@@ -50,6 +50,6 @@
 
 <style scoped>
   #areas {
-    padding-top: 60px;
+    padding-top: 50px;
   }
 </style>
