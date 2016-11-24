@@ -9,18 +9,21 @@
       <div id="right-arrow"></div>
     </div>
     <div class="auth" id="no-auth">
-      <router-link to="/auth" class="button">登录</router-link>
-      <router-link to="/auth?state=1" class="button">注册</router-link>
+      <router-link to="/auth" class="link button">登录</router-link>
+      <router-link to="/auth?state=1" class="link button">注册</router-link>
     </div>
     <div id="bought">
       <div class="bought-block"
            style="border-right: 1px solid #eee;">
         <img src="../assets/logo.png">
-        <span>使用中</span>
+        <router-link to="/order?state=2"
+                     class="link">使用中</router-link>
       </div>
       <div class="bought-block">
         <img src="../assets/logo.png">
-        <span>待评价</span></div>
+        <router-link to="/order?state=1"
+                     class="link">待评价</router-link>
+      </div>
     </div>
     <div class="block">
       <mt-cell
@@ -149,16 +152,20 @@
     position: relative;
   }
 
+  .link {
+    font-weight: 500;
+    text-decoration: none;
+    color: black;
+  }
+
   .button {
     padding: 6px 30px;
     margin: 0 15px;
     line-height: 20px;
     font-size: 16px;
-    color: #26a2ff;
     border: 1px solid #26a2ff;
     border-radius: 20px;
-    font-weight: 500;
-    text-decoration: none;
+    color: #26a2ff;
   }
 
   #right-arrow:after {
