@@ -67,7 +67,7 @@
              style="margin-right: 3px;">
       </mt-cell>
     </div>
-    <div style="margin: 15px 10px 0;">
+    <div style="margin: 15px 10px 10px;">
       <mt-button type="primary"
                  id="submitButton"
                  size="large">
@@ -90,6 +90,7 @@
     padding-top: 65px;
     padding-bottom: 50px;
     background: #fafafa;
+    min-height: 100%;
   }
 
   #bought {

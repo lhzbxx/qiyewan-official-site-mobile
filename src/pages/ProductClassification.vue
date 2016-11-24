@@ -200,5 +200,6 @@
 <style scoped>
   #product-classification {
     padding-top: 50px;
+    min-height: 100%;
   }
 </style>

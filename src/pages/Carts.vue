@@ -171,6 +171,7 @@
   #carts {
     padding-top: 50px;
     padding-bottom: 1px;
+    min-height: 100%;
   }
 
   #carts-header {

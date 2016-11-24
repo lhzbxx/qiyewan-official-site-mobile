@@ -116,6 +116,7 @@
   #auth {
     padding-top: 50px;
     background: white;
+    min-height: 100%;
   }
 
   #auth-body {

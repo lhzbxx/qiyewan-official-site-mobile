@@ -51,5 +51,6 @@
 <style scoped>
   #areas {
     padding-top: 50px;
+    min-height: 100%;
   }
 </style>

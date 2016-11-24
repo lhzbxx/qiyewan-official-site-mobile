@@ -156,6 +156,7 @@
     background: #eee;
     padding-top: 50px;
     padding-bottom: 50px;
+    min-height: 100%;
   }
 
   #slides {

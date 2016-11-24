@@ -102,6 +102,7 @@
   #pay {
     background: #f9f9f9;
     padding-top: 50px;
+    min-height: 100%;
   }
 
   p {

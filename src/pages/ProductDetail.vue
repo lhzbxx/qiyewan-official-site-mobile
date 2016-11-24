@@ -236,6 +236,7 @@
     background: white;
     margin-bottom: 60px;
     padding-top: 50px;
+    min-height: 100%;
   }
 
   #product-detail-cover {

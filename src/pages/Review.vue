@@ -24,6 +24,7 @@
 <style scoped>
   #review {
     padding-top: 50px;
+    min-height: 100%;
   }
 
   #wrapper {
