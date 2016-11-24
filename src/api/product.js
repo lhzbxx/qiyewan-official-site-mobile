@@ -3,7 +3,7 @@ import VueResource from 'vue-resource'
 
 Vue.use(VueResource)
 
-Vue.http.options.root = window.global_config.remote_url
+Vue.http.options.root = process.env.API
 
 export default {
   getProductDetail (serialId, cb, errorCb) {

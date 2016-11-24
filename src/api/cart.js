@@ -3,6 +3,8 @@ import VueResource from 'vue-resource'
 
 Vue.use(VueResource)
 
+Vue.http.options.root = process.env.API
+
 export default {
     getCarts (token, page, cb, errorCb) {
         Vue.http.headers.common['Authorization'] = token;

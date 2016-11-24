@@ -198,6 +198,8 @@ Vue.filter('date-filter', (timestamp) => {
   return new Date(parseInt(timestamp)).toLocaleString().replace(/:\d{1,2}$/, ' ');
 })
 
+console.log(process.env.API)
+
 new Vue({
   router,
   store,

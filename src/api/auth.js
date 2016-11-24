@@ -3,9 +3,11 @@ import VueResource from 'vue-resource'
 
 Vue.use(VueResource)
 
+Vue.http.options.root = process.env.API
+
 export default {
     getRegion (cb) {
-        if (window.global_config.mode == "dev") {
+        if (process.env.NODE_ENV == "development") {
             cb("SHSH")
         } else {
             Vue.http.get("region").then(

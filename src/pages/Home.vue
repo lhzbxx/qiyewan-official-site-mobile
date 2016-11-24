@@ -60,47 +60,15 @@
 </template>
 
 <script>
+  import productApi from '../api/product'
   import {mapGetters} from 'vuex'
 
   export default {
     data() {
       return {
         screenWidth: window.screen.width,
-        combos: [
-          {
-            name: "注册财税一条龙",
-            cover: "finance_02.jpg",
-            summary: "注册+银行开户+核定税种（税务报到+代购CA+代拿三方）+一年代账（零申报），报价中不含官费。",
-            price: 100
-          },
-          {
-            name: "注册财税一条龙",
-            cover: "finance_02.jpg",
-            summary: "注册+银行开户+核定税种（税务报到+代购CA+代拿三方）+一年代账（零申报），报价中不含官费。",
-            price: 100
-          },
-          {
-            name: "注册财税一条龙",
-            cover: "finance_02.jpg",
-            summary: "注册+银行开户+核定税种（税务报到+代购CA+代拿三方）+一年代账（零申报），报价中不含官费。",
-            price: 100
-          },
-          {
-            name: "注册财税一条龙",
-            cover: "finance_02.jpg",
-            summary: "注册+银行开户+核定税种（税务报到+代购CA+代拿三方）+一年代账（零申报），报价中不含官费。",
-            price: 100
-          }
-        ],
+        combos: [],
         slides: [
-          {
-            image: '',
-            url: ''
-          },
-          {
-            image: '',
-            url: ''
-          },
           {
             image: '',
             url: ''
@@ -137,6 +105,7 @@
     },
     computed: {
       ...mapGetters([
+        'getRegion',
         'hotProducts'
       ])
     },
@@ -147,6 +116,10 @@
       jumpToDetail(serialId) {
         this.$router.push({name: 'product-detail', params: {serialId: serialId}})
       }
+    },
+    mounted() {
+      let vm = this
+      productApi.getProductList(this.getRegion, 'PS', (data) => {vm.combos = data}, error => {})
     }
   }
 </script>

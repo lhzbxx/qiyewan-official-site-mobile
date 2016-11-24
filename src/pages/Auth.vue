@@ -115,7 +115,7 @@
 <style scoped>
   #auth {
     padding-top: 50px;
-    background: white;
+    background: #f9f9f9;
     min-height: 100%;
   }
 

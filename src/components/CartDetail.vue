@@ -2,7 +2,7 @@
   <div id="cart-detail">
     <div id="details"
          v-bind:class="{ active: showDetails }">
-      <img src=""
+      <img src="../assets/close.png"
            alt="×"
            id="close-button"
            v-on:click="showDetails = false">
