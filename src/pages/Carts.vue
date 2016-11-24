@@ -38,7 +38,8 @@
         </lh-table-entry>
       </div>
     </div>
-    <div id="bottom">
+    <div id="bottom"
+         v-if="carts.length > 0">
       <div class="bottom-info" style="min-width: 150px;">
         <span style="font-size: 16px;">总计</span>
         <span style="color: red;">
@@ -97,7 +98,18 @@
           "updateAt": 1478600549000
         }],
         form: {
-
+          id: '',
+          amount: 1,
+          member: 1,
+          serialId: '',
+          regionCode: '',
+          region: '',
+          product: {
+            name: '',
+            cover: 'logo.png',
+            summary: '',
+            unitPrice: 0
+          }
         },
         selection: []
       }

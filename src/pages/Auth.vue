@@ -3,17 +3,21 @@
     <lh-page-header :title="headerTitle"></lh-page-header>
     <div id="auth-body">
       <mt-field label="手机号"
+                class="input-field"
                 placeholder="请输入手机号"
                 type="tel"></mt-field>
       <mt-field label="密码"
+                class="input-field"
                 placeholder="请输入密码"
                 type="password"></mt-field>
       <mt-field label="确认密码"
                 v-if="state > 0"
+                class="input-field"
                 placeholder="请再次输入密码"
                 type="password"></mt-field>
       <mt-field label="验证码"
                 v-if="state > 0"
+                class="input-field"
                 placeholder="请输入验证码">
         <div id="captcha-button"
              v-bind:class="{inactive: isCounting}"
@@ -164,5 +168,10 @@
 
   #captcha-button.inactive {
     opacity: 0.5;
+  }
+
+  .input-field {
+    border: 1px solid #eee;
+    margin-top: -1px;
   }
 </style>
