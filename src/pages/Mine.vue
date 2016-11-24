@@ -9,7 +9,7 @@
     </div>
     <div class="auth" id="no-auth">
       <router-link to="/auth" class="button">登录</router-link>
-      <router-link to="/auth" class="button">注册</router-link>
+      <router-link to="/auth?state=1" class="button">注册</router-link>
     </div>
     <div id="bought">
       <div class="bought-block"

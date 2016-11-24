@@ -105,6 +105,9 @@
             return '确 认'
         }
       }
+    },
+    mounted() {
+      this.state = this.$route.query.state | 0
     }
   }
 </script>

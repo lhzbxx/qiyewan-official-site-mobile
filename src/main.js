@@ -40,6 +40,7 @@ import HomeFooter from './components/HomeFooter.vue'
 import PageHeader from './components/PageHeader.vue'
 import ListHeader from './components/ListHeader.vue'
 import TabsHeader from './components/TabsHeader.vue'
+import OrderHeader from './components/OrderHeader.vue'
 import Services from './components/Services.vue'
 import CartDetail from './components/CartDetail.vue'
 
@@ -54,6 +55,7 @@ Vue.component('lh-list-header', ListHeader)
 Vue.component('lh-services', Services)
 Vue.component('lh-cart-detail', CartDetail)
 Vue.component('lh-tabs-header', TabsHeader)
+Vue.component('lh-order-header', OrderHeader)
 
 import App from './App'
 import Home from './pages/Home.vue'
@@ -186,6 +188,10 @@ Vue.filter('sub-total-price-filter', (checkout) => {
   } else {
     return (amount * checkout.product.unitPrice).toFixed(2)
   }
+})
+
+Vue.filter('date-filter', (timestamp) => {
+  return new Date(parseInt(timestamp)).toLocaleString().replace(/:\d{1,2}$/, ' ');
 })
 
 new Vue({

@@ -49,7 +49,7 @@
 
 <style scoped>
   #table-entry {
-    background: transparent;
+    background: white;
     height: 90px;
   }
 
