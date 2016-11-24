@@ -2,12 +2,18 @@
   <div id="page-header">
     <div id="back">
       <!--todo: 添加icon！-->
-      <img src="" alt="back" v-on:click="back">
+      <img src=""
+           alt="back"
+           v-on:click="back"
+           v-if="hasBack">
     </div>
     <span id="title">{{ title }}</span>
     <div id="more">
       <!--todo: 添加icon！-->
-      <img src="" alt="more" style="float: right;" v-if="hasMore">
+      <img src=""
+           alt="more"
+           style="float: right;"
+           v-if="hasMore">
     </div>
   </div>
 </template>
@@ -15,6 +21,10 @@
 <script>
   export default {
     props: {
+      hasBack: {
+        type: Boolean,
+        default: true
+      },
       title: String,
       hasMore: {
         type: Boolean,

@@ -1,6 +1,7 @@
 <template>
   <div id="carts">
-    <lh-page-header title="购物车"></lh-page-header>
+    <lh-page-header :hasBack=false
+                    title="购物车"></lh-page-header>
     <lh-home-footer :index="3"></lh-home-footer>
     <div id="no-carts"
          v-if="carts.length == 0">

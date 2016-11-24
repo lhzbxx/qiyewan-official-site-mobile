@@ -1,6 +1,7 @@
 <template>
   <div id="mine">
-    <lh-page-header title="个人中心"></lh-page-header>
+    <lh-page-header :hasBack=false
+                    title="个人中心"></lh-page-header>
     <lh-home-footer :index="4"></lh-home-footer>
     <div class="auth" id="has-auth">
       <img src="" alt="avatar">
@@ -89,7 +90,6 @@
     padding-top: 65px;
     padding-bottom: 50px;
     background: #fafafa;
-    height: 100%;
   }
 
   #bought {

@@ -1,6 +1,7 @@
 <template>
   <div id="orders">
-    <lh-page-header title="购物车"></lh-page-header>
+    <lh-page-header :hasBack=false
+                    title="订 单"></lh-page-header>
     <lh-home-footer :index="2"></lh-home-footer>
     <lh-tabs-header :tabs="orderState"
                     @change-current="changeCurrent"></lh-tabs-header>
@@ -122,7 +123,6 @@
     padding-top: 50px;
     padding-bottom: 50px;
     background: #f9f9f9;
-    height: 100%;
   }
 
   #order {
