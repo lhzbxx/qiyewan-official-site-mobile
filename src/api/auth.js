@@ -17,7 +17,7 @@ export default {
         }
     },
     login (phone, password, cb, errorCb) {
-        Vue.http.get("auth?phone=" + phone + "&password=" + password).then(
+        Vue.http.get("auth?phone=" + phone + "&password=" + password + "&mode=Mobile").then(
             (response) => {
                 if (response.body.error == 0) {
                     cb(response.body.detail);
@@ -57,42 +57,9 @@ export default {
             }
         )
     },
-    getLoginHistory (token, cb, errorCb) {
-        Vue.http.headers.common['Authorization'] = token;
-        Vue.http.get("login-history").then(
-            (response) => {
-                cb(response.body.content)
-            }
-            , (response) => {
-                errorCb(response.body)
-            }
-        )
-    },
     getUser (token, cb, errorCb) {
         Vue.http.headers.common['Authorization'] = token;
         Vue.http.get("users").then(
-            (response) => {
-                cb(response.body)
-            }
-            , (response) => {
-                errorCb(response.body)
-            }
-        )
-    },
-    getCompany (token, cb, errorCb) {
-        Vue.http.headers.common['Authorization'] = token;
-        Vue.http.get("company").then(
-            (response) => {
-                cb(response.body)
-            }
-            , (response) => {
-                errorCb(response.body)
-            }
-        )
-    },
-    updateCompany (token, company, cb, errorCb) {
-        Vue.http.headers.common['Authorization'] = token;
-        Vue.http.put("company", company).then(
             (response) => {
                 cb(response.body)
             }

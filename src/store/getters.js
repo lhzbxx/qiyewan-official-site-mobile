@@ -50,14 +50,6 @@ export const orderNum = state => {
     }
 }
 
-export const needLogin = state => {
-    return state.global.needLogin
-}
-
 export const getCheckout = state => {
     return state.orders.checkout
-}
-
-export const regions = () => {
-    return dataApi.regions
 }

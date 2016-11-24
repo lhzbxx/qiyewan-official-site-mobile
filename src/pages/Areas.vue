@@ -52,5 +52,6 @@
   #areas {
     padding-top: 50px;
     min-height: 100%;
+    background: #f9f9f9;
   }
 </style>

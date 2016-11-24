@@ -74,15 +74,6 @@ import NotFound from './pages/NotFound.vue'
 import Areas from './pages/Areas.vue'
 import Review from './pages/Review.vue'
 
-function requireAuth(to, from, next) {
-  if (!store.getters.isLogin) {
-    store.commit("REQUIRE_LOGIN")
-  } else {
-    next()
-  }
-  next()
-}
-
 const routes = [
   {
     path: '/',
@@ -124,19 +115,18 @@ const routes = [
   {
     path: '/cart',
     name: 'cart',
-    // beforeEnter: requireAuth,
+    beforeEnter: requireAuth,
     component: Carts
   },
   {
     path: '/pay',
     name: 'pay',
-    // beforeEnter: requireAuth,
+    beforeEnter: requireAuth,
     component: Pay
   },
   {
     path: '/areas',
     name: 'areas',
-    // beforeEnter: requireAuth,
     component: Areas
   },
   {
@@ -180,6 +170,17 @@ const router = new VueRouter({
     return {x: 0, y: 0}
   }
 })
+
+function requireAuth(from, to, next) {
+  if (!store.getters.isLogin) {
+    next({
+      path: '/auth'
+    })
+  } else {
+    next()
+  }
+  next()
+}
 
 Vue.filter('cdn-filter', (value) => 'http://cdn.qiyewan.com/' + value)
 
