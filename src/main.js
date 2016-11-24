@@ -8,7 +8,7 @@ Vue.use(Vuex)
 Vue.use(VueRouter)
 Vue.use(VueResource)
 
-import {Navbar, Tabbar, TabItem} from 'mint-ui';
+import {Navbar, TabItem} from 'mint-ui';
 import {Swipe, SwipeItem} from 'mint-ui';
 import {TabContainer, TabContainerItem} from 'mint-ui';
 import {Lazyload} from 'mint-ui';
@@ -18,7 +18,6 @@ import {Field} from 'mint-ui';
 import {Cell, Radio} from 'mint-ui';
 
 Vue.component(Navbar.name, Navbar);
-Vue.component(Tabbar.name, Tabbar);
 Vue.component(TabItem.name, TabItem);
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
@@ -43,6 +42,8 @@ import TabsHeader from './components/TabsHeader.vue'
 import OrderHeader from './components/OrderHeader.vue'
 import Services from './components/Services.vue'
 import CartDetail from './components/CartDetail.vue'
+import Loading from './components/Loading.vue'
+import NoThings from './components/NoThings.vue'
 
 Vue.component('lh-table-header', TableHeader)
 Vue.component('lh-table-entry', TableEntry)
@@ -56,6 +57,8 @@ Vue.component('lh-services', Services)
 Vue.component('lh-cart-detail', CartDetail)
 Vue.component('lh-tabs-header', TabsHeader)
 Vue.component('lh-order-header', OrderHeader)
+Vue.component('lh-loading', Loading)
+Vue.component('lh-no-things', NoThings)
 
 import App from './App'
 import Home from './pages/Home.vue'

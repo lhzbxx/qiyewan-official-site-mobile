@@ -404,7 +404,7 @@
 <style scoped>
   #product-list {
     padding-top: 50px;
-    min-height: 100%;
+    height: 100%;
   }
 
   #wrapper {

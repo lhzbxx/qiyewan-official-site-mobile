@@ -3,41 +3,39 @@
     <lh-page-header :hasBack=false
                     title="购物车"></lh-page-header>
     <lh-home-footer :index="3"></lh-home-footer>
-    <div id="no-carts"
-         v-if="carts.length == 0">
-      <img src="../assets/logo.png" alt="暂无">
-      <br>
-      <mt-button type="primary"
-                 size="small">
-        去逛逛
-      </mt-button>
-    </div>
+    <lh-loading v-if="isLoading"></lh-loading>
     <div v-else>
-      <div id="carts-header">
-        <div class="choice"
-             v-bind:class="{ active: isAllSelected }"
-             v-on:click="selectAll()"></div>
-        <span>全选</span>
-        <img src="../assets/logo.png"
-             id="delete-icon">
-        <span>删除</span>
+      <lh-no-things v-if="carts.length == 0"></lh-no-things>
+      <div v-else>
+        <div id="carts-header">
+          <div class="choice"
+               v-bind:class="{ active: isAllSelected }"
+               v-on:click="selectAll()"></div>
+          <span>全选</span>
+          <img src="../assets/logo.png"
+               id="delete-icon">
+          <span>删除</span>
+        </div>
+        <div class="cart"
+             v-for="(item, index) in carts">
+          <div class="choice"
+               v-on:click="select(index)"
+               v-bind:class="{ active: isSelected(index) }"></div>
+          <lh-table-entry :name="item.product.name"
+                          :cover="item.product.cover"
+                          :summary="item.product.summary"
+                          :price="item.product.unitPrice"
+                          :amount="item.amount"
+                          :unit="item.product.unit"
+                          :isSplit=false
+                          @click="openDetails(index)"
+                          style="padding-left: 10px;">
+          </lh-table-entry>
+        </div>
       </div>
-      <div class="cart"
-           v-for="(item, index) in carts">
-        <div class="choice"
-             v-on:click="select(index)"
-             v-bind:class="{ active: isSelected(index) }"></div>
-        <lh-table-entry :name="item.product.name"
-                        :cover="item.product.cover"
-                        :summary="item.product.summary"
-                        :price="item.product.unitPrice"
-                        :amount="item.amount"
-                        :unit="item.product.unit"
-                        :isSplit=false
-                        @click="openDetails(index)"
-                        style="padding-left: 10px;">
-        </lh-table-entry>
-      </div>
+      <lh-cart-detail :form="form"
+                      :product="product"
+                      ref="details"></lh-cart-detail>
     </div>
     <div id="bottom"
          v-if="carts.length > 0">
@@ -54,9 +52,6 @@
       <div id="bottom-button">结 算
       </div>
     </div>
-    <lh-cart-detail :form="form"
-                    :product="product"
-                    ref="details"></lh-cart-detail>
   </div>
 </template>
 
@@ -64,40 +59,8 @@
   export default {
     data() {
       return {
-        carts: [{
-          "id": "NjQ=",
-          "serialId": "SHSHPS0004",
-          "product": {
-            "id": 4,
-            "serialId": "SHSHPS0004",
-            "name": "人事宝",
-            "classificationCode": "PS",
-            "classificationName": "套餐",
-            "regionCode": "SHSH",
-            "heat": 0,
-            "productState": "PutAway",
-            "unitPrice": 1688.00,
-            "unit": "个",
-            "isHot": true,
-            "isInstant": true,
-            "summary": "社保开户+公积金开户+一年社保公积金代缴（三人及以下）",
-            "cover": "product-SHSHPS0004-cover.jpg",
-            "whatNeed": "product-SHSHPS0004-what-need.jpg",
-            "whatObtain": "product-SHSHPS0004-what-obtain.jpg",
-            "process": "[\"社保开户流程\",\"公积金开户流程\",\"社保公积金代缴流程\"]",
-            "info": "",
-            "rate": 5.0,
-            "purchaseNumber": 1,
-            "comment": "",
-            "createAt": 1478055060000,
-            "updateAt": 1478055060000
-          },
-          "regionCode": "SH",
-          "region": "XXXX",
-          "amount": 1,
-          "createAt": 1478600549000,
-          "updateAt": 1478600549000
-        }],
+        isLoading: true,
+        carts: [],
         form: {
           id: '',
           amount: 1,
@@ -171,6 +134,7 @@
   #carts {
     padding-top: 50px;
     padding-bottom: 1px;
+    background: #f9f9f9;
     min-height: 100%;
   }
 
@@ -246,14 +210,5 @@
     font-size: 20px;
     font-weight: 700;
     font-family: arial, serif;
-  }
-
-  #no-carts {
-    margin: 50px auto 0;
-    text-align: center;
-  }
-
-  #no-carts img {
-    width: 50%;
   }
 </style>
