@@ -3,22 +3,22 @@
     <div class="tab" v-on:click="jump(1)">
       <!--todo: 替换icon！-->
       <img v-if="index == 1" src="../assets/logo.png">
-      <img v-else src="../assets/mobile-icon-hot.png">
+      <img v-else src="../assets/logo.png">
       <p>首页</p>
     </div>
     <div class="tab" v-on:click="jump(2)">
       <img v-if="index == 2" src="../assets/logo.png">
-      <img v-else src="../assets/mobile-icon-hot.png">
+      <img v-else src="../assets/logo.png">
       <p>订单</p>
     </div>
     <div class="tab" v-on:click="jump(3)">
       <img v-if="index == 3" src="../assets/logo.png">
-      <img v-else src="../assets/mobile-icon-hot.png">
+      <img v-else src="../assets/logo.png">
       <p>购物车</p>
     </div>
     <div class="tab" v-on:click="jump(4)">
       <img v-if="index == 4" src="../assets/logo.png">
-      <img v-else src="../assets/mobile-icon-hot.png">
+      <img v-else src="../assets/logo.png">
       <p>我的</p>
     </div>
   </div>

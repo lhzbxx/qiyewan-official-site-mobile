@@ -152,14 +152,12 @@
     min-width: 20px;
     min-height: 20px;
     margin: 0 5px;
-    /*todo: 需要替换icon！*/
-    background-image: url('../assets/logo.png');
+    background-image: url('../assets/unchosen.png');
     background-size: 100%;
   }
 
   .choice.active {
-    /*todo: 需要替换icon！*/
-    background-image: url('../assets/mobile-icon-hot.png');
+    background-image: url('../assets/chosen.png');
   }
 
   #delete-icon {

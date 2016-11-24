@@ -1,8 +1,7 @@
 <template>
   <div id="page-header">
     <div id="back">
-      <!--todo: 添加icon！-->
-      <img src=""
+      <img src="../assets/back.png"
            alt="back"
            v-on:click="back"
            v-if="hasBack">

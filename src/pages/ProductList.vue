@@ -4,10 +4,12 @@
     <div id="wrapper">
       <div id="lists">
         <div class="list"
-             v-bind:class="{ active: isCurrent(item.code) }"
+             v-bind:class="{active: isCurrent(item.code)}"
              v-for="item in classifications"
              v-on:click="switchClassification(item)">
-          <img :src="item.icon" :alt="item.name">
+          <div class="classification-icon"
+               v-bind:class="[item.code, {active: isCurrent(item.code)}]"
+               :alt="item.name"></div>
           {{ item.name }}
         </div>
       </div>
@@ -38,8 +40,6 @@
           {
             name: '人事服务',
             code: 'HR',
-//            todo: 需要替换icon！
-            icon: 'http://ac-mhke0kuv.clouddn.com/de3199020488745300c2.png?imageView2/1/w/164/h/164/q/85/format/jpg/interlace/1',
             subs: [
               '社保',
               '公司人事'
@@ -48,8 +48,6 @@
           {
             name: '财税服务',
             code: 'FC',
-//            todo: 需要替换icon！
-            icon: 'http://ac-mhke0kuv.clouddn.com/de3199020488745300c2.png?imageView2/1/w/164/h/164/q/85/format/jpg/interlace/1',
             subs: [
               '财务服务',
               '税务服务'
@@ -58,8 +56,6 @@
           {
             name: '工商服务',
             code: 'IC',
-//            todo: 需要替换icon！
-            icon: 'http://ac-mhke0kuv.clouddn.com/de3199020488745300c2.png?imageView2/1/w/164/h/164/q/85/format/jpg/interlace/1',
             subs: [
               '工商变更',
               '工商注销'
@@ -68,8 +64,6 @@
           {
             name: '法律服务',
             code: 'LD',
-//            todo: 需要替换icon！
-            icon: 'http://ac-mhke0kuv.clouddn.com/de3199020488745300c2.png?imageView2/1/w/164/h/164/q/85/format/jpg/interlace/1',
             subs: [
               '法律服务',
               '知识产权'
@@ -78,8 +72,6 @@
           {
             name: 'IT&设计',
             code: 'IT',
-//            todo: 需要替换icon！
-            icon: 'http://ac-mhke0kuv.clouddn.com/de3199020488745300c2.png?imageView2/1/w/164/h/164/q/85/format/jpg/interlace/1',
             subs: [
               '网站设计',
               'LOGO设计'
@@ -89,8 +81,6 @@
         currentClassification: {
           name: '人事服务',
           code: 'HR',
-//            todo: 需要替换icon！
-          icon: 'http://ac-mhke0kuv.clouddn.com/de3199020488745300c2.png?imageView2/1/w/164/h/164/q/85/format/jpg/interlace/1',
           subs: [
             '社保',
             '公司人事'
@@ -431,14 +421,58 @@
   .list.active {
     color: #199cd8;
     border-bottom: 3px solid #199cd8;
+    margin-bottom: -2px;
   }
 
-  .list img {
+  .classification-icon {
     margin: 15px auto 8px;
     width: 35px;
     height: 35px;
     text-align: center;
     display: block;
+    background: no-repeat center;
+    background-size: 100%;
+  }
+
+  .HR {
+    background-image: url("../assets/HR.png");
+  }
+
+  .HR.active {
+    background-image: url("../assets/HR-active.png");
+  }
+
+  .FC {
+    background-image: url("../assets/FC.png");
+    background-size: 70%;
+  }
+
+  .FC.active {
+    background-image: url("../assets/FC-active.png");
+  }
+
+  .IC {
+    background-image: url("../assets/IC.png");
+  }
+
+  .IC.active {
+    background-image: url("../assets/IC-active.png");
+  }
+
+  .LD {
+    background-image: url("../assets/LD.png");
+  }
+
+  .LD.active {
+    background-image: url("../assets/LD-active.png");
+  }
+
+  .IT {
+    background-image: url("../assets/IT.png");
+  }
+
+  .IT.active {
+    background-image: url("../assets/IT-active.png");
   }
 
   #content {

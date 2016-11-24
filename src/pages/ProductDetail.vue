@@ -9,7 +9,7 @@
     <mt-tab-container v-model="selected">
       <mt-tab-container-item id="1">
         <img id="product-detail-cover"
-             :src="'http://ofw6tmkxn.bkt.clouddn.com/' + product.cover"
+             :src="product.cover | cdn-filter"
              :alt="product.name">
         <p id="product-detail-name">{{ product.name }}</p>
         <p id="product-detail-summary">{{ product.summary }}</p>
@@ -71,8 +71,10 @@
     </mt-tab-container>
     <div id="bottom">
       <div class="bottom-button"
+           v-on:click="openCustomerService()"
            style="width: 30%; margin-left: 0;">
-        <img>
+        <img src="../assets/customer-service.png"
+             style="margin-top: 11px; height: 28px;">
       </div>
       <div class="bottom-button"
            v-on:click="jumpToPay()"
@@ -211,6 +213,9 @@
       }
     },
     methods: {
+      openCustomerService() {
+        _MEIQIA('showPanel');
+      },
       jumpToPay() {
         this.$router.push({name: 'pay'})
       },

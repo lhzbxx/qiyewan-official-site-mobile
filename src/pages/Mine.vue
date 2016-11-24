@@ -15,12 +15,12 @@
     <div id="bought">
       <div class="bought-block"
            style="border-right: 1px solid #eee;">
-        <img src="../assets/logo.png">
+        <img src="../assets/using.png">
         <router-link to="/order?state=2"
                      class="link">使用中</router-link>
       </div>
       <div class="bought-block">
-        <img src="../assets/logo.png">
+        <img src="../assets/unreviewed.png">
         <router-link to="/order?state=1"
                      class="link">待评价</router-link>
       </div>
@@ -30,9 +30,8 @@
         title="购物车"
         to="/cart"
         is-link>
-        <!--todo: 替换icon！-->
         <img slot="icon"
-             src="../assets/logo.png"
+             src="../assets/cart.png"
              class="cell-icon"
              width="28"
              style="margin-right: 3px;">
@@ -42,7 +41,7 @@
         to="/order"
         is-link>
         <img slot="icon"
-             src="../assets/logo.png"
+             src="../assets/order.png"
              class="cell-icon"
              width="28"
              style="margin-right: 3px;">
@@ -64,7 +63,7 @@
         to="订单"
         is-link>
         <img slot="icon"
-             src="../assets/logo.png"
+             src="../assets/contact-us.png"
              class="cell-icon"
              width="28"
              style="margin-right: 3px;">

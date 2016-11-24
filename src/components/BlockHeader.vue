@@ -1,12 +1,12 @@
 <template>
   <div id="block-header" class="clearfix">
     <div id="block-header-title">
-      <img src="../assets/mobile-icon-hot.png" alt="recommends">
+      <img src="../assets/logo.png" alt="recommends">
       <span>{{ name }}</span>
     </div>
     <div id="block-header-more">
       <span>更多</span>
-      <img src="../assets/mobile-icon-more.png" alt="more">
+      <img src="../assets/logo.png" alt="more">
     </div>
   </div>
 </template>
