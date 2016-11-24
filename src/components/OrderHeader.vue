@@ -1,7 +1,7 @@
 <template>
   <div id="order-header">
-    <div id="serialId">订单编号：<p>{{ serialId }}</p></div>
-    <div id="createAt">购买时间：<p>{{ createAt | date-filter }}</p></div>
+    <div id="serialId">订单编号：{{ serialId }}</div>
+    <div id="createAt">购买时间：{{ createAt | date-filter }}</div>
   </div>
 </template>
 
@@ -16,23 +16,21 @@
 
 <style scoped>
   #order-header {
-    display: flex;
-    align-items: center;
-    height: 50px;
-    padding: 0 10px;
+    height: 45px;
+    padding: 5px 10px;
     border-bottom: 1px solid #eee;
     background: white;
-    justify-content: space-between;
+    margin-bottom: 10px;
   }
 
   #serialId {
     font-size: 14px;
-    line-height: 14px;
+    line-height: 20px;
   }
 
   #createAt {
     font-size: 12px;
     color: #aaa;
-    line-height: 12px;
+    line-height: 15px;
   }
 </style>

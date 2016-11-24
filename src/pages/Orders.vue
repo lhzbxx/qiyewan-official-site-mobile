@@ -23,8 +23,9 @@
                       :price="item.unitPrice"
                       :amount="item.amount"
                       :unit="item.unit"
-                      :isSplit=true
-                      v-for="item in order.details"
+                      :isLast="order.details.length == index + 1"
+                      class="product"
+                      v-for="(item, index) in order.details"
                       @click="openDetails(index)">
       </lh-table-entry>
       <div id="ops-block">
@@ -70,13 +71,47 @@
             "createAt": 1478504830026,
             "updateAt": 1478504830026,
             "payUrl": "https://mapi.alipay.com/gateway.do?_input_charset=utf-8&body=SHSHPS0001*3+%2B+SHSHPS0001*3&out_trade_no=201611071547103676568&partner=2088021990129702&payment_type=1&seller_id=2088021990129702&service=create_direct_pay_by_user&show_url=http%3A%2F%2F127.0.0.1%3A8080%2F%23%2Forder&sign=fET4MUTXz20SndYHjC826J4LAn4MgnXmNZGe42JGZBn4a25rVMsYPH6UGf464ruLEEw8LGDvSLCnGAVi2nZAi2U62nri3i2k83dqf7h9kwRmnZGmZBZvdzFqJVpZDrNWAi4a4o%2F0kyyhuSJHhE%2FkZ%2Bghye15lt8aC0XUQqCV1ME%3D&sign_type=RSA&subject=%E6%B3%A8%E5%86%8C%E8%B4%A2%E7%A8%8E%E4%B8%80%E6%9D%A1%E9%BE%99+%2B+%E6%B3%A8%E5%86%8C%E8%B4%A2%E7%A8%8E%E4%B8%80%E6%9D%A1%E9%BE%99&total_fee=10128.00"
+          },
+          {
+            "id": 6,
+            "userId": 1,
+            "serialId": "201611071547103676568",
+            "details": [{
+              "id": 9,
+              "region": "上海-上海-闵行区",
+              "regionCode": "SHSH",
+              "productSerialId": "SHSHPS0001",
+              "name": "注册财税一条龙",
+              "amount": 3,
+              "unitPrice": 1688.00,
+              "unit": "个",
+              "summary": "注册+银行开户+核定税种（税务报到+代购 CA+代拿三方）+一年代账（零申报）；报价中不含官费",
+              "cover": "product-SHSHPS0001-cover.jpg"
+            }],
+            "payment": "Alipay",
+            "orderState": "Unpaid",
+            "totalPrice": 10128.00,
+            "createAt": 1478504830026,
+            "updateAt": 1478504830026,
+            "payUrl": "https://mapi.alipay.com/gateway.do?_input_charset=utf-8&body=SHSHPS0001*3+%2B+SHSHPS0001*3&out_trade_no=201611071547103676568&partner=2088021990129702&payment_type=1&seller_id=2088021990129702&service=create_direct_pay_by_user&show_url=http%3A%2F%2F127.0.0.1%3A8080%2F%23%2Forder&sign=fET4MUTXz20SndYHjC826J4LAn4MgnXmNZGe42JGZBn4a25rVMsYPH6UGf464ruLEEw8LGDvSLCnGAVi2nZAi2U62nri3i2k83dqf7h9kwRmnZGmZBZvdzFqJVpZDrNWAi4a4o%2F0kyyhuSJHhE%2FkZ%2Bghye15lt8aC0XUQqCV1ME%3D&sign_type=RSA&subject=%E6%B3%A8%E5%86%8C%E8%B4%A2%E7%A8%8E%E4%B8%80%E6%9D%A1%E9%BE%99+%2B+%E6%B3%A8%E5%86%8C%E8%B4%A2%E7%A8%8E%E4%B8%80%E6%9D%A1%E9%BE%99&total_fee=10128.00"
           }
         ]
       }
     },
     methods: {
       changeCurrent(current) {
-
+        console.log(current)
+        switch (current) {
+          case '未付款':
+            this.currentState = 0
+            break
+          case '待评价':
+            this.currentState = 1
+            break
+          case '已完成':
+            this.currentState = 2
+            break
+        }
       }
     }
   }
@@ -89,10 +124,12 @@
     background: #f9f9f9;
     height: 100%;
   }
+
   #order {
     margin-top: 10px;
     background: white;
   }
+
   #ops-block {
     margin-bottom: 10px;
     background: white;
@@ -104,6 +141,7 @@
     flex-direction: row-reverse;
     margin-top: -8px;
   }
+
   .button {
     margin-right: 15px;
     font-size: 14px;
@@ -113,8 +151,13 @@
     padding: 5px 10px;
     color: #26a2ff;
   }
+
   .button.warning {
     color: red;
     border-color: red;
+  }
+
+  .product {
+    padding: 0 10px;
   }
 </style>

@@ -6,7 +6,7 @@
          :src="cover | cdn-filter"
          :alt="name">
     <div id="table-entry-body"
-         v-bind:class="{ 'no-border': !isSplit }">
+         v-bind:class="{ 'no-border': !isSplit, 'last': isLast }">
       <p id="table-entry-name">{{ name }}</p>
       <p id="table-entry-summary">{{ summary }}</p>
       <p id="table-entry-price">
@@ -37,6 +37,10 @@
       isSplit: {
         type: Boolean,
         default: true
+      },
+      isLast: {
+        type: Boolean,
+        default: false
       }
     },
     methods: {
@@ -61,6 +65,10 @@
     border-bottom: 1px solid #eee;
     margin-bottom: 8px;
     overflow: hidden;
+  }
+
+  #table-entry-body.last {
+    margin-bottom: -1px;
   }
 
   #table-entry-body.no-border {
