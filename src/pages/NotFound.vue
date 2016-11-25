@@ -14,7 +14,7 @@
   export default {
     methods: {
       jump() {
-        this.$router.push({name: 'home'})
+        this.$router.replace({name: 'home'})
       }
     }
   }
