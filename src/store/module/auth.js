@@ -11,7 +11,9 @@ const state = {
   isLogin: false,
   user: {
     phone: "",
-    token: ""
+    token: "",
+    avatar: "",
+    nickname: ""
   }
 }
 

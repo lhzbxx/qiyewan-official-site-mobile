@@ -111,6 +111,7 @@
     padding-top: 50px;
     background: #f9f9f9;
     min-height: 100%;
+    padding-bottom: 10px;
   }
 
   #content {

@@ -48,6 +48,16 @@
              width="28"
              style="margin-right: 3px;">
       </mt-cell>
+      <mt-cell
+        title="浏览记录"
+        to="/browsing-history"
+        is-link>
+        <img slot="icon"
+             src="../assets/history.png"
+             class="cell-icon"
+             width="28"
+             style="margin-right: 3px;">
+      </mt-cell>
     </div>
     <div class="block">
       <mt-cell

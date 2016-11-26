@@ -75,6 +75,7 @@ import Areas from './pages/Areas.vue'
 import Review from './pages/Review.vue'
 import AboutUs from './pages/AboutUs.vue'
 import ContactUs from './pages/ContactUs.vue'
+import BrowsingHistory from './pages/BrowsingHistory.vue'
 
 const routes = [
   {
@@ -125,6 +126,12 @@ const routes = [
     name: 'pay',
     beforeEnter: requireAuth,
     component: Pay
+  },
+  {
+    path: '/browsing-history',
+    name: 'browsing-history',
+    beforeEnter: requireAuth,
+    component: BrowsingHistory
   },
   {
     path: '/areas',
