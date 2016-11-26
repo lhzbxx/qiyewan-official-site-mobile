@@ -16,13 +16,15 @@ const state = {
 const mutations = {
   [types.CHANGE_REGION] (state, regionIndex) {
     if (!Number.isInteger(regionIndex)) {
-      for (let i of data.regions) {
-        if (i.code == regionIndex)
-          state.region = data.regions.indexOf(i)
-      }
+      state.region = data.regions.findIndex(item => item.code == regionIndex)
     } else {
       state.region = regionIndex
     }
+  },
+  [types.BROWSE_PRODUCT] (state, product) {
+    state.history.push(product)
+    if (state.history.length > 30)
+      state.history.pop()
   }
 }
 

@@ -1,6 +1,7 @@
 export const GET_DATA_FROM_STORAGE = 'GET_DATA_FROM_STORAGE'
 export const USER_LOGIN = 'USER_LOGIN'
 export const USER_LOGOUT = 'USER_LOGOUT'
+export const BROWSE_PRODUCT = 'BROWSE_PRODUCT'
 export const ADD_TO_CART = 'ADD_TO_CART'
 export const ADD_TO_ORDER = 'ADD_TO_ORDER'
 export const CHANGE_REGION = 'CHANGE_REGION'

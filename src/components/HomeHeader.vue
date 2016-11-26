@@ -10,13 +10,22 @@
          id="logo">
     <div id="area"
          v-on:click="jumpToAreas">
-      上海
+      {{ getRegion.name }}
+      <img src="../assets/down.png"
+           width=12
+           style="vertical-align: middle">
     </div>
   </div>
 </template>
 
 <script>
+  import {mapGetters} from 'vuex'
   export default {
+    computed: {
+      ...mapGetters([
+        'getRegion'
+      ])
+    },
     methods: {
       jumpToList() {
         this.$router.push({name: 'product-list'})

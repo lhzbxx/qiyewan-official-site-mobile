@@ -92,7 +92,6 @@
 <script>
   import productApi from '../api/product'
   import {mapGetters} from 'vuex'
-
   export default {
     data() {
       return {
@@ -122,7 +121,7 @@
     },
     mounted() {
       let vm = this
-      productApi.getProductList(this.getRegion, 'PS', (data) => {vm.combos = data}, error => {})
+      productApi.getProductList(this.getRegion.code, 'PS', (data) => {vm.combos = data}, error => {})
     }
   }
 </script>

@@ -14,10 +14,6 @@ export const getRegion = state => {
     return dataApi.regions[state.global.region]
 }
 
-export const getRegionIndex = state => {
-    return state.global.region
-}
-
 export const hotProducts = () => {
     return dataApi.hotProducts
 }

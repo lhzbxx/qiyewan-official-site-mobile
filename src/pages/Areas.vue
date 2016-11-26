@@ -16,8 +16,8 @@
           :title="item.name"
           :label="item.pName"
           :value="isSelected(item) ? '已选地区' : ''"
-          @click.native="selectRegion(item)"
-          v-for="item in getRegions">
+          @click.native="selectRegion(index)"
+          v-for="(item, index) in getRegions">
         </mt-cell>
       </div>
     </div>
@@ -41,8 +41,8 @@
       isSelected(region) {
         return region.code == this.getRegion.code
       },
-      selectRegion(region) {
-        this.$store.commit('CHANGE_REGION', region)
+      selectRegion(regionIndex) {
+        this.$store.commit('CHANGE_REGION', regionIndex)
       }
     }
   }
