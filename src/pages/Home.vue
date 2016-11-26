@@ -60,7 +60,7 @@
                     :cover="item.cover"
                     :name="item.name"
                     :price="item.price"
-                    @click="jumpToDetail(item.serialId)"
+                    @click="jumpToDetail(getRegion.code + item.serialId)"
                     :coverHeight="(screenWidth - 20) / 2 * 0.8"
                     v-for="item in hotProducts.slice(0, 2)">
         </lh-product>
@@ -70,7 +70,7 @@
                     :cover="item.cover"
                     :name="item.name"
                     :price="item.price"
-                    @click="jumpToDetail(item.serialId)"
+                    @click="jumpToDetail(getRegion.code + item.serialId)"
                     :coverHeight="(screenWidth - 20) / 3 * 0.8"
                     v-for="item in hotProducts.slice(2, 5)">
         </lh-product>
