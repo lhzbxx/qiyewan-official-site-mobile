@@ -12,13 +12,43 @@
     </mt-swipe>
     <div id="categories" class="clearfix">
       <div class="category"
-           v-on:click="jumpToClassification(item.code)"
-           v-for="item in categories">
+           v-on:click="jumpToClassification('IC')">
         <img class="category-image"
-             :src="item.image"
-             :alt="item.name">
+             src="../assets/nav-IC.png">
         <p class="category-desc">
-          {{ item.name }}
+          工商服务
+        </p>
+      </div>
+      <div class="category"
+           v-on:click="jumpToClassification('IT')">
+        <img class="category-image"
+             src="../assets/nav-IT.png">
+        <p class="category-desc">
+          IT&设计
+        </p>
+      </div>
+      <div class="category"
+           v-on:click="jumpToClassification('LD')">
+        <img class="category-image"
+             src="../assets/nav-LD.png">
+        <p class="category-desc">
+          法律服务
+        </p>
+      </div>
+      <div class="category"
+           v-on:click="jumpToClassification('FC')">
+        <img class="category-image"
+             src="../assets/nav-FC.png">
+        <p class="category-desc">
+          财税服务
+        </p>
+      </div>
+      <div class="category"
+           v-on:click="jumpToClassification('HR')">
+        <img class="category-image"
+             src="../assets/nav-HR.png">
+        <p class="category-desc">
+          人事服务
         </p>
       </div>
     </div>
@@ -72,33 +102,6 @@
           {
             image: '',
             url: ''
-          }
-        ],
-        categories: [
-          {
-            name: '工商服务',
-            image: 'http://ofw6tmkxn.bkt.clouddn.com/mobile-category-IC.png',
-            code: 'IC'
-          },
-          {
-            name: 'IT&设计',
-            image: 'http://ofw6tmkxn.bkt.clouddn.com/mobile-category-IC.png',
-            code: 'IT'
-          },
-          {
-            name: '法律服务',
-            image: 'http://ofw6tmkxn.bkt.clouddn.com/mobile-category-IC.png',
-            code: 'LD'
-          },
-          {
-            name: '财税服务',
-            image: 'http://ofw6tmkxn.bkt.clouddn.com/mobile-category-IC.png',
-            code: 'FC'
-          },
-          {
-            name: '人事服务',
-            image: 'http://ofw6tmkxn.bkt.clouddn.com/mobile-category-IC.png',
-            code: 'HR'
           }
         ]
       }

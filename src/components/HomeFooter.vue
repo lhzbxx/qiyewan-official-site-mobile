@@ -2,24 +2,24 @@
   <div id="home-footer">
     <div class="tab" v-on:click="jump(1)">
       <!--todo: 替换icon！-->
-      <img v-if="index == 1" src="../assets/logo.png">
-      <img v-else src="../assets/logo.png">
-      <p>首页</p>
+      <img v-if="index == 1" src="../assets/tab-home-active.png">
+      <img v-else src="../assets/tab-home.png">
+      <p v-bind:class="{active: index == 1}">首页</p>
     </div>
     <div class="tab" v-on:click="jump(2)">
-      <img v-if="index == 2" src="../assets/logo.png">
-      <img v-else src="../assets/logo.png">
-      <p>订单</p>
+      <img v-if="index == 2" src="../assets/tab-order-active.png">
+      <img v-else src="../assets/tab-order.png">
+      <p v-bind:class="{active: index == 2}">订单</p>
     </div>
     <div class="tab" v-on:click="jump(3)">
-      <img v-if="index == 3" src="../assets/logo.png">
-      <img v-else src="../assets/logo.png">
-      <p>购物车</p>
+      <img v-if="index == 3" src="../assets/tab-cart-active.png">
+      <img v-else src="../assets/tab-cart.png">
+      <p v-bind:class="{active: index == 3}">购物车</p>
     </div>
     <div class="tab" v-on:click="jump(4)">
-      <img v-if="index == 4" src="../assets/logo.png">
-      <img v-else src="../assets/logo.png">
-      <p>我的</p>
+      <img v-if="index == 4" src="../assets/tab-mine-active.png">
+      <img v-else src="../assets/tab-mine.png">
+      <p v-bind:class="{active: index == 4}">我的</p>
     </div>
   </div>
 </template>
@@ -80,5 +80,9 @@
   .tab p {
     font-size: 13px;
     line-height: 15px;
+  }
+
+  p.active {
+    color: #26a2ff;
   }
 </style>

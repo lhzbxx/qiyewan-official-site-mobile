@@ -1,7 +1,7 @@
 <template>
   <div id="home-header">
     <div id="menu">
-      <img src=""
+      <img src="../assets/menu.png"
            alt="≡"
            v-on:click="jumpToList">
     </div>
@@ -45,6 +45,10 @@
 
   #menu {
     width: 70px;
+  }
+
+  #menu img {
+    height: 20px;
   }
 
   #logo {
