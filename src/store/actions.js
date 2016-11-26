@@ -9,12 +9,15 @@ import authApi from '../api/auth'
 import cartApi from '../api/cart'
 import orderApi from '../api/order'
 
-export const checkToken = ({commit}) => {
+export const init = ({commit}) => {
   if (localStorage.createAt) {
     if (new Date().valueOf() - localStorage.createAt < 15 * 24 * 60 * 60 * 1000) {
       commit(types.GET_DATA_FROM_STORAGE)
     }
   }
+  authApi.getRegion(region => {
+    commit(types.CHANGE_REGION, region)
+  })
 }
 
 export const requestCaptcha = ({}, phone) => {
@@ -35,7 +38,7 @@ export const userRegister = ({commit}, {phone, password, captcha}) => {
     authApi.register(phone, password, captcha,
       token => {
         if (token) {
-          commit(types.USER_LOGIN_SUCCESS, {phone, token})
+          commit(types.USER_LOGIN, {phone, token})
           resolve()
         }
       },
@@ -51,7 +54,7 @@ export const userLogin = ({commit}, {phone, password}) => {
     authApi.login(phone, password,
       token => {
         if (token) {
-          commit(types.USER_LOGIN_SUCCESS, {phone, token})
+          commit(types.USER_LOGIN, {phone, token})
           resolve()
         }
       },
@@ -67,7 +70,7 @@ export const userResetPassword = ({commit}, {phone, password, captcha}) => {
     authApi.resetPassword(phone, password, captcha,
       token => {
         if (token) {
-          commit(types.USER_LOGIN_SUCCESS, {phone, token})
+          commit(types.USER_LOGIN, {phone, token})
           resolve()
         }
       },

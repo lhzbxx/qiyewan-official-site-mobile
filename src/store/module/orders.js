@@ -1,7 +1,8 @@
 /**
  * Created by lhzbxx on 2016/11/7.
  *
- * mutations.js
+ * orders.js
+ * 订单相关
  */
 
 import * as types from '../mutation-types'

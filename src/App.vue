@@ -6,10 +6,8 @@
 
 <script>
   export default {
-    data() {
-      return {
-        selectedTab: 'tab-home'
-      }
+    created() {
+      this.$store.dispatch("init")
     }
   }
 </script>

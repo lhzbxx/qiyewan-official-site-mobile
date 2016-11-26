@@ -1,7 +1,8 @@
 /**
  * Created by lhzbxx on 2016/11/5.
  *
- * mutations.js
+ * carts.js
+ * 购物车相关
  */
 
 import * as types from '../mutation-types'

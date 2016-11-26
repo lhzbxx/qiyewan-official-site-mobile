@@ -3,26 +3,28 @@
     <lh-page-header :hasBack=false
                     title="个人中心"></lh-page-header>
     <lh-home-footer :index="4"></lh-home-footer>
-    <div class="auth" id="has-auth">
-      <img src="" alt="avatar">
+    <div class="auth" id="has-auth" v-if="isLogin">
+      <img src="../assets/avatar.png" alt="avatar">
       <p>尼古拉斯`金铜</p>
       <div id="right-arrow"></div>
     </div>
-    <div class="auth" id="no-auth">
+    <div class="auth" id="no-auth" v-else>
       <router-link to="/auth" class="link button">登录</router-link>
       <router-link to="/auth?state=1" class="link button">注册</router-link>
     </div>
     <div id="bought">
       <div class="bought-block"
            style="border-right: 1px solid #eee;">
-        <img src="../assets/using.png">
         <router-link to="/order?state=2"
-                     class="link">使用中</router-link>
+                     class="link">使用中
+        </router-link>
+        <img src="../assets/using.png">
       </div>
       <div class="bought-block">
-        <img src="../assets/unreviewed.png">
         <router-link to="/order?state=1"
-                     class="link">待评价</router-link>
+                     class="link">待评价
+        </router-link>
+        <img src="../assets/unreviewed.png">
       </div>
     </div>
     <div class="block">
@@ -50,7 +52,7 @@
     <div class="block">
       <mt-cell
         title="关于我们"
-        to="订单"
+        to="/about-us"
         is-link>
         <img slot="icon"
              src="../assets/logo.png"
@@ -60,7 +62,7 @@
       </mt-cell>
       <mt-cell
         title="联系我们"
-        to="订单"
+        to="/contact-us"
         is-link>
         <img slot="icon"
              src="../assets/contact-us.png"
@@ -69,7 +71,8 @@
              style="margin-right: 3px;">
       </mt-cell>
     </div>
-    <div style="margin: 15px 10px 10px;">
+    <div style="margin: 15px 10px 10px;"
+         v-if="isLogin">
       <mt-button type="primary"
                  id="submitButton"
                  size="large">
@@ -80,9 +83,15 @@
 </template>
 
 <script>
+  import {mapGetters} from 'vuex'
   export default {
     data() {
       return {}
+    },
+    computed: {
+      ...mapGetters([
+        'isLogin'
+      ])
     }
   }
 </script>
@@ -113,7 +122,6 @@
   .bought-block img {
     vertical-align: middle;
     height: 24px;
-    margin-right: 8px;
   }
 
   .bought-block span {

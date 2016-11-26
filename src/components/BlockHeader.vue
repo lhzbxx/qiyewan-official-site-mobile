@@ -4,7 +4,8 @@
       <img src="../assets/hot.png" alt="recommends">
       <span>{{ name }}</span>
     </div>
-    <div id="block-header-more">
+    <div id="block-header-more"
+         v-on:click="showMore">
       <span>更多</span>
       <img src="../assets/more.png" alt="more">
     </div>
@@ -15,6 +16,11 @@
   export default {
     props: {
       name: String
+    },
+    methods: {
+      showMore() {
+        this.$router.push({name: 'product-list'})
+      }
     }
   }
 </script>

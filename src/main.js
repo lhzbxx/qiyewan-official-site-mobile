@@ -73,6 +73,8 @@ import Pay from './pages/Pay.vue'
 import NotFound from './pages/NotFound.vue'
 import Areas from './pages/Areas.vue'
 import Review from './pages/Review.vue'
+import AboutUs from './pages/AboutUs.vue'
+import ContactUs from './pages/ContactUs.vue'
 
 const routes = [
   {
@@ -83,7 +85,7 @@ const routes = [
   {
     path: '/order/:orderSerialId/product/:productSerialId/review',
     name: 'review',
-    // beforeEnter: requireAuth,
+    beforeEnter: requireAuth,
     component: Review
   },
   {
@@ -132,26 +134,16 @@ const routes = [
   {
     path: '/mine',
     name: 'mine',
-    beforeEnter: requireAuth,
     component: Mine
   },
-  // {
-  //   path: '/person',
-  //   beforeEnter: requireAuth,
-  //   component: PersonalCenter
-  // },
-  // {
-  //   path: '/news',
-  //   component: NewsList
-  // },
-  // {
-  //   path: '/about-us',
-  //   component: AboutUs
-  // },
-  // {
-  //   path: '/recruitment',
-  //   component: Recruitment
-  // },
+  {
+    path: '/about-us',
+    component: AboutUs
+  },
+  {
+    path: '/contact-us',
+    component: ContactUs
+  },
   {
     path: '/404',
     component: NotFound,

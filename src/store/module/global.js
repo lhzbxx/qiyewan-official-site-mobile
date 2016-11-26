@@ -9,27 +9,24 @@ import * as types from '../mutation-types'
 import data from '../../api/data'
 
 const state = {
-    region: 1,
-    needLogin: 0
+  region: 1,
+  history: []
 }
 
 const mutations = {
-    [types.CHANGE_REGION] (state, regionIndex) {
-        if (!Number.isInteger(regionIndex)) {
-            for (let i of data.regions) {
-                if (i.code == regionIndex)
-                    state.region = data.regions.indexOf(i)
-            }
-        } else {
-            state.region = regionIndex
-        }
-    },
-    [types.REQUIRE_LOGIN] (state) {
-        state.needLogin += 1
+  [types.CHANGE_REGION] (state, regionIndex) {
+    if (!Number.isInteger(regionIndex)) {
+      for (let i of data.regions) {
+        if (i.code == regionIndex)
+          state.region = data.regions.indexOf(i)
+      }
+    } else {
+      state.region = regionIndex
     }
+  }
 }
 
 export default {
-    state,
-    mutations
+  state,
+  mutations
 }
