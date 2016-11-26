@@ -1,6 +1,6 @@
 <template>
   <div id="product-detail">
-    <lh-page-header :title="product ? product.name : 产品详情"></lh-page-header>
+    <lh-page-header :title="product ? product.name : '产品详情'"></lh-page-header>
     <mt-navbar v-model="selected">
       <mt-tab-item id="1">商品详情</mt-tab-item>
       <mt-tab-item id="2">常见问题</mt-tab-item>
@@ -8,7 +8,7 @@
     </mt-navbar>
     <lh-loading v-if="isLoading"></lh-loading>
     <div v-else>
-      <mt-tab-container v-model="selected">
+      <mt-tab-container v-model="selected" :swipeable=true>
         <mt-tab-container-item id="1">
           <img id="product-detail-cover"
                :src="product.cover | cdn-filter"
@@ -24,14 +24,14 @@
           <p class="product-detail-title">您将得到</p>
           <div id="product-detail-what-obtain">
             <p class="product-detail-block"
-               v-for="item in JSON.parse(product.tWhatObtain)">
+               v-for="item in JSON.parse(product.twhatObtain)">
               {{ item }}
             </p>
           </div>
           <p class="product-detail-title">所需材料</p>
           <div id="product-detail-what-need">
             <p class="product-detail-block"
-               v-for="item in JSON.parse(product.tWhatNeed)">
+               v-for="item in JSON.parse(product.twhatNeed)">
               {{ item }}
             </p>
           </div>
@@ -87,10 +87,10 @@
              style="background: #f7a82d;">加入购物车
         </div>
       </div>
+      <lh-cart-detail :form="form"
+                      :product="product"
+                      ref="details"></lh-cart-detail>
     </div>
-    <lh-cart-detail :form="form"
-                    :product="product"
-                    ref="details"></lh-cart-detail>
   </div>
 </template>
 
@@ -148,7 +148,7 @@
           vm.product = data
           vm.product.rate = Math.round(vm.product.rate * 10) / 10
           vm.form.product = data
-          vm.loading = false
+          vm.isLoading = false
         },
         error => {
           vm.error = error
@@ -156,7 +156,7 @@
       )
       productApi.getProductFaqs(vm.$route.params.serialId,
         data => {
-          vm.faq = data.content
+          vm.faqs = data.content
         },
         error => {
           vm.error = error

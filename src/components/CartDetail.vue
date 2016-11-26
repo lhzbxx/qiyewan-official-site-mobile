@@ -16,13 +16,9 @@
       </div>
       <div class="details-content">
         <p class="details-content-title">服务区域</p>
-        <span id="details-content-region">闵行区
-          <select value="闵行区">
-            <option value="闵行区">闵行区</option>
-            <option value="闵行区">闵行区</option>
-            <option value="闵行区">闵行区</option>
-            <option value="闵行区">闵行区</option>
-            <option value="闵行区">闵行区</option>
+        <span id="details-content-region">{{ selectedDistrict }}
+          <select v-model="selectedDistrict">
+            <option v-for="item in getRegion.areas">{{ item.name }}</option>
           </select>
         </span>
       </div>
@@ -72,9 +68,11 @@
 </template>
 
 <script>
+  import {mapGetters} from 'vuex'
   export default {
     data() {
       return {
+        selectedDistrict: null,
         showDetails: false
       }
     },
@@ -89,10 +87,18 @@
         product: Object
       }
     },
+    computed: {
+      ...mapGetters([
+        'getRegion'
+      ])
+    },
     methods: {
       open() {
         this.showDetails = true
       }
+    },
+    mounted() {
+      this.selectedDistrict = this.getRegion.areas[0].name
     }
   }
 </script>

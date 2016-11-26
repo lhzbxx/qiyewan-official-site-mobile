@@ -58,6 +58,20 @@ export const getProductList = ({commit, state}, classification) => {
   })
 }
 
+export const getProductDetail = ({commit, state}, serialId) => {
+  return new Promise((resolve, reject) => {
+    productApi.getProductDetail(serialId,
+      data => {
+        commit(types.BROWSE_PRODUCT, data)
+        resolve(data)
+      },
+      error => {
+        reject(error)
+      }
+    )
+  })
+}
+
 export const requestCaptcha = ({}, phone) => {
   return new Promise((resolve, reject) => {
     authApi.requestCaptcha(phone,
