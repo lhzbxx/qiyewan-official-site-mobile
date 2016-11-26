@@ -5,8 +5,10 @@
  */
 
 import * as types from './mutation-types'
+import dataApi from '../api/data'
 import authApi from '../api/auth'
 import cartApi from '../api/cart'
+import productApi from '../api/product'
 import orderApi from '../api/order'
 
 export const init = ({commit}) => {
@@ -17,6 +19,42 @@ export const init = ({commit}) => {
   }
   authApi.getRegion(region => {
     commit(types.CHANGE_REGION, region)
+  })
+}
+
+export const getProducts = ({commit, state}) => {
+  return new Promise((resolve, reject) => {
+    if (state.global.cache['ALL']) {
+      resolve(state.global.cache['ALL'])
+    } else {
+      productApi.getProducts(dataApi.regions[state.global.region].code,
+        data => {
+          commit(types.CACHE_DATA, 'ALL', data)
+          resolve(data)
+        },
+        error => {
+          reject(error)
+        }
+      )
+    }
+  })
+}
+
+export const getProductList = ({commit, state}, classification) => {
+  return new Promise((resolve, reject) => {
+    if (state.global.cache[classification]) {
+      resolve(state.global.cache[classification])
+    } else {
+      productApi.getProductList(dataApi.regions[state.global.region].code, classification,
+        data => {
+          commit(types.CACHE_DATA, classification, data)
+          resolve(data)
+        },
+        error => {
+          reject(error)
+        }
+      )
+    }
   })
 }
 

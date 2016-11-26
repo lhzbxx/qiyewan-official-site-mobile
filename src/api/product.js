@@ -27,14 +27,14 @@ export default {
       errorCb(response.body)
     })
   },
-  getProductList (regionCode, category, cb, errorCb) {
-    Vue.http.get("products?regionCode=" + regionCode + "&classificationName=" + category).then((response) => {
+  getProductList (regionCode, classification, cb, errorCb) {
+    Vue.http.get("products?regionCode=" + regionCode + "&classificationName=" + classification).then((response) => {
       cb(response.body)
     }, (response) => {
       errorCb(response.body)
     })
   },
-  getNavList (regionCode, cb, errorCb){
+  getProducts (regionCode, cb, errorCb){
     Vue.http.get("products?regionCode=" + regionCode).then((response) => {
       cb(response.body)
     }, (response) => {
