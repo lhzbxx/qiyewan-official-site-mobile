@@ -43,6 +43,7 @@
     data() {
       return {
         isLoading: true,
+        error: null,
         currentState: 0,
         orderState: [
           '未付款',
@@ -54,7 +55,6 @@
     },
     methods: {
       changeCurrent(current) {
-        console.log(current)
         switch (current) {
           case '未付款':
             this.currentState = 0
@@ -71,6 +71,30 @@
         MessageBox.confirm('确认取消订单吗？').then(action => {
         });
       }
+    },
+    created() {
+      let vm = this
+      this.currentState = this.$route.params.state | 0
+      var orderState = 'All'
+      switch(this.currentState) {
+        case 0:
+          orderState = 'Unpaid'
+          break
+        case 1:
+          orderState = 'Paid'
+          break
+        case 2:
+          orderState = 'Reviewed'
+      }
+      this.$store.dispatch('getOrders', {page: 1, orderState: orderState}).then(
+        data => {
+          vm.orders = data.content
+          vm.isLoading = false
+        },
+        error => {
+          vm.error = error
+        }
+      )
     }
   }
 </script>

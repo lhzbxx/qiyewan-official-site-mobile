@@ -153,7 +153,7 @@ export const getCarts = ({commit, state}, page) => {
   return new Promise((resolve, reject) => {
     cartApi.getCarts(state.auth.user.token, page,
       carts => {
-        commit(types.RECEIVE_CART, carts)
+        // commit(types.RECEIVE_CART, carts)
         resolve(carts)
       },
       error => {
@@ -209,7 +209,7 @@ export const getOrders = ({commit, state}, {page, orderState}) => {
   return new Promise((resolve, reject) => {
     orderApi.getOrders(state.auth.user.token, page, orderState,
       orders => {
-        commit(types.RECEIVE_ORDER, orders)
+        // commit(types.RECEIVE_ORDER, orders)
         resolve(orders)
       },
       error => {

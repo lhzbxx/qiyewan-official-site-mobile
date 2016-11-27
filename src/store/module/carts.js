@@ -16,11 +16,6 @@ const state = {
 }
 
 const mutations = {
-    [types.RECEIVE_CART] (state, carts) {
-        state.info.total = carts.totalElements
-        state.info.page = carts.totalPages
-        localStorage.setItem("cartInfo", JSON.stringify(state.info))
-    },
     [types.ADD_TO_ORDER] (state, cartsNum) {
         state.info.total -= cartsNum
         localStorage.setItem("cartInfo", JSON.stringify(state.info))

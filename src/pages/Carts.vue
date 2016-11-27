@@ -32,10 +32,10 @@
                           style="padding-left: 10px;">
           </lh-table-entry>
         </div>
+        <lh-cart-detail :form="form"
+                        :product="product"
+                        ref="details"></lh-cart-detail>
       </div>
-      <lh-cart-detail :form="form"
-                      :product="product"
-                      ref="details"></lh-cart-detail>
     </div>
     <div id="bottom"
          v-if="carts.length > 0">
@@ -60,6 +60,7 @@
     data() {
       return {
         isLoading: true,
+        error: null,
         carts: [],
         form: {
           id: '',
@@ -122,10 +123,20 @@
         return result
       }
     },
-    mounted() {
-      for (let i of [...Array(this.carts.length).keys()]) {
-        this.selection.push(i)
-      }
+    created() {
+      let vm = this
+      this.$store.dispatch('getCarts', 1).then(
+        data => {
+          vm.carts = data.content
+          for (let i of [...Array(vm.carts.length).keys()]) {
+            this.selection.push(i)
+          }
+          vm.isLoading = false
+        },
+        error => {
+          vm.error = error
+        }
+      )
     }
   }
 </script>

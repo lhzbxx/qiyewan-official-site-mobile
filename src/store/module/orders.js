@@ -17,11 +17,6 @@ const state = {
 }
 
 const mutations = {
-    [types.RECEIVE_ORDER] (state, orders) {
-        state.info.total = orders.totalElements
-        state.info.page = orders.totalPages
-        localStorage.setItem("orderInfo", JSON.stringify(state.info))
-    },
     [types.ADD_TO_ORDER] (state) {
         state.info.total += 1
         localStorage.setItem("orderInfo", JSON.stringify(state.info))
