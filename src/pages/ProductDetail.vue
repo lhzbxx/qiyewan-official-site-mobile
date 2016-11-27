@@ -8,7 +8,8 @@
     </mt-navbar>
     <lh-loading v-if="isLoading"></lh-loading>
     <div v-else>
-      <mt-tab-container v-model="selected" :swipeable=true>
+      <mt-tab-container v-model="selected"
+                        :swipeable=false>
         <mt-tab-container-item id="1">
           <img id="product-detail-cover"
                :src="product.cover | cdn-filter"
@@ -19,7 +20,9 @@
             <span>&yen;&nbsp;</span>
             {{ product.unitPrice.toFixed(2) }}
           </p>
-          <p id="product-detail-comment">（我们价格为平台服务费，官费指国家行政收费，刻章工本费由客户承担。注：不用不同，详情请咨询我公司客服，电话：400-716-8896）</p>
+          <p id="product-detail-comment">
+            （我们价格为平台服务费，官费指国家行政收费，刻章工本费由客户承担。注：不用不同，详情请咨询我公司客服，电话：400-716-8896）
+          </p>
           <lh-services></lh-services>
           <p class="product-detail-title">您将得到</p>
           <div id="product-detail-what-obtain">

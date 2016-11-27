@@ -29,7 +29,8 @@ export const getProducts = ({commit, state}) => {
     } else {
       productApi.getProducts(dataApi.regions[state.global.region].code,
         data => {
-          commit(types.CACHE_DATA, 'ALL', data)
+          let index = 'ALL'
+          commit(types.CACHE_DATA, {index, data})
           resolve(data)
         },
         error => {
@@ -47,7 +48,8 @@ export const getProductList = ({commit, state}, classification) => {
     } else {
       productApi.getProductList(dataApi.regions[state.global.region].code, classification,
         data => {
-          commit(types.CACHE_DATA, classification, data)
+          let index = classification
+          commit(types.CACHE_DATA, {index, data})
           resolve(data)
         },
         error => {

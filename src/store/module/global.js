@@ -31,8 +31,9 @@ const mutations = {
     if (state.history.length > 30)
       state.history.pop()
   },
-  [types.CACHE_DATA] (state, index, data) {
-    state.cache[index] = data
+  [types.CACHE_DATA] (state, payload) {
+    console.log(payload)
+    state.cache[payload.index] = payload.data
   }
 }
 

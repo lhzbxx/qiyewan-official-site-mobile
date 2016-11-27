@@ -90,11 +90,11 @@
 </template>
 
 <script>
-  import productApi from '../api/product'
   import {mapGetters} from 'vuex'
   export default {
     data() {
       return {
+        error: null,
         screenWidth: window.screen.width,
         combos: [],
         slides: [
@@ -121,7 +121,14 @@
     },
     mounted() {
       let vm = this
-      productApi.getProductList(this.getRegion.code, 'PS', (data) => {vm.combos = data}, error => {})
+      this.$store.dispatch('getProductList', 'PS').then(
+        data => {
+          vm.combos = data
+        },
+        error => {
+          vm.error = error
+        }
+      )
     }
   }
 </script>
