@@ -131,7 +131,6 @@
       totalPrice() {
         var total = 0
         for(let i of this.selection) {
-          console.log(this.carts[i].product)
           let amount = this.carts[i].amount
           let member = this.carts[i].member
           if (this.carts[i].product.serialId.substr(4) === 'HR0003') {
@@ -236,7 +235,7 @@
     text-align: center;
     flex: 1;
   }
-  
+
   #bottom-button.active {
     background: #199cd8;
   }

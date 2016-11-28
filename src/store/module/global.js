@@ -32,7 +32,6 @@ const mutations = {
       state.history.pop()
   },
   [types.CACHE_DATA] (state, payload) {
-    console.log(payload)
     state.cache[payload.index] = payload.data
   }
 }

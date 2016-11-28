@@ -1,13 +1,11 @@
 <template>
   <div id="pay">
     <lh-page-header title="结 算"></lh-page-header>
-    <div>
-      <mt-cell v-for="item in checkouts"
-               :title="item.name"
-               :label="item.amount + '×' + item.unit">
-        <span>&yen; {{ subtotalPrice(item) }}</span>
-      </mt-cell>
-    </div>
+    <mt-cell v-for="item in getCheckout"
+             :title="item.product.name"
+             :label="item.amount + '×' + item.product.unit">
+      <span>&yen; {{ item | sub-total-price-filter }}</span>
+    </mt-cell>
     <div style="margin-top: 10px;">
       <mt-cell title="实付金额">
         <span>&yen; {{ totalPrice.toFixed(2) }}</span>
@@ -30,31 +28,11 @@
 </template>
 
 <script>
-  import {Indicator} from 'mint-ui';
-
+  import {mapGetters} from 'vuex'
+  import {Indicator} from 'mint-ui'
   export default {
     data() {
       return {
-        checkouts: [
-          {
-            name: '注册财税一条龙',
-            unitPrice: 123,
-            amount: 1,
-            unit: '月'
-          },
-          {
-            name: '注册财税一条龙',
-            unitPrice: 123,
-            amount: 1,
-            unit: '月'
-          },
-          {
-            name: '注册财税一条龙',
-            unitPrice: 123,
-            amount: 1,
-            unit: '月'
-          }
-        ],
         payment: 'AliPay',
         payments: [
           {
@@ -75,10 +53,19 @@
       }
     },
     computed: {
+      ...mapGetters([
+        'getCheckout'
+      ]),
       totalPrice() {
         var result = 0
-        for (let i of this.checkouts) {
-          result += i.amount * i.unitPrice
+        for (let i of this.getCheckout) {
+          let amount = i.amount
+          let member = i.member
+          if (i.product.serialId.substr(4) === 'HR0003') {
+            result += member > 3 ? ((98.8 + 18.8 * (member - 3)) * amount) : (98.8 * amount)
+          } else {
+            result += (amount * i.product.unitPrice)
+          }
         }
         return result
       }
@@ -91,6 +78,11 @@
         Indicator.open({
           text: '跳转中...',
         });
+      }
+    },
+    mounted() {
+      if (this.getCheckout.length == 0) {
+        this.$router.replace({name: 'home'})
       }
     },
     beforeDestroy() {
