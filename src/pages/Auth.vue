@@ -5,19 +5,12 @@
       <mt-field label="手机号"
                 class="input-field"
                 placeholder="请输入手机号"
+                v-model="form.phone"
                 type="tel"></mt-field>
-      <mt-field label="密码"
-                class="input-field"
-                placeholder="请输入密码"
-                type="password"></mt-field>
-      <mt-field label="确认密码"
-                v-if="state > 0"
-                class="input-field"
-                placeholder="请再次输入密码"
-                type="password"></mt-field>
       <mt-field label="验证码"
                 v-if="state > 0"
                 class="input-field"
+                v-model="form.captcha"
                 placeholder="请输入验证码">
         <div id="captcha-button"
              v-bind:class="{inactive: isCounting}"
@@ -25,8 +18,20 @@
           {{ isCounting ? counter + '秒' : '获取验证码' }}
         </div>
       </mt-field>
+      <mt-field label="密码"
+                class="input-field"
+                placeholder="请输入密码"
+                v-model="form.password"
+                type="password"></mt-field>
+      <mt-field label="确认密码"
+                v-if="state > 0"
+                class="input-field"
+                v-model="form.password2"
+                placeholder="请再次输入密码"
+                type="password"></mt-field>
       <mt-button type="primary"
                  id="submitButton"
+                 @click.native="submit"
                  size="large">
         {{ submitButton }}
       </mt-button>
@@ -50,6 +55,7 @@
 </template>
 
 <script>
+  import {Toast} from 'mint-ui';
   export default {
     data() {
       return {
@@ -68,9 +74,15 @@
     },
     methods: {
       getCaptcha() {
-        if (this.isCounting) return
-        else this.isCounting = true
-        this.counting()
+        this.$store.dispatch('requestCaptcha', this.form.phone).then(
+          () => {
+            if (this.isCounting) return
+            else this.isCounting = true
+            this.counting()
+          },
+          error => {
+          }
+        )
       },
       counting() {
         setTimeout(() => {
@@ -82,6 +94,90 @@
             this.counting()
           }
         }, 1000)
+      },
+      submit() {
+        let vm = this
+        switch (this.state) {
+          case 0:
+            this.$store.dispatch('userLogin', this.form).then(
+              () => {
+                vm.$router.go(-1)
+              },
+              error => {
+                switch (error.detail) {
+                  case 'Error.Auth.USER_NOT_EXISTS':
+                    Toast({
+                      message: '该手机号尚未注册',
+                      position: 'bottom',
+                      duration: 3000
+                    })
+                    break
+                  case 'Error.Auth.WRONG_PASSWORD':
+                    Toast({
+                      message: '密码不正确',
+                      position: 'bottom',
+                      duration: 3000
+                    })
+                    break
+                  default:
+                    Toast({
+                      message: '登录失败',
+                      position: 'bottom',
+                      duration: 3000
+                    })
+                }
+              }
+            )
+            break
+          case 1:
+            this.$store.dispatch('userRegister', this.form).then(
+              () => {
+                vm.$router.go(-1)
+              },
+              error => {
+                switch (error.detail) {
+                  case 'Error.Auth.USER_EXISTS':
+                    Toast({
+                      message: '该手机号已被注册',
+                      position: 'bottom',
+                      duration: 3000
+                    })
+                    break
+                  case 'Error.Action.WRONG_CAPTCHA':
+                    Toast({
+                      message: '验证码不正确',
+                      position: 'bottom',
+                      duration: 3000
+                    })
+                    break
+                  default:
+                    Toast({
+                      message: '注册失败',
+                      position: 'bottom',
+                      duration: 3000
+                    })
+                }
+              }
+            )
+            break
+          case 2:
+            this.$store.dispatch('userResetPassword', this.form).then(
+              () => {
+                vm.$router.go(-1)
+              },
+              error => {
+                switch (error.detail) {
+                  default:
+                    Toast({
+                      message: '重置密码失败',
+                      position: 'bottom',
+                      duration: 3000
+                    })
+                }
+              }
+            )
+            break
+        }
       }
     },
     computed: {
