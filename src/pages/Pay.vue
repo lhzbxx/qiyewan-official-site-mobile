@@ -55,11 +55,12 @@
             unit: '月'
           }
         ],
-        payment: 'WeChat',
+        payment: 'AliPay',
         payments: [
           {
             label: '微信支付',
             value: 'WeChat',
+            disabled: true
           },
           {
             label: '支付宝',

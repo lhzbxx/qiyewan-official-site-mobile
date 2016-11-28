@@ -12,9 +12,11 @@
                v-bind:class="{ active: isAllSelected }"
                v-on:click="selectAll()"></div>
           <span>全选</span>
-          <img src="../assets/logo.png"
-               id="delete-icon">
-          <span>删除</span>
+          <div style="margin-left: auto;">
+            <img src="../assets/delete.png"
+                 id="delete-icon">
+            <span style="color: #666;">删除</span>
+          </div>
         </div>
         <div class="cart"
              v-for="(item, index) in carts">
@@ -33,7 +35,6 @@
           </lh-table-entry>
         </div>
         <lh-cart-detail :form="form"
-                        :product="product"
                         ref="details"></lh-cart-detail>
       </div>
     </div>
@@ -49,7 +50,9 @@
         <span>已选</span>
         <span><b>{{ totalAmount }}</b> 个</span>
       </div>
-      <div id="bottom-button">结 算
+      <div id="bottom-button"
+           v-bind:class="{active: canCheckout}"
+           v-on:click="checkout">结 算
       </div>
     </div>
   </div>
@@ -71,6 +74,7 @@
           region: '',
           product: {
             name: '',
+            serialId: '',
             cover: 'logo.png',
             summary: '',
             unitPrice: 0
@@ -104,8 +108,17 @@
       },
       openDetails(index) {
         this.form = this.carts[index]
-        this.product = this.carts[index].product
+        this.form.product = this.carts[index].product
         this.$refs.details.open()
+      },
+      checkout() {
+        if (this.selection.length == 0) return
+        var form = []
+        for (let i of this.selection.reverse()) {
+          form.push(this.carts[i])
+        }
+        this.$store.commit('CHECKOUT', form)
+        this.$router.push({name: 'pay'})
       }
     },
     computed: {
@@ -116,11 +129,21 @@
         return this.selection.length
       },
       totalPrice() {
-        var result = 0
-        for (let i of this.selection) {
-          result += this.carts[i].product.amount * this.carts[i].product.price
+        var total = 0
+        for(let i of this.selection) {
+          console.log(this.carts[i].product)
+          let amount = this.carts[i].amount
+          let member = this.carts[i].member
+          if (this.carts[i].product.serialId.substr(4) === 'HR0003') {
+            total += member > 3 ? ((98.8 + 18.8 * (member - 3)) * amount) : (98.8 * amount)
+          } else {
+            total += (amount * this.carts[i].product.unitPrice)
+          }
         }
-        return result
+        return total.toFixed(2)
+      },
+      canCheckout() {
+        return this.selection.length > 0
       }
     },
     created() {
@@ -172,9 +195,9 @@
   }
 
   #delete-icon {
-    margin-left: auto;
     height: 20px;
     width: 20px;
+    vertical-align: middle;
   }
 
   .cart {
@@ -192,7 +215,7 @@
     bottom: 50px;
     width: 100%;
     height: 50px;
-    z-index: 100;
+    z-index: 99;
     background: white;
   }
 
@@ -205,13 +228,17 @@
   }
 
   #bottom-button {
-    background: #199cd8;
+    background: #aaa;
     height: 100%;
     line-height: 50px;
     color: white;
     font-size: 18px;
     text-align: center;
     flex: 1;
+  }
+  
+  #bottom-button.active {
+    background: #199cd8;
   }
 
   b {

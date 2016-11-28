@@ -99,7 +99,6 @@
 
 <script>
   import productApi from '../api/product'
-  import {Toast} from 'mint-ui';
   export default {
     data() {
       return {
@@ -115,8 +114,7 @@
         },
         product: null,
         faqs: [],
-        reviews: [],
-        toastInstance: null
+        reviews: []
       }
     },
     methods: {
@@ -125,16 +123,6 @@
       },
       jumpToPay() {
         this.$router.push({name: 'pay'})
-      },
-      addToCart() {
-        if (this.toastInstance) this.toastInstance.close()
-        this.toastInstance = Toast({
-          message: '操作成功',
-          iconClass: 'mintui mintui-success'
-        });
-        setTimeout(() => {
-          this.toastInstance.close()
-        }, 2000)
       },
       openDetails() {
         this.$refs.details.open()

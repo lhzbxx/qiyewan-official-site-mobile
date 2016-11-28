@@ -37,7 +37,7 @@
 </template>
 
 <script>
-  import { MessageBox } from 'mint-ui';
+  import {MessageBox} from 'mint-ui';
 
   export default {
     data() {
@@ -46,6 +46,7 @@
         error: null,
         currentState: 0,
         orderState: [
+          '全部',
           '未付款',
           '待评价',
           '已完成'
@@ -56,14 +57,17 @@
     methods: {
       changeCurrent(current) {
         switch (current) {
-          case '未付款':
+          case '全部':
             this.currentState = 0
             break
-          case '待评价':
+          case '未付款':
             this.currentState = 1
             break
-          case '已完成':
+          case '待评价':
             this.currentState = 2
+            break
+          case '已完成':
+            this.currentState = 3
             break
         }
       },
@@ -76,15 +80,16 @@
       let vm = this
       this.currentState = this.$route.params.state | 0
       var orderState = 'All'
-      switch(this.currentState) {
-        case 0:
+      switch (this.currentState) {
+        case 1:
           orderState = 'Unpaid'
           break
-        case 1:
+        case 2:
           orderState = 'Paid'
           break
-        case 2:
+        case 3:
           orderState = 'Reviewed'
+          break
       }
       this.$store.dispatch('getOrders', {page: 1, orderState: orderState}).then(
         data => {

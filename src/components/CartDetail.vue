@@ -17,12 +17,13 @@
       <div class="details-content">
         <p class="details-content-title">服务区域</p>
         <span id="details-content-region">{{ selectedDistrict }}
+          <img src="../assets/down.png" width="12" style="vertical-align: middle">
           <select v-model="selectedDistrict">
             <option v-for="item in getRegion.areas">{{ item.name }}</option>
           </select>
         </span>
       </div>
-      <div class="details-content">
+      <div class="details-content" v-if="!form.product.isInstant">
         <p class="details-content-title">服务时长</p>
         <p class="details-content-period"
            v-on:click="form.amount = 6"
@@ -32,7 +33,7 @@
            v-on:click="form.amount = 12"
            v-bind:class="{ active: form.amount == 12 }">一年</p>
       </div>
-      <div class="details-content">
+      <div class="details-content" v-if="form.product.isInstant">
         <p class="details-content-title">数量</p>
         <p class="details-content-amount"
            v-on:click="form.amount > 1 ? form.amount-- : pass"
@@ -42,7 +43,7 @@
         <p class="details-content-amount active"
            v-on:click="form.amount++">&plus;</p>
       </div>
-      <div class="details-content">
+      <div class="details-content" v-if="form.product.serialId.substr(4) === 'HR0003'">
         <p class="details-content-title">人数</p>
         <p class="details-content-amount"
            v-on:click="form.member > 1 ? form.member-- : pass"
@@ -53,9 +54,16 @@
            v-on:click="form.member++">&plus;</p>
       </div>
       <div id="details-bottom">
-        <div></div>
+        <div id="confirm-price">
+          <span style="font-size: 16px;">总计</span>
+          <span style="color: red;">
+          <span style="font-size: 10px;">&yen;</span>
+            <b>{{ form | sub-total-price-filter }}</b>
+          </span>
+        </div>
         <div id="confirm-button"
-             v-on:click="showDetails = false">确 定</div>
+             v-on:click="confirm">确 定
+        </div>
       </div>
       <div style="position: relative; height: auto;">
       </div>
@@ -68,12 +76,14 @@
 </template>
 
 <script>
+  import {Toast} from 'mint-ui';
   import {mapGetters} from 'vuex'
   export default {
     data() {
       return {
         selectedDistrict: null,
-        showDetails: false
+        showDetails: false,
+        toastInstance: null
       }
     },
     props: {
@@ -95,10 +105,30 @@
     methods: {
       open() {
         this.showDetails = true
+      },
+      confirm() {
+        this.form.region = this.getRegion.pName + this.getRegion.name + this.selectedDistrict
+        let vm = this
+        this.$store.dispatch('addToCart', this.form).then(
+          function (data) {
+            vm.showDetails = false
+            if (vm.toastInstance) vm.toastInstance.close()
+            vm.toastInstance = Toast({
+              message: '操作成功',
+              iconClass: 'mintui mintui-success'
+            });
+            setTimeout(function () {
+              vm.toastInstance.close()
+            }, 2000)
+          }
+        )
       }
     },
     mounted() {
+      this.form.regionCode = this.getRegion.code
+      this.form.serialId = this.form.product.serialId
       this.selectedDistrict = this.getRegion.areas[0].name
+      this.form.amount = this.form.product.isInstant ? 1 : 6
     }
   }
 </script>
@@ -196,6 +226,11 @@
     margin-top: auto;
   }
 
+  #confirm-price {
+    width: 60%;
+    text-align: center;
+  }
+
   #confirm-button {
     height: 50px;
     background: #26a2ff;
@@ -242,5 +277,12 @@
     height: 70%;
     min-height: 128px;
     transition: height 0.5s ease-in-out;
+  }
+
+  b {
+    color: red;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: arial, serif;
   }
 </style>
