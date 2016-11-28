@@ -59,7 +59,7 @@
   }
 
   .service p {
-    font-size: 13px;
+    font-size: 11px;
     display: inline-block;
     line-height: 40px;
   }
