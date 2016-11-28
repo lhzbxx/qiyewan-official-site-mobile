@@ -77,6 +77,8 @@ import AboutUs from './pages/AboutUs.vue'
 import ContactUs from './pages/ContactUs.vue'
 import BrowsingHistory from './pages/BrowsingHistory.vue'
 
+store.dispatch('init')
+
 const routes = [
   {
     path: '/',

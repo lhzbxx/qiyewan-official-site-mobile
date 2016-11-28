@@ -4,14 +4,6 @@
   </div>
 </template>
 
-<script>
-  export default {
-    created() {
-      this.$store.dispatch("init")
-    }
-  }
-</script>
-
 <style>
   * {
     margin: 0;

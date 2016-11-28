@@ -54,7 +54,7 @@
 <style scoped>
   #table-entry {
     background: transparent;
-    height: 90px;
+    height: 95px;
   }
 
   #table-entry-body {

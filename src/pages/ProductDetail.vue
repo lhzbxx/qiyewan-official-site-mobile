@@ -146,7 +146,7 @@
     created() {
       this.loading = true
       let vm = this
-      productApi.getProductDetail(this.$route.params.serialId,
+      this.$store.dispatch('getProductDetail', this.$route.params.serialId).then(
         data => {
           vm.product = data
           vm.product.rate = Math.round(vm.product.rate * 10) / 10
