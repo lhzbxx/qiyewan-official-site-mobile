@@ -99,6 +99,7 @@
     },
     computed: {
       ...mapGetters([
+        'isLogin',
         'getRegion'
       ])
     },
@@ -107,6 +108,9 @@
         this.showDetails = true
       },
       confirm() {
+        if (this.isLogin) {
+          return this.$router.push({name: 'auth'})
+        }
         this.form.region = this.getRegion.pName + this.getRegion.name + this.selectedDistrict
         let vm = this
         this.$store.dispatch('addToCart', this.form).then(

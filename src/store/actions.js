@@ -18,6 +18,7 @@ export const init = ({commit}) => {
     }
   }
   authApi.getRegion(region => {
+    console.log('自动切换到区域：' + region)
     commit(types.CHANGE_REGION, region)
   })
 }

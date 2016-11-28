@@ -85,6 +85,7 @@
          v-if="isLogin">
       <mt-button type="primary"
                  id="submitButton"
+                 @click.native="logout"
                  size="large">
         退出登录
       </mt-button>
@@ -102,6 +103,11 @@
       ...mapGetters([
         'isLogin'
       ])
+    },
+    methods: {
+      logout() {
+        this.$store.commit('USER_LOGOUT')
+      }
     }
   }
 </script>

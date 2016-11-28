@@ -21,6 +21,7 @@ const mutations = {
     // 判断传值为index或region对象。
     if (!Number.isInteger(regionIndex)) {
       state.region = data.regions.findIndex(item => item.code == regionIndex)
+      state.region = state.region == -1 ? 1 : state.region
     } else {
       state.region = regionIndex
     }
@@ -32,6 +33,7 @@ const mutations = {
       state.history.pop()
   },
   [types.CACHE_DATA] (state, payload) {
+    console.log('已缓存：' + payload.index)
     state.cache[payload.index] = payload.data
   }
 }
