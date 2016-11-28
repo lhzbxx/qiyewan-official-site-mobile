@@ -210,7 +210,7 @@
 
 <style scoped>
   #auth {
-    padding-top: 50px;
+    padding-top: 44px;
     background: #f9f9f9;
     min-height: 100%;
   }

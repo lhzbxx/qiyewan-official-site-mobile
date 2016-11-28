@@ -46,9 +46,9 @@
   }
 
   .tab {
-    font-size: 16px;
-    margin-right: 10px;
-    padding: 8px 10px;
+    font-size: 15px;
+    margin-right: 8px;
+    padding: 8px 8px;
     border: 1px solid #eee;
   }
 

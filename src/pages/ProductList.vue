@@ -131,7 +131,7 @@
 
 <style scoped>
   #product-list {
-    padding-top: 50px;
+    padding-top: 44px;
     height: 100%;
   }
 

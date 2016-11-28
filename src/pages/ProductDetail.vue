@@ -169,7 +169,7 @@
   #product-detail {
     background: white;
     margin-bottom: 60px;
-    padding-top: 50px;
+    padding-top: 44px;
     min-height: 100%;
   }
 

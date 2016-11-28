@@ -23,7 +23,7 @@
 
 <style scoped>
   #review {
-    padding-top: 50px;
+    padding-top: 44px;
     min-height: 100%;
   }
 

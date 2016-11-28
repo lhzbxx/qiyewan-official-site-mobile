@@ -50,7 +50,7 @@
 
 <style scoped>
   #areas {
-    padding-top: 50px;
+    padding-top: 44px;
     min-height: 100%;
     background: #f9f9f9;
   }

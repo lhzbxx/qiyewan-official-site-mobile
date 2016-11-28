@@ -40,7 +40,7 @@
 
 <style scoped>
   #page-header {
-    height: 50px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: space-between;

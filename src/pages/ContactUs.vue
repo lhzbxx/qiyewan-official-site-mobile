@@ -108,7 +108,7 @@
 
 <style scoped>
   #contact-us {
-    padding-top: 50px;
+    padding-top: 44px;
     background: #f9f9f9;
     min-height: 100%;
     padding-bottom: 10px;

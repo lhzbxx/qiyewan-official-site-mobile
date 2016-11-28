@@ -30,7 +30,7 @@
 <style scoped>
   #browsing-history {
     background: #f9f9f9;
-    padding-top: 50px;
+    padding-top: 44px;
     min-height: 100%;
   }
 

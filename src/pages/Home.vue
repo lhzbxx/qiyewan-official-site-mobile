@@ -136,7 +136,7 @@
 <style scoped>
   #home {
     background: #eee;
-    padding-top: 50px;
+    padding-top: 44px;
     padding-bottom: 50px;
     min-height: 100%;
   }
