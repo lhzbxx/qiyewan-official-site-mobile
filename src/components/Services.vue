@@ -1,7 +1,7 @@
 <template>
   <div id="service-list">
     <div class="service" v-for="item in services">
-      <img src="../assets/logo.png" alt="">
+      <img src="../assets/node.png" alt="">
       <p>{{ item.name }}</p>
     </div>
   </div>

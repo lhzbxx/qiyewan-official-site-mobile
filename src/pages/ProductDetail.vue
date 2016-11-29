@@ -82,11 +82,11 @@
                style="margin-top: 11px; height: 28px;">
         </div>
         <div class="bottom-button"
-             v-on:click="jumpToPay()"
+             v-on:click="jumpToPay"
              style="background: #199cd8;">立即购买
         </div>
         <div class="bottom-button"
-             v-on:click="openDetails()"
+             v-on:click="openDetails"
              style="background: #f7a82d;">加入购物车
         </div>
       </div>

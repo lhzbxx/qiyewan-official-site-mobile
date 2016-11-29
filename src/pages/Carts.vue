@@ -5,7 +5,10 @@
     <lh-home-footer :index="3"></lh-home-footer>
     <lh-loading v-if="isLoading"></lh-loading>
     <div v-else>
-      <lh-no-things v-if="carts.length == 0"></lh-no-things>
+      <lh-no-things v-if="carts.length == 0"
+                    message="购物车为空">
+        <img src="../assets/empty-cart.png">
+      </lh-no-things>
       <div v-else>
         <div id="carts-header">
           <div class="choice"

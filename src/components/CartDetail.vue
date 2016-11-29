@@ -108,22 +108,27 @@
         this.showDetails = true
       },
       confirm() {
-        if (this.isLogin) {
+        if (!this.isLogin) {
           return this.$router.push({name: 'auth'})
         }
         this.form.region = this.getRegion.pName + this.getRegion.name + this.selectedDistrict
         let vm = this
         this.$store.dispatch('addToCart', this.form).then(
-          function (data) {
+          data => {
             vm.showDetails = false
             if (vm.toastInstance) vm.toastInstance.close()
             vm.toastInstance = Toast({
               message: '操作成功',
               iconClass: 'mintui mintui-success'
-            });
+            })
             setTimeout(function () {
               vm.toastInstance.close()
             }, 2000)
+            vm.form.amount = data.amount
+          },
+          error => {
+            vm.showDetails = false
+            console.log(error)
           }
         )
       }
@@ -253,7 +258,7 @@
     opacity: 0;
     background: black;
     z-index: -1;
-    top: 50px;
+    top: 44px;
     transition: opacity 0.5s ease-in-out, z-index 0s 0.5s;
   }
 
