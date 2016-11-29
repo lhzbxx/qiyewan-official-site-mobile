@@ -82,16 +82,18 @@
                style="margin-top: 11px; height: 28px;">
         </div>
         <div class="bottom-button"
-             v-on:click="jumpToPay"
+             v-on:click="handleDirectBuyButton"
              style="background: #199cd8;">立即购买
         </div>
         <div class="bottom-button"
-             v-on:click="openDetails"
+             v-on:click="handleAddToCartButton"
              style="background: #f7a82d;">加入购物车
         </div>
       </div>
       <lh-cart-detail :form="form"
                       :product="product"
+                      :from="origin"
+                      @confirm="handleConfirmButton"
                       ref="details"></lh-cart-detail>
     </div>
   </div>
@@ -99,6 +101,7 @@
 
 <script>
   import {mapGetters} from 'vuex'
+  import {Toast} from 'mint-ui';
   import productApi from '../api/product'
   export default {
     data() {
@@ -115,7 +118,9 @@
         },
         product: null,
         faqs: [],
-        reviews: []
+        reviews: [],
+        toastInstance: null,
+        origin: ''
       }
     },
     computed: {
@@ -127,25 +132,54 @@
       openCustomerService() {
         _MEIQIA('showPanel');
       },
-      jumpToPay() {
-        this.refreshForm()
-        let vm = this
-        this.$store.dispatch('addToCart', this.form).then(
-          data => {
-            vm.$store.commit('CHECKOUT', [data])
-            vm.$router.push({name: 'pay'})
-          },
-          error => {
-            console.log(error)
-          }
-        )
+      handleDirectBuyButton() {
+        this.origin = 'direct-buy-button'
+        this.$refs.details.open()
       },
-      openDetails() {
+      handleAddToCartButton() {
+        this.origin = 'add-to-cart-button'
         this.$refs.details.open()
       },
       refreshForm() {
         this.form.regionCode = this.getRegion.code
         this.form.region = this.getRegion.pName + this.getRegion.name
+      },
+      handleConfirmButton() {
+        let vm = this
+        this.form.region = this.getRegion.pName + this.getRegion.name + this.selectedDistrict
+        this.$store.dispatch('addToCart', this.form).then(
+          data => {
+            vm.showDetails = false
+            switch (vm.origin) {
+              case 'add-to-cart-button':
+                if (vm.toastInstance) vm.toastInstance.close()
+                vm.toastInstance = Toast({
+                  message: '操作成功',
+                  iconClass: 'mintui mintui-success'
+                })
+                setTimeout(function () {
+                  vm.toastInstance.close()
+                }, 2000)
+                vm.form.amount = data.amount
+                break
+              case 'direct-buy-button':
+                this.$store.dispatch('addToCart', this.form).then(
+                  data => {
+                    vm.$store.commit('CHECKOUT', [data])
+                    vm.$router.push({name: 'pay'})
+                  },
+                  error => {
+                    console.log(error)
+                  }
+                )
+                break
+            }
+          },
+          error => {
+            vm.showDetails = false
+            console.log(error)
+          }
+        )
       }
     },
     created() {
@@ -292,6 +326,7 @@
     border: 1px solid #eee;
     margin-bottom: 8px;
     margin-right: 8px;
+    line-height: 13px;
   }
 
   .faq {

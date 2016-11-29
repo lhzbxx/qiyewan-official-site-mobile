@@ -76,14 +76,12 @@
 </template>
 
 <script>
-  import {Toast} from 'mint-ui';
   import {mapGetters} from 'vuex'
   export default {
     data() {
       return {
         selectedDistrict: null,
-        showDetails: false,
-        toastInstance: null
+        showDetails: false
       }
     },
     props: {
@@ -95,7 +93,8 @@
         regionCode: String,
         region: String,
         product: Object
-      }
+      },
+      from: String
     },
     computed: {
       ...mapGetters([
@@ -111,26 +110,7 @@
         if (!this.isLogin) {
           return this.$router.push({name: 'auth'})
         }
-        this.form.region = this.getRegion.pName + this.getRegion.name + this.selectedDistrict
-        let vm = this
-        this.$store.dispatch('addToCart', this.form).then(
-          data => {
-            vm.showDetails = false
-            if (vm.toastInstance) vm.toastInstance.close()
-            vm.toastInstance = Toast({
-              message: '操作成功',
-              iconClass: 'mintui mintui-success'
-            })
-            setTimeout(function () {
-              vm.toastInstance.close()
-            }, 2000)
-            vm.form.amount = data.amount
-          },
-          error => {
-            vm.showDetails = false
-            console.log(error)
-          }
-        )
+        this.$emit('confirm')
       }
     },
     mounted() {
