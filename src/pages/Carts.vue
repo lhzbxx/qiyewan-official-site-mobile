@@ -16,7 +16,8 @@
                v-bind:class="{ active: isAllSelected }"
                v-on:click="selectAll()"></div>
           <span>全选</span>
-          <div style="margin-left: auto;">
+          <div style="margin-left: auto;"
+               v-on:click="handleDeleteButton">
             <img src="../assets/delete.png"
                  id="delete-icon">
             <span style="color: #666;">删除</span>
@@ -63,6 +64,7 @@
 </template>
 
 <script>
+  import {MessageBox} from 'mint-ui'
   export default {
     data() {
       return {
@@ -123,6 +125,24 @@
         }
         this.$store.commit('CHECKOUT', form)
         this.$router.push({name: 'pay'})
+      },
+      handleDeleteButton() {
+        let vm = this
+        MessageBox.confirm('确认从购物车中移除吗？').then(
+          action => {
+            for(let i of vm.selection) {
+              vm.$store.dispatch('removeCart', vm.carts[i].id).then(
+                data => {
+                  vm.selection.splice(vm.selection.findIndex(item => item == i), 1)
+                  vm.carts.splice(i, 1)
+                },
+                error => {
+                }
+              )
+            }
+          },
+          () => {}
+        )
       }
     },
     computed: {

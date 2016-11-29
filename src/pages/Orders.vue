@@ -30,22 +30,20 @@
         <div class="ops-block">
           <p class="button warning"
              v-if="order.orderState == 'Unpaid'"
-             v-on:click="handleCancelButton">删除</p>
+             v-on:click="handleCancelButton(order)">删除</p>
           <p class="button"
              v-if="order.orderState == 'Unpaid'"
-             v-on:click="handleCancelButton">去支付</p>
+             v-on:click="handlePayButton(order.payUrl)">去支付</p>
           <p class="button disabled"
-             v-if="order.orderState == 'Timeout'"
-             v-on:click="handlePayButton(item.payUrl)">已超时</p>
+             v-if="order.orderState == 'Timeout'">已超时</p>
           <p class="button disabled"
-             v-if="order.orderState == 'Canceled'"
-             v-on:click="handlePayButton(item.payUrl)">已取消</p>
+             v-if="order.orderState == 'Canceled'">已取消</p>
           <p class="button"
              v-if="order.orderState == 'Paid'"
-             v-on:click="handleReviewButton(item)">去评价</p>
+             v-on:click="handleReviewButton(order)">去评价</p>
           <p class="button"
              v-if="order.orderState == 'Reviewed'"
-             v-on:click="handleAnotherButton(item)">再来一份</p>
+             v-on:click="handleAnotherButton(order)">再来一份</p>
         </div>
       </div>
     </div>
@@ -113,10 +111,15 @@
           }
         )
       },
-      handleCancelButton() {
+      handleCancelButton(order) {
+        let vm = this
         MessageBox.confirm('确认取消订单吗？').then(
           action => {
-          }
+            vm.$store.dispatch('cancelOrder', order.serialId).then(
+              order.orderState = 'Canceled'
+            )
+          },
+          () => {}
         )
       },
       handlePayButton(payUrl) {

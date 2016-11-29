@@ -22,7 +22,7 @@ const mutations = {
     localStorage.setItem("orderInfo", JSON.stringify(state.info))
   },
   [types.REMOVE_ORDER] (state) {
-    state.info.total -= 1
+    // state.info.total -= 1
     localStorage.setItem("orderInfo", JSON.stringify(state.info))
   },
   [types.CHECKOUT] (state, carts) {
