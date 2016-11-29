@@ -8,32 +8,32 @@
 import * as types from '../mutation-types'
 
 const state = {
-    info: {
-        total: 0,
-        page: 0
-    },
-    savedItems: [],
-    checkout: []
+  info: {
+    total: 0,
+    page: 0
+  },
+  savedItems: [],
+  checkout: []
 }
 
 const mutations = {
-    [types.ADD_TO_ORDER] (state) {
-        state.info.total += 1
-        localStorage.setItem("orderInfo", JSON.stringify(state.info))
-    },
-    [types.REMOVE_ORDER] (state) {
-        state.info.total -= 1
-        localStorage.setItem("orderInfo", JSON.stringify(state.info))
-    },
-    [types.CHECKOUT] (state, carts) {
-        state.checkout = carts
-    },
-    [types.GET_DATA_FROM_STORAGE] (state) {
-        state.info = JSON.parse(localStorage.getItem('orderInfo'));
-    }
+  [types.ADD_TO_ORDER] (state) {
+    // state.info.total += 1
+    localStorage.setItem("orderInfo", JSON.stringify(state.info))
+  },
+  [types.REMOVE_ORDER] (state) {
+    state.info.total -= 1
+    localStorage.setItem("orderInfo", JSON.stringify(state.info))
+  },
+  [types.CHECKOUT] (state, carts) {
+    state.checkout = carts
+  },
+  [types.GET_DATA_FROM_STORAGE] (state) {
+    state.info = JSON.parse(localStorage.getItem('orderInfo'));
+  }
 }
 
 export default {
-    state,
-    mutations
+  state,
+  mutations
 }

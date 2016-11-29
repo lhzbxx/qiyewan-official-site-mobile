@@ -98,6 +98,7 @@
 </template>
 
 <script>
+  import {mapGetters} from 'vuex'
   import productApi from '../api/product'
   export default {
     data() {
@@ -117,18 +118,34 @@
         reviews: []
       }
     },
+    computed: {
+      ...mapGetters([
+        'getRegion'
+      ])
+    },
     methods: {
       openCustomerService() {
         _MEIQIA('showPanel');
       },
       jumpToPay() {
-        this.$router.push({name: 'pay'})
+        this.refreshForm()
+        let vm = this
+        this.$store.dispatch('addToCart', this.form).then(
+          data => {
+            vm.$store.commit('CHECKOUT', [data])
+            vm.$router.push({name: 'pay'})
+          },
+          error => {
+            console.log(error)
+          }
+        )
       },
       openDetails() {
         this.$refs.details.open()
       },
       refreshForm() {
         this.form.regionCode = this.getRegion.code
+        this.form.region = this.getRegion.pName + this.getRegion.name
       }
     },
     created() {

@@ -29,25 +29,24 @@
 
 <script>
   import {mapGetters} from 'vuex'
+  import {Toast} from 'mint-ui'
   import {Indicator} from 'mint-ui'
   export default {
     data() {
       return {
-        payment: 'AliPay',
+        payment: 'Alipay',
         payments: [
           {
             label: '微信支付',
-            value: 'WeChat',
-            disabled: true
+            value: 'WeChat'
           },
           {
             label: '支付宝',
-            value: 'AliPay'
+            value: 'Alipay'
           },
           {
             label: '银行卡',
-            value: 'Bank',
-            disabled: true
+            value: 'Bank'
           }
         ]
       }
@@ -71,13 +70,24 @@
       }
     },
     methods: {
-      subtotalPrice(checkout) {
-        return checkout.amount * checkout.unitPrice
-      },
       pay() {
+        if (this.payment != 'Alipay') {
+          return Toast({
+            message: '暂不支持该支付方式',
+            position: 'bottom',
+            duration: 3000
+          })
+        }
         Indicator.open({
           text: '跳转中...',
-        });
+        })
+        this.$store.dispatch('addToOrder', {carts: this.getCheckout, payment: this.payment}).then(
+          order => {
+            window.open(order.payUrl, "_self")
+          },
+          error => {
+          }
+        )
       }
     },
     mounted() {
