@@ -1,14 +1,19 @@
 <template>
   <div id="app">
-    <router-view class="child-view"></router-view>
+    <router-view id="child-view"></router-view>
   </div>
 </template>
 
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  #app {
+    height: 100%;
+  }
+
+  #child-view {
+    width: 100%;
+    min-height: 100%;
+    background: white;
+    overflow: hidden;
   }
 
   .clearfix:after {

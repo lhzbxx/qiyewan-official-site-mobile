@@ -1,6 +1,6 @@
 <template>
   <div id="not-found">
-    <img src="../assets/logo.png">
+    <img src="../assets/404.png">
     <h1>哎呀，出错了</h1>
     <mt-button type="primary"
                size="small"

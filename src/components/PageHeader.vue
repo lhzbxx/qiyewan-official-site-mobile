@@ -4,6 +4,7 @@
       <img src="../assets/back.png"
            alt="back"
            v-on:click="back"
+           height="20"
            v-if="hasBack">
     </div>
     <span id="title">{{ title }}</span>

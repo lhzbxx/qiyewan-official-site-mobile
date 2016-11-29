@@ -48,8 +48,10 @@
   .tab {
     font-size: 15px;
     margin-right: 8px;
-    padding: 8px 8px;
     border: 1px solid #eee;
+    height: 34px;
+    line-height: 32px;
+    padding: 0 8px;
   }
 
   .tab.active {
