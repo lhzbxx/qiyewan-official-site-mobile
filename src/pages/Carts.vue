@@ -9,7 +9,8 @@
                     message="购物车为空">
         <img src="../assets/empty-cart.png">
       </lh-no-things>
-      <div v-else>
+      <div style="padding-bottom: 50px;"
+           v-else>
         <div id="carts-header">
           <div class="choice"
                v-bind:class="{ active: isAllSelected }"
@@ -169,8 +170,7 @@
 <style scoped>
   #carts {
     padding-top: 44px;
-    padding-bottom: 1px;
-    background: #f9f9f9;
+    padding-bottom: 50px;
     min-height: 100%;
   }
 

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view id="child-view"></router-view>
+    <router-view class="child-view"></router-view>
   </div>
 </template>
 
@@ -9,7 +9,7 @@
     height: 100%;
   }
 
-  #child-view {
+  .child-view {
     width: 100%;
     min-height: 100%;
     background: white;

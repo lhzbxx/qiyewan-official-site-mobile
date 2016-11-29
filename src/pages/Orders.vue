@@ -23,16 +23,29 @@
                         :unit="item.unit"
                         :isLast="order.details.length == index + 1"
                         class="product"
+                        :isSplit=false
                         v-for="(item, index) in order.details"
                         @click="openDetails(index)">
         </lh-table-entry>
-        <div id="ops-block">
+        <div class="ops-block">
           <p class="button warning"
-             v-if="currentState == 0"
+             v-if="order.orderState == 'Unpaid'"
              v-on:click="handleCancelButton">删除</p>
-          <p class="button" v-if="currentState == 0">去支付</p>
-          <p class="button" v-if="currentState == 1">去评价</p>
-          <p class="button" v-if="currentState == 2">再来一份</p>
+          <p class="button"
+             v-if="order.orderState == 'Unpaid'"
+             v-on:click="handleCancelButton">去支付</p>
+          <p class="button disabled"
+             v-if="order.orderState == 'Timeout'"
+             v-on:click="handlePayButton(item.payUrl)">已超时</p>
+          <p class="button disabled"
+             v-if="order.orderState == 'Canceled'"
+             v-on:click="handlePayButton(item.payUrl)">已取消</p>
+          <p class="button"
+             v-if="order.orderState == 'Paid'"
+             v-on:click="handleReviewButton(item)">去评价</p>
+          <p class="button"
+             v-if="order.orderState == 'Reviewed'"
+             v-on:click="handleAnotherButton(item)">再来一份</p>
         </div>
       </div>
     </div>
@@ -74,35 +87,52 @@
             break
         }
       },
+      fetchData() {
+        let vm = this
+        this.loading = true
+        this.orders = []
+        var orderState = 'All'
+        switch (this.currentState) {
+          case 1:
+            orderState = 'Unpaid'
+            break
+          case 2:
+            orderState = 'Paid'
+            break
+          case 3:
+            orderState = 'Reviewed'
+            break
+        }
+        this.$store.dispatch('getOrders', {page: 1, orderState: orderState}).then(
+          data => {
+            vm.orders = data.content
+            vm.isLoading = false
+          },
+          error => {
+            vm.error = error
+          }
+        )
+      },
       handleCancelButton() {
-        MessageBox.confirm('确认取消订单吗？').then(action => {
-        });
+        MessageBox.confirm('确认取消订单吗？').then(
+          action => {
+          }
+        )
+      },
+      handlePayButton(payUrl) {
+        window.open(payUrl, "_self")
+      },
+      handleReviewButton(item) {
+      },
+      handleAnotherButton(item) {
       }
     },
+    watch: {
+      'currentState': 'fetchData'
+    },
     created() {
-      let vm = this
       this.currentState = this.$route.params.state | 0
-      var orderState = 'All'
-      switch (this.currentState) {
-        case 1:
-          orderState = 'Unpaid'
-          break
-        case 2:
-          orderState = 'Paid'
-          break
-        case 3:
-          orderState = 'Reviewed'
-          break
-      }
-      this.$store.dispatch('getOrders', {page: 1, orderState: orderState}).then(
-        data => {
-          vm.orders = data.content
-          vm.isLoading = false
-        },
-        error => {
-          vm.error = error
-        }
-      )
+      this.fetchData()
     }
   }
 </script>
@@ -120,7 +150,7 @@
     background: white;
   }
 
-  #ops-block {
+  .ops-block {
     margin-bottom: 10px;
     background: white;
     border-top: 1px solid #eee;
@@ -145,6 +175,11 @@
   .button.warning {
     color: red;
     border-color: red;
+  }
+
+  .button.disabled {
+    color: gray;
+    border-color: gray;
   }
 
   .product {

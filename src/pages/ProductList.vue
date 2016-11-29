@@ -132,12 +132,15 @@
 <style scoped>
   #product-list {
     padding-top: 44px;
-    height: 100%;
+    min-height: 100%;
   }
 
   #wrapper {
     display: flex;
-    height: 100%;
+    min-height: 100%;
+    position: absolute;
+    margin-top: -44px;
+    padding-top: 44px;
   }
 
   #lists {
@@ -216,6 +219,7 @@
   #content {
     background: #eee;
     flex-grow: 1;
+    padding-bottom: 2px;
   }
 
   .content-header {
