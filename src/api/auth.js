@@ -62,6 +62,23 @@ export default {
       }
     )
   },
+  resetPassword (phone, password, captcha, cb, errorCb) {
+    Vue.http.patch("auth", {
+      phone: phone,
+      password: password,
+      captcha: captcha
+    }).then(
+      (response) => {
+        if (response.body.error == 0) {
+          cb(response.body.detail);
+        } else {
+          errorCb(response.body)
+        }
+      }, (response) => {
+        errorCb(response.body)
+      }
+    )
+  },
   getUser (token, cb, errorCb) {
     Vue.http.headers.common['Authorization'] = token;
     Vue.http.get("users").then(

@@ -162,6 +162,7 @@
                 vm.form.amount = data.amount
                 break
               case 'direct-buy-button':
+                this.form.isOverride = true
                 this.$store.dispatch('addToCart', this.form).then(
                   data => {
                     vm.$store.commit('CHECKOUT', [data])
