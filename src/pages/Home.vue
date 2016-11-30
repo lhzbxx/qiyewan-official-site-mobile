@@ -20,11 +20,11 @@
         </p>
       </div>
       <div class="category"
-           v-on:click="jumpToClassification('IT')">
+           v-on:click="jumpToClassification('FC')">
         <img class="category-image"
-             src="../assets/nav-IT.png">
+             src="../assets/nav-FC.png">
         <p class="category-desc">
-          IT&设计
+          财税服务
         </p>
       </div>
       <div class="category"
@@ -36,19 +36,19 @@
         </p>
       </div>
       <div class="category"
-           v-on:click="jumpToClassification('FC')">
-        <img class="category-image"
-             src="../assets/nav-FC.png">
-        <p class="category-desc">
-          财税服务
-        </p>
-      </div>
-      <div class="category"
            v-on:click="jumpToClassification('HR')">
         <img class="category-image"
              src="../assets/nav-HR.png">
         <p class="category-desc">
           人事服务
+        </p>
+      </div>
+      <div class="category"
+           v-on:click="jumpToClassification('IT')">
+        <img class="category-image"
+             src="../assets/nav-IT.png">
+        <p class="category-desc">
+          IT&设计
         </p>
       </div>
     </div>
