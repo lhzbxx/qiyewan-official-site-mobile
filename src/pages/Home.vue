@@ -2,12 +2,13 @@
   <div id="home">
     <lh-home-header></lh-home-header>
     <lh-home-footer :index="1"></lh-home-footer>
-    <mt-swipe id="slides"
+    <mt-swipe v-bind:style="{ height: bannerHeight + 'px' }"
               :auto="4000"
               :show-indicators="true">
       <mt-swipe-item class="slide"
+                     v-bind:style="{ height: bannerHeight + 'px' }"
                      v-for="(item, index) in slides">
-        <img :src="item.image | cdn-filter" :alt="index">
+        <img :src="item.image | cdn-filter" :alt="index" width="100%">
       </mt-swipe-item>
     </mt-swipe>
     <div id="categories" class="clearfix">
@@ -125,7 +126,10 @@
       ...mapGetters([
         'getRegion',
         'hotProducts'
-      ])
+      ]),
+      bannerHeight() {
+        return this.screenWidth * 521 / 1334
+      }
     },
     methods: {
       jumpToClassification(code) {
@@ -155,10 +159,6 @@
     padding-top: 44px;
     padding-bottom: 50px;
     min-height: 100%;
-  }
-
-  #slides {
-    height: 200px;
   }
 
   .slide {
