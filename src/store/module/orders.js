@@ -13,7 +13,8 @@ const state = {
     page: 0
   },
   savedItems: [],
-  checkout: []
+  checkout: [],
+  review: null
 }
 
 const mutations = {
@@ -30,6 +31,9 @@ const mutations = {
   },
   [types.GET_DATA_FROM_STORAGE] (state) {
     state.info = JSON.parse(localStorage.getItem('orderInfo'));
+  },
+  [types.REVIEW] (state, product) {
+    state.review = product
   }
 }
 

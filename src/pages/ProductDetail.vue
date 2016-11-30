@@ -58,18 +58,17 @@
           </div>
         </mt-tab-container-item>
         <mt-tab-container-item id="3">
-          <div class="review" v-for="item in 4">
+          <div class="review" v-for="item in reviews">
             <div class="review-info">
-              <img :src="product.cover | cdn-filter"
-                   alt=""
+              <img :src="item.user.avatar ? item.user.avatar : 'avatar.png' | cdn-filter"
                    class="user-avatar">
-              <span class="user-nickname">尼古拉斯`赵四</span>
-              <span class="review-create-at">2015年9月13日</span>
+              <span class="user-nickname">{{ item.user.nickname }}</span>
+              <span class="review-create-at">{{ item.createAt | date-filter }}</span>
             </div>
-            <p class="review-content">服务实在是太好了！</p>
+            <p class="review-content">{{ item.content }}</p>
             <div class="review-details">
-              <p>购买数量：3&times;月</p>
-              <p>购买日期：2015年9月13日</p>
+              <p>购买数量：{{ item.amount }}&times;个</p>
+              <!--<p>购买日期：{{ item.buyAt | date-filter }}</p>-->
             </div>
           </div>
         </mt-tab-container-item>
@@ -149,7 +148,7 @@
         this.form.region = this.getRegion.pName + this.getRegion.name + this.selectedDistrict
         this.$store.dispatch('addToCart', this.form).then(
           data => {
-            vm.showDetails = false
+            vm.$refs.details.close()
             switch (vm.origin) {
               case 'add-to-cart-button':
                 if (vm.toastInstance) vm.toastInstance.close()
@@ -176,7 +175,7 @@
             }
           },
           error => {
-            vm.showDetails = false
+            vm.$refs.details.close()
             console.log(error)
           }
         )

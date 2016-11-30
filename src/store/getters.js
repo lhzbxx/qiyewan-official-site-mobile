@@ -49,3 +49,7 @@ export const orderNum = state => {
 export const getCheckout = state => {
   return state.orders.checkout
 }
+
+export const getReview = state => {
+  return state.orders.review
+}

@@ -36,7 +36,7 @@
       <div class="details-content" v-if="form.product.isInstant">
         <p class="details-content-title">数量</p>
         <p class="details-content-amount"
-           v-on:click="form.amount > 1 ? form.amount-- : pass"
+           v-on:click="form.amount > 1 ? form.amount-- : ''"
            v-bind:class="{ active: form.amount > 1 }"
            style="margin-left: 5px;">&minus;</p>
         <p class="details-content-amount">{{ form.amount }}</p>
@@ -46,7 +46,7 @@
       <div class="details-content" v-if="form.product.serialId.substr(4) === 'HR0003'">
         <p class="details-content-title">人数</p>
         <p class="details-content-amount"
-           v-on:click="form.member > 1 ? form.member-- : pass"
+           v-on:click="form.member > 1 ? form.member-- : ''"
            v-bind:class="{ active: form.member > 1 }"
            style="margin-left: 5px;">&minus;</p>
         <p class="details-content-amount">{{ form.member }}</p>
@@ -105,6 +105,9 @@
     methods: {
       open() {
         this.showDetails = true
+      },
+      close() {
+        this.showDetails = false
       },
       confirm() {
         if (!this.isLogin) {

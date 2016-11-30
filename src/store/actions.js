@@ -233,3 +233,16 @@ export const cancelOrder = ({commit, state}, serialId) => {
     )
   })
 }
+
+export const submitReview = ({state}, review) => {
+  return new Promise((resolve, reject) => {
+    orderApi.submitReview(state.auth.user.token, review,
+      result => {
+        resolve(result)
+      },
+      error => {
+        reject(error)
+      }
+    )
+  })
+}

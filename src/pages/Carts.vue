@@ -40,6 +40,7 @@
           </lh-table-entry>
         </div>
         <lh-cart-detail :form="form"
+                        @confirm="handleConfirmButton"
                         ref="details"></lh-cart-detail>
       </div>
     </div>
@@ -57,7 +58,7 @@
       </div>
       <div id="bottom-button"
            v-bind:class="{active: canCheckout}"
-           v-on:click="checkout">结 算
+           v-on:click="handleCheckoutButton">结 算
       </div>
     </div>
   </div>
@@ -117,7 +118,7 @@
         this.form.product = this.carts[index].product
         this.$refs.details.open()
       },
-      checkout() {
+      handleCheckoutButton() {
         if (this.selection.length == 0) return
         var form = []
         for (let i of this.selection.reverse()) {
@@ -142,6 +143,16 @@
             }
           },
           () => {}
+        )
+      },
+      handleConfirmButton() {
+        let vm = this
+        this.$store.dispatch('updateCart', this.form).then(
+          data => {
+            vm.$refs.details.close()
+          },
+          error => {
+          }
         )
       }
     },

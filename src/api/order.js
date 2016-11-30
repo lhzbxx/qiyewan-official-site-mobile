@@ -45,5 +45,13 @@ export default {
     }, (response) => {
       errorCb(response.body);
     })
+  },
+  submitReview (token, review, cb, errorCb) {
+    Vue.http.headers.common['Authorization'] = token;
+    Vue.http.post("reviews", review).then((response) => {
+      cb(response.body)
+    }, (response) => {
+      errorCb(response.body);
+    })
   }
 }

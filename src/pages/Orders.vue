@@ -24,8 +24,7 @@
                         :isLast="order.details.length == index + 1"
                         class="product"
                         :isSplit=false
-                        v-for="(item, index) in order.details"
-                        @click="openDetails(index)">
+                        v-for="(item, index) in order.details">
         </lh-table-entry>
         <div class="ops-block">
           <p class="button warning"
@@ -119,13 +118,20 @@
               order.orderState = 'Canceled'
             )
           },
-          () => {}
+          () => {
+          }
         )
       },
       handlePayButton(payUrl) {
         window.open(payUrl, "_self")
       },
       handleReviewButton(item) {
+        let detail = item.details[item.details.findIndex(item => !item.isReviewed)]
+        this.$store.commit('REVIEW', detail)
+        this.$router.push({
+          name: 'review',
+          params: {productSerialId: detail.productSerialId, orderSerialId: item.serialId}
+        })
       },
       handleAnotherButton(item) {
       }
