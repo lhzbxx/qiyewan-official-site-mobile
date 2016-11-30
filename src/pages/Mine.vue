@@ -4,8 +4,8 @@
                     title="个人中心"></lh-page-header>
     <lh-home-footer :index="4"></lh-home-footer>
     <div class="auth" id="has-auth" v-if="isLogin">
-      <img src="../assets/avatar.png" alt="avatar">
-      <p>尼古拉斯`金铜</p>
+      <img :src="getAuth.avatar ? getAuth.avatar : 'avatar.png' | cdn-filter" alt="avatar">
+      <p>{{ getAuth.nickname ? getAuth.nickname : '昵称' }}</p>
       <div id="right-arrow"></div>
     </div>
     <div class="auth" id="no-auth" v-else>
@@ -101,13 +101,17 @@
     },
     computed: {
       ...mapGetters([
-        'isLogin'
+        'isLogin',
+        'getAuth'
       ])
     },
     methods: {
       logout() {
         this.$store.commit('USER_LOGOUT')
       }
+    },
+    created() {
+      this.$store.dispatch('getUserInfo')
     }
   }
 </script>

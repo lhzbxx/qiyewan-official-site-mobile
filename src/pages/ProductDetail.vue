@@ -68,7 +68,7 @@
             <p class="review-content">{{ item.content }}</p>
             <div class="review-details">
               <p>购买数量：{{ item.amount }}&times;个</p>
-              <!--<p>购买日期：{{ item.buyAt | date-filter }}</p>-->
+              <p>购买日期：{{ item.buyAt | date-filter }}</p>
             </div>
           </div>
         </mt-tab-container-item>

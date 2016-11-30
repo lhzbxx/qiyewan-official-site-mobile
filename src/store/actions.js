@@ -246,3 +246,17 @@ export const submitReview = ({state}, review) => {
     )
   })
 }
+
+export const getUserInfo = ({commit, state}) => {
+  return new Promise((resolve, reject) => {
+    authApi.getUser(state.auth.user.token,
+      result => {
+        commit('RECEIVE_USER_INFO', result)
+        resolve(result)
+      },
+      error => {
+        reject(error)
+      }
+    )
+  })
+}

@@ -36,6 +36,10 @@ const mutations = {
     localStorage.removeItem('createAt')
     console.log(localStorage.createAt)
     localStorage.removeItem('user')
+  },
+  [types.RECEIVE_USER_INFO] (state, info) {
+    state.user.avatar = info.avatar
+    state.user.nickname = info.nickname
   }
 }
 
