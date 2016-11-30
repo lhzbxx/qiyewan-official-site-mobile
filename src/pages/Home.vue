@@ -7,7 +7,7 @@
               :show-indicators="true">
       <mt-swipe-item class="slide"
                      v-for="(item, index) in slides">
-        <img :src="item.image" :alt="index">
+        <img :src="item.image | cdn-filter" :alt="index">
       </mt-swipe-item>
     </mt-swipe>
     <div id="categories" class="clearfix">
@@ -99,7 +99,23 @@
         combos: [],
         slides: [
           {
-            image: '',
+            image: 'wechat_banner-001.jpg',
+            url: ''
+          },
+          {
+            image: 'wechat_banner-002.jpg',
+            url: ''
+          },
+          {
+            image: 'wechat_banner-003.jpg',
+            url: ''
+          },
+          {
+            image: 'wechat_banner-004.jpg',
+            url: ''
+          },
+          {
+            image: 'wechat_banner-005.jpg',
             url: ''
           }
         ]
