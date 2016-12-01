@@ -118,7 +118,7 @@
 
 <style scoped>
   #mine {
-    padding-top: 65px;
+    padding-top: 59px;
     padding-bottom: 50px;
     background: #fafafa;
     min-height: 100%;

@@ -1,6 +1,7 @@
 <template>
   <div id="contract">
     <lh-page-header title="用户协议"></lh-page-header>
+    <img :src="'wechat_about-us.png' | cdn-filter" style="width: 100%;">
     <div id="content">
       <h3>企业湾用户服务协议</h3>
 
@@ -96,7 +97,7 @@
 
 <style scoped>
   #contract {
-    padding-top: 50px;
+    padding-top: 44px;
     background: #fafafa;
   }
 
