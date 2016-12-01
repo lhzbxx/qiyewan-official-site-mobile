@@ -337,12 +337,16 @@
   .faq-question {
     font-size: 16px;
     color: #333;
+    background: #eee;
+    line-height: 20px;
+    padding-left: 5px;
   }
 
   .faq-answer {
     margin-top: 8px;
     font-size: 13px;
     color: #aaa;
+    padding-left: 10px;
   }
 
   #bottom {
