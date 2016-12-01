@@ -15,7 +15,7 @@
                   autofocus></textarea>
       </div>
       <mt-button type="primary"
-                 id="submitButton"
+                 id="submit-button"
                  @click.native="handleSubmitButton"
                  size="large">
         提 交
@@ -97,7 +97,7 @@
     outline: none;
   }
 
-  #submitButton {
+  #submit-button {
     margin-top: 20px;
   }
 </style>

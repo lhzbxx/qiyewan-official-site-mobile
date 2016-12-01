@@ -15,13 +15,13 @@
     <div id="bought">
       <div class="bought-block"
            style="border-right: 1px solid #eee;">
-        <router-link to="/order?state=2"
+        <router-link to="/order?state=3"
                      class="link">使用中
         </router-link>
         <img src="../assets/using.png">
       </div>
       <div class="bought-block">
-        <router-link to="/order?state=1"
+        <router-link to="/order?state=2"
                      class="link">待评价
         </router-link>
         <img src="../assets/unreviewed.png">

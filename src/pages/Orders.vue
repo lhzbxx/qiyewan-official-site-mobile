@@ -140,7 +140,7 @@
       'currentState': 'fetchData'
     },
     created() {
-      this.currentState = this.$route.params.state | 0
+      this.currentState = this.$route.params.state ? this.$route.params.state : 0
       this.fetchData()
     }
   }

@@ -76,6 +76,7 @@ import Review from './pages/Review.vue'
 import AboutUs from './pages/AboutUs.vue'
 import ContactUs from './pages/ContactUs.vue'
 import BrowsingHistory from './pages/BrowsingHistory.vue'
+import Contract from './pages/Contract.vue'
 
 store.dispatch('init')
 
@@ -147,11 +148,18 @@ const routes = [
   },
   {
     path: '/about-us',
+    name: 'about-us',
     component: AboutUs
   },
   {
     path: '/contact-us',
+    name: 'contact-us',
     component: ContactUs
+  },
+  {
+    path: '/contract',
+    name: 'contract',
+    component: Contract
   },
   {
     path: '/404',

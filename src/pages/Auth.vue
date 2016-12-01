@@ -30,7 +30,7 @@
                 placeholder="请再次输入密码"
                 type="password"></mt-field>
       <mt-button type="primary"
-                 id="submitButton"
+                 id="submit-button"
                  @click.native="submit"
                  size="large">
         {{ submitButton }}
@@ -39,6 +39,12 @@
          v-on:click="state = 2"
          v-if="state == 0">找回密码
       </a>
+      <p id="contract-block"
+         v-if="state == 1">
+        注册表示同意
+        <span id="contract-button"
+              v-on:click="handleContractButton">《企业湾用户服务协议》</span>
+      </p>
       <div class="clearfix"></div>
       <div id="split" v-if="state < 2">
         <div class="split-line">&nbsp;</div>
@@ -94,6 +100,9 @@
             this.counting()
           }
         }, 1000)
+      },
+      handleContractButton() {
+        this.$router.push({name: 'contract'})
       },
       submit() {
         let vm = this
@@ -249,11 +258,22 @@
 
   #reset-password-button {
     line-height: 40px;
-    color: #aaa;
+    color: #f29600;
+    text-decoration: underline;
     float: right;
   }
 
-  #submitButton {
+  #contract-block {
+    font-size: 13px;
+  }
+
+  #contract-button {
+    line-height: 40px;
+    color: #f29600;
+    text-decoration: underline;
+  }
+
+  #submit-button {
     margin-top: 20px;
   }
 
