@@ -166,7 +166,7 @@
                 this.$store.dispatch('addToCart', this.form).then(
                   data => {
                     vm.$store.commit('CHECKOUT', [data])
-                    vm.$router.push({name: 'pay'})
+                    vm.$router.push({name: 'checkout'})
                   },
                   error => {
                     console.log(error)

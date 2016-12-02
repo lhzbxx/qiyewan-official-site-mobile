@@ -50,6 +50,10 @@ export const getCheckout = state => {
   return state.orders.checkout
 }
 
+export const getToPay = state => {
+  return state.orders.toPay
+}
+
 export const getReview = state => {
   return state.orders.review
 }

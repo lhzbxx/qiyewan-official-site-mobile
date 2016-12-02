@@ -125,7 +125,7 @@
           form.push(this.carts[i])
         }
         this.$store.commit('CHECKOUT', form)
-        this.$router.push({name: 'pay'})
+        this.$router.push({name: 'checkout'})
       },
       handleDeleteButton() {
         let vm = this

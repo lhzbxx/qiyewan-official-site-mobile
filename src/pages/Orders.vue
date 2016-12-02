@@ -125,15 +125,17 @@
         )
       },
       handlePayButton(order) {
-        switch (order.payment) {
-          case 'Alipay':
-            window.open(order.payUrl, "_self")
-            break
-          case 'WeChat_PC':
-            alert(new DOMParser(order.payUrl).childNodes[0].childNodes[20].childNodes[0].nodeValue)
-            window.open(new DOMParser(order.payUrl).childNodes[0].childNodes[20].childNodes[0].nodeValue, "_self")
-        }
-        window.open(payUrl, "_self")
+//        switch (order.payment) {
+//          case 'Alipay':
+//            window.open(order.payUrl, "_self")
+//            break
+//          case 'WeChat_PC':
+//            alert(new DOMParser(order.payUrl).childNodes[0].childNodes[20].childNodes[0].nodeValue)
+//            window.open(new DOMParser(order.payUrl).childNodes[0].childNodes[20].childNodes[0].nodeValue, "_self")
+//        }
+//        window.open(payUrl, "_self")
+        this.$store.commit('TO_PAY', order)
+        this.$router.push({name: 'pay'})
       },
       handleReviewButton(item) {
         let detail = item.details[item.details.findIndex(item => !item.isReviewed)]
@@ -148,7 +150,7 @@
       }
     },
     created() {
-      this.currentState = this.$route.query.state || 0
+      this.currentState = (this.$route.query.state ? Number(this.$route.query.state) : 0) || 0
       this.fetchData()
     }
   }

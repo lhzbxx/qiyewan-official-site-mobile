@@ -72,6 +72,7 @@ import ProductDetail from './pages/ProductDetail.vue'
 import ProductList from './pages/ProductList.vue'
 import Auth from './pages/Auth.vue'
 import Checkout from './pages/Checkout.vue'
+import Pay from './pages/Pay.vue'
 import NotFound from './pages/NotFound.vue'
 import Areas from './pages/Areas.vue'
 import Review from './pages/Review.vue'
@@ -132,6 +133,12 @@ const routes = [
     name: 'checkout',
     beforeEnter: requireAuth,
     component: Checkout
+  },
+  {
+    path: '/pay',
+    name: 'pay',
+    beforeEnter: requireAuth,
+    component: Pay
   },
   {
     path: '/browsing-history',

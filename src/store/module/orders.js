@@ -14,6 +14,7 @@ const state = {
   },
   savedItems: [],
   checkout: [],
+  toPay: null,
   review: null
 }
 
@@ -31,6 +32,9 @@ const mutations = {
   },
   [types.GET_DATA_FROM_STORAGE] (state) {
     state.info = JSON.parse(localStorage.getItem('orderInfo'));
+  },
+  [types.TO_PAY] (state, order) {
+    state.toPay = order
   },
   [types.REVIEW] (state, product) {
     state.review = product
