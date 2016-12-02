@@ -25,6 +25,7 @@
     top: 0;
     left: 0;
     animation: sk-bounce 2.0s infinite ease-in-out;
+    -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
   }
 
   .double-bounce2 {
@@ -32,6 +33,15 @@
   }
 
   @keyframes sk-bounce {
+    0%, 100% {
+      transform: scale(0.0);
+    }
+    50% {
+      transform: scale(1.0);
+    }
+  }
+
+  @-webkit-keyframes sk-bounce {
     0%, 100% {
       transform: scale(0.0);
     }

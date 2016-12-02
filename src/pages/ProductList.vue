@@ -83,11 +83,11 @@
           }
         ],
         currentClassification: {
-          name: '人事服务',
-          code: 'HR',
+          name: '工商服务',
+          code: 'IC',
           subs: [
-            '社保',
-            '公司人事'
+            '工商变更',
+            '工商注销'
           ]
         },
         lists: []
@@ -98,10 +98,14 @@
         return code == this.currentClassification.code
       },
       switchClassification(classification) {
-        this.currentClassification = classification
+        this.$router.replace({name: 'product-list', query: {code: classification.code}})
       },
       jumpToDetail(serialId) {
         this.$router.push({name: 'product-detail', params: {serialId: serialId}})
+      },
+      init() {
+        let index = this.classifications.findIndex(item => item.code == this.$route.query.code)
+        this.currentClassification = this.classifications[index > -1 ? index : 0]
       }
     },
     computed: {
@@ -114,7 +118,11 @@
         return result
       }
     },
+    watch: {
+      '$route.query.code': 'init'
+    },
     created() {
+      this.init()
       let vm = this
       this.$store.dispatch('getProducts').then(
         data => {
