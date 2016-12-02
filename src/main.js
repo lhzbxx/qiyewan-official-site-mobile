@@ -211,10 +211,7 @@ Vue.filter('sub-total-price-filter', (checkout) => {
 })
 
 Vue.filter('date-filter', (timestamp) => {
-  function format(num) {
-    console.log(num)
-    return num > 10 ? num : '0' + num
-  }
+  var format = (num) => num > 10 ? num : '0' + num
   let date = new Date(parseInt(timestamp))
   return date.getFullYear() + '/' + format(date.getMonth() + 1) + '/' + format(date.getDate()) + ' ' +
     (date.getHours() < 12 ? '上午' + date.getHours() : '下午' + (date.getHours() - 12)) +
