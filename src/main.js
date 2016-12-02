@@ -211,7 +211,14 @@ Vue.filter('sub-total-price-filter', (checkout) => {
 })
 
 Vue.filter('date-filter', (timestamp) => {
-  return new Date(parseInt(timestamp)).toLocaleString().replace(/:\d{1,2}$/, ' ');
+  function format(num) {
+    console.log(num)
+    return num > 10 ? num : '0' + num
+  }
+  let date = new Date(parseInt(timestamp))
+  return date.getFullYear() + '/' + format(date.getMonth() + 1) + '/' + format(date.getDate()) + ' ' +
+    (date.getHours() < 12 ? '上午' + date.getHours() : '下午' + (date.getHours() - 12)) +
+    ':' + format(date.getMinutes()) + ':' + format(date.getSeconds())
 })
 
 new Vue({
