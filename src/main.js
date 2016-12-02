@@ -133,7 +133,6 @@ const routes = [
   {
     path: '/browsing-history',
     name: 'browsing-history',
-    beforeEnter: requireAuth,
     component: BrowsingHistory
   },
   {

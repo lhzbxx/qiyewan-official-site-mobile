@@ -151,6 +151,7 @@
             vm.$refs.details.close()
             switch (vm.origin) {
               case 'add-to-cart-button':
+                this.form.isOverride = false
                 if (vm.toastInstance) vm.toastInstance.close()
                 vm.toastInstance = Toast({
                   message: '操作成功',

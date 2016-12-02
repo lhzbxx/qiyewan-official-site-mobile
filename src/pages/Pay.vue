@@ -38,7 +38,7 @@
         payments: [
           {
             label: '微信支付',
-            value: 'WeChat'
+            value: 'WeChat_PC'
           },
           {
             label: '支付宝',
@@ -71,7 +71,7 @@
     },
     methods: {
       pay() {
-        if (this.payment != 'Alipay') {
+        if (this.payment == 'Bank') {
           return Toast({
             message: '暂不支持该支付方式',
             position: 'bottom',
@@ -83,7 +83,13 @@
         })
         this.$store.dispatch('addToOrder', {carts: this.getCheckout, payment: this.payment}).then(
           order => {
-            window.open(order.payUrl, "_self")
+            switch (order.payment) {
+              case 'Alipay':
+                window.open(order.payUrl, "_self")
+                break
+              case 'WeChat_PC':
+                window.open(new DOMParser(order.payUrl).childNodes[0].childNodes[20].childNodes[0].nodeValue)
+            }
           },
           error => {
           }

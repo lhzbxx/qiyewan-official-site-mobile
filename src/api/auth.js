@@ -39,7 +39,7 @@ export default {
         if (response.body.error == 0) {
           cb(response.body.detail);
         } else {
-          errorCb(response.body);
+          cb(response.body);
         }
       }, (response) => {
         errorCb(response.body);
