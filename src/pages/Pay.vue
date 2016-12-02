@@ -88,7 +88,8 @@
                 window.open(order.payUrl, "_self")
                 break
               case 'WeChat_PC':
-                window.open(new DOMParser(order.payUrl).childNodes[0].childNodes[20].childNodes[0].nodeValue)
+                alert(new DOMParser(order.payUrl).childNodes[0].childNodes[20].childNodes[0].nodeValue)
+                window.open(new DOMParser(order.payUrl).childNodes[0].childNodes[20].childNodes[0].nodeValue, "_self")
             }
           },
           error => {

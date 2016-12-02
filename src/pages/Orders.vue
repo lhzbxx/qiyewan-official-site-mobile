@@ -32,7 +32,7 @@
              v-on:click="handleCancelButton(order)">删除</p>
           <p class="button"
              v-if="order.orderState == 'Unpaid'"
-             v-on:click="handlePayButton(order.payUrl)">去支付</p>
+             v-on:click="handlePayButton(order)">去支付</p>
           <p class="button disabled"
              v-if="order.orderState == 'Timeout'">已超时</p>
           <p class="button disabled"
@@ -122,7 +122,15 @@
           }
         )
       },
-      handlePayButton(payUrl) {
+      handlePayButton(order) {
+        switch (order.payment) {
+          case 'Alipay':
+            window.open(order.payUrl, "_self")
+            break
+          case 'WeChat_PC':
+            alert(new DOMParser(order.payUrl).childNodes[0].childNodes[20].childNodes[0].nodeValue)
+            window.open(new DOMParser(order.payUrl).childNodes[0].childNodes[20].childNodes[0].nodeValue, "_self")
+        }
         window.open(payUrl, "_self")
       },
       handleReviewButton(item) {
