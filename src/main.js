@@ -44,6 +44,7 @@ import Services from './components/Services.vue'
 import CartDetail from './components/CartDetail.vue'
 import Loading from './components/Loading.vue'
 import NoThings from './components/NoThings.vue'
+import Rater from './components/Rater.vue'
 
 Vue.component('lh-table-header', TableHeader)
 Vue.component('lh-table-entry', TableEntry)
@@ -59,6 +60,7 @@ Vue.component('lh-tabs-header', TabsHeader)
 Vue.component('lh-order-header', OrderHeader)
 Vue.component('lh-loading', Loading)
 Vue.component('lh-no-things', NoThings)
+Vue.component('lh-rater', Rater)
 
 import App from './App'
 import Home from './pages/Home.vue'
@@ -77,6 +79,7 @@ import AboutUs from './pages/AboutUs.vue'
 import ContactUs from './pages/ContactUs.vue'
 import BrowsingHistory from './pages/BrowsingHistory.vue'
 import Contract from './pages/Contract.vue'
+import Success from './pages/Success.vue'
 
 store.dispatch('init')
 
@@ -159,6 +162,11 @@ const routes = [
     path: '/contract',
     name: 'contract',
     component: Contract
+  },
+  {
+    path: '/success',
+    name: 'success',
+    component: Success
   },
   {
     path: '/404',

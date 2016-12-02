@@ -9,6 +9,7 @@
                       :amount="getReview.amount"
                       :unit="getReview.unit">
       </lh-table-entry>
+      <lh-rater></lh-rater>
       <div id="content">
         <textarea placeholder="请填写您的评价..."
                   v-model="form.content"
