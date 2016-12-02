@@ -9,7 +9,10 @@
                       :amount="getReview.amount"
                       :unit="getReview.unit">
       </lh-table-entry>
-      <lh-rater></lh-rater>
+      <div id="rate">
+        <span id="label">评分：</span>
+        <lh-rater :rate="form.star"></lh-rater>
+      </div>
       <div id="content">
         <textarea placeholder="请填写您的评价..."
                   v-model="form.content"
@@ -84,6 +87,16 @@
     padding: 15px 10px 0;
   }
 
+  #rate {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    background: white;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
   #content {
     width: 100%;
     height: 200px;
@@ -96,6 +109,12 @@
     padding: 10px;
     font-size: 16px;
     outline: none;
+  }
+
+  #label {
+    flex: 1;
+    padding-left: 10px;
+    font-weight: bold;
   }
 
   #submit-button {

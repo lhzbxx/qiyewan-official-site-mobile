@@ -15,11 +15,4 @@
     background: white;
     overflow: hidden;
   }
-
-  .clearfix:after {
-    content: ' ';
-    display: block;
-    height: 0;
-    clear: both;
-  }
 </style>
