@@ -1,8 +1,8 @@
 <template>
   <div id="raters">
     <div class="rater"
-         v-bind:class="{active: item <= rate}"
-         v-on:click="rate = item"
+         v-bind:class="{active: item <= form.star}"
+         v-on:click="form.star = item"
          v-for="item in 5">★
     </div>
   </div>
@@ -11,7 +11,7 @@
 <script>
   export default {
     props: {
-      rate: Number
+      form: Object
     }
   }
 </script>

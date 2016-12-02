@@ -11,7 +11,7 @@
       </lh-table-entry>
       <div id="rate">
         <span id="label">评分：</span>
-        <lh-rater :rate="form.star"></lh-rater>
+        <lh-rater :form="form"></lh-rater>
       </div>
       <div id="content">
         <textarea placeholder="请填写您的评价..."

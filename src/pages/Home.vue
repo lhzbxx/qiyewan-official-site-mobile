@@ -11,7 +11,9 @@
         <img :src="item.image | cdn-filter" :alt="index" width="100%">
       </mt-swipe-item>
     </mt-swipe>
-    <div id="categories" class="clearfix">
+    <div id="categories"
+         class="clearfix"
+         v-once>
       <div class="category"
            v-on:click="jumpToClassification('IC')">
         <img class="category-image"
@@ -53,7 +55,9 @@
         </p>
       </div>
     </div>
-    <div id="recommends" class="clearfix">
+    <div id="recommends"
+         class="clearfix"
+         v-once>
       <lh-block-header name="精品推荐"
                        style="padding-left: 5px; padding-right: 5px;"></lh-block-header>
       <div class="recommend-first">
