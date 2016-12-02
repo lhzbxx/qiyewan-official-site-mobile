@@ -71,7 +71,7 @@ import ProductClassification from './pages/ProductClassification.vue'
 import ProductDetail from './pages/ProductDetail.vue'
 import ProductList from './pages/ProductList.vue'
 import Auth from './pages/Auth.vue'
-import Pay from './pages/Pay.vue'
+import Checkout from './pages/Checkout.vue'
 import NotFound from './pages/NotFound.vue'
 import Areas from './pages/Areas.vue'
 import Review from './pages/Review.vue'
@@ -90,7 +90,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/order/:orderSerialId/product/:productSerialId/review',
+    path: '/review',
     name: 'review',
     beforeEnter: requireAuth,
     component: Review
@@ -128,10 +128,10 @@ const routes = [
     component: Carts
   },
   {
-    path: '/pay',
-    name: 'pay',
+    path: '/checkout',
+    name: 'checkout',
     beforeEnter: requireAuth,
-    component: Pay
+    component: Checkout
   },
   {
     path: '/browsing-history',

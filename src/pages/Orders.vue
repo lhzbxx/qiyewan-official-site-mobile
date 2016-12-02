@@ -4,6 +4,7 @@
                     title="订 单"></lh-page-header>
     <lh-home-footer :index="2"></lh-home-footer>
     <lh-tabs-header :tabs="orderState"
+                    :tab="orderState[currentState]"
                     @change-current="changeCurrent"></lh-tabs-header>
     <lh-loading v-if="isLoading"></lh-loading>
     <div v-else>
@@ -83,6 +84,7 @@
             this.currentState = 3
             break
         }
+        this.fetchData()
       },
       fetchData() {
         let vm = this
@@ -138,17 +140,15 @@
         this.$store.commit('REVIEW', detail)
         this.$router.push({
           name: 'review',
-          params: {productSerialId: detail.productSerialId, orderSerialId: item.serialId}
+          query: {productSerialId: detail.productSerialId, orderSerialId: item.serialId}
         })
       },
       handleAnotherButton(item) {
+        // todo: 处理“再来一份”按钮
       }
     },
-    watch: {
-      'currentState': 'fetchData'
-    },
     created() {
-      this.currentState = this.$route.params.state ? this.$route.params.state : 0
+      this.currentState = this.$route.query.state || 0
       this.fetchData()
     }
   }

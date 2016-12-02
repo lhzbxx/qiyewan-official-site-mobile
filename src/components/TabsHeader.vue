@@ -18,7 +18,8 @@
       }
     },
     props: {
-      tabs: Array
+      tabs: Array,
+      tab: String
     },
     methods: {
       isCurrent(item) {
@@ -30,7 +31,7 @@
       }
     },
     created() {
-      this.current = this.tabs[0]
+      this.current = this.tab
     }
   }
 </script>

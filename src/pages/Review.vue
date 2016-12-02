@@ -64,8 +64,8 @@
       }
     },
     created() {
-      this.form.serialId = this.$route.params.orderSerialId
-      this.form.productSerialId = this.$route.params.productSerialId
+      this.form.serialId = this.$route.query.orderSerialId
+      this.form.productSerialId = this.$route.query.productSerialId
       if (!this.getReview) {
         this.$router.replace({name: 'home'})
       }
