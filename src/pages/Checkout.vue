@@ -1,5 +1,5 @@
 <template>
-  <div id="pay">
+  <div id="checkout">
     <lh-page-header title="结 算"></lh-page-header>
     <div style="margin-top: 10px;">
       <mt-cell v-for="item in getCheckout"
@@ -106,7 +106,7 @@
 </script>
 
 <style scoped>
-  #pay {
+  #checkout {
     background: #f9f9f9;
     padding-top: 44px;
     min-height: 100%;

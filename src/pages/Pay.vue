@@ -1,6 +1,7 @@
 <template>
   <div id="pay">
     <img :src="qr">
+    <p>长按以识别支付</p>
   </div>
 </template>
 
@@ -9,7 +10,7 @@
   export default {
     data() {
       return {
-        qr: 'http://qr.liantu.com/api.php?text='
+        qr: 'http://qr.liantu.com/api.php?mhid=4xDADwDpnJ0hMHcvKtxTP6s&text='
       }
     },
     computed: {
@@ -61,3 +62,9 @@
     }
   }
 </script>
+
+<style scoped>
+  #pay {
+    text-align: center;
+  }
+</style>
