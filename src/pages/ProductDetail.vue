@@ -145,7 +145,6 @@
       },
       handleConfirmButton() {
         let vm = this
-        this.form.region = this.getRegion.pName + this.getRegion.name + this.selectedDistrict
         this.$store.dispatch('addToCart', this.form).then(
           data => {
             vm.$refs.details.close()

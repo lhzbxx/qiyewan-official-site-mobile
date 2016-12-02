@@ -113,6 +113,7 @@
         if (!this.isLogin) {
           return this.$router.push({name: 'auth'})
         }
+        this.form.region = this.getRegion.pName + '-' + this.getRegion.name + '-' + this.selectedDistrict
         this.$emit('confirm')
       }
     },
