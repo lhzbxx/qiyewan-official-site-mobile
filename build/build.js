@@ -1,6 +1,7 @@
 // https://github.com/shelljs/shelljs
 require('./check-versions')()
 require('shelljs/global')
+require('babel-polyfill')
 env.NODE_ENV = 'production'
 
 var path = require('path')

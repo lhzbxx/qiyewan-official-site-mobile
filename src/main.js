@@ -30,7 +30,6 @@ Vue.component(Field.name, Field);
 Vue.component(Cell.name, Cell);
 Vue.component(Radio.name, Radio);
 
-import TableHeader from './components/TableHeader.vue'
 import TableEntry from './components/TableEntry.vue'
 import Product from './components/Product.vue'
 import BlockHeader from './components/BlockHeader.vue'
@@ -46,7 +45,6 @@ import Loading from './components/Loading.vue'
 import NoThings from './components/NoThings.vue'
 import Rater from './components/Rater.vue'
 
-Vue.component('lh-table-header', TableHeader)
 Vue.component('lh-table-entry', TableEntry)
 Vue.component('lh-product', Product)
 Vue.component('lh-block-header', BlockHeader)
@@ -187,11 +185,12 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   routes: routes,
-  scrollBehavior (to, from, savedPosition) {
-    return {x: 0, y: 0}
-  }
+  // scrollBehavior (to, from, savedPosition) {
+  //   return {x: 0, y: 0}
+  // }
+  root: '/home'
 })
 
 function requireAuth(from, to, next) {

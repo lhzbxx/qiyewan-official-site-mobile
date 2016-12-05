@@ -2,6 +2,7 @@
   <div id="product-classification">
     <lh-page-header :title="currentClassification.name"></lh-page-header>
     <lh-tabs-header :tabs="currentClassification.subs"
+                    :tab="currentClassificationName"
                     @change-current="changeCurrent"></lh-tabs-header>
     <lh-loading v-if="isLoading"></lh-loading>
     <div v-else>
@@ -90,6 +91,11 @@
       let classification = this.$route.params.classificationCode
       let index = this.classifications.findIndex(
         item => item.code == classification)
+//      @polyfill
+//      var index = -1
+//      this.classifications.forEach((item, i) =>
+//        item.code == classification ? (index = i) : -1
+//      )
       if (index < 0) {
         this.$router.replace({name: 'not-found'})
       } else {

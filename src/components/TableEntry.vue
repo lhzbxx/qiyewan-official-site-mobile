@@ -1,7 +1,7 @@
 <template>
   <div id="table-entry"
        class="clearfix"
-       v-on:click="jump">
+       v-on:click="jump()">
     <img id="table-entry-cover"
          :src="cover | cdn-filter"
          :alt="name">

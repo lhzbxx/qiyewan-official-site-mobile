@@ -3,13 +3,13 @@
     <div id="menu">
       <img src="../assets/menu.png"
            alt="≡"
-           v-on:click="jumpToList">
+           v-on:click="jumpToList()">
     </div>
     <img src="http://cdn.qiyewan.com/logo.png"
          alt="logo"
          id="logo">
     <div id="area"
-         v-on:click="jumpToAreas">
+         v-on:click="jumpToAreas()">
       {{ getRegion.name }}
       <img src="../assets/down.png"
            width=12

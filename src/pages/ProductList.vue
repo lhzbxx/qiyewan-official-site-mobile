@@ -105,7 +105,7 @@
       },
       init() {
         let index = this.classifications.findIndex(item => item.code == this.$route.query.code)
-        this.currentClassification = this.classifications[index > -1 ? index : 0]
+        this.currentClassification = this.classifications[(index > -1 ? index : 0)]
       }
     },
     computed: {

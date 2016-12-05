@@ -10,6 +10,7 @@
     "deploy": "node build/build.js && scp -r dist/ root@106.75.11.210:/home/www/official-site-mobile && curl 'https://hook.bearychat.com/=bw9xW/incoming/688ad6b1210fdab506ec7923b848eb67' -X POST -d 'payload={\"text\": \"官网已更新！\"}'"
   },
   "dependencies": {
+    "babel-polyfill": "^6.16.0",
     "mint-ui": "^2.0.4",
     "vue": "^2.0.1",
     "vue-resource": "^1.0.3",

@@ -1,7 +1,10 @@
 <template>
   <div id="pay">
-    <img :src="qr">
-    <p>长按以识别支付</p>
+    <div v-if="qr">
+      <img :src="qr">
+      <p>长按以识别支付</p>
+    </div>
+    <p v-else>请点击右上角 -> 在浏览器打开</p>
   </div>
 </template>
 
@@ -44,7 +47,7 @@
 //              if (res.err_msg == "get_brand_wcpay_request：ok") {
 //              }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
 //            }
-//          );
+//          )
 //        }
 //
 //          if (typeof WeixinJSBridge == "undefined") {
@@ -66,5 +69,6 @@
 <style scoped>
   #pay {
     text-align: center;
+    background: #f9f9f9;
   }
 </style>
