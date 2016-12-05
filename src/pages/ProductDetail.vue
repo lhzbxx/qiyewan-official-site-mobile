@@ -219,7 +219,7 @@
 <style scoped>
   #product-detail {
     background: white;
-    margin-bottom: 60px;
+    padding-bottom: 60px;
     padding-top: 44px;
     min-height: 100%;
   }
