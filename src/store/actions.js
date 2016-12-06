@@ -11,7 +11,7 @@ import cartApi from '../api/cart'
 import productApi from '../api/product'
 import orderApi from '../api/order'
 
-export const init = ({commit}) => {
+export const init = ({commit, state}) => {
   if (localStorage.createAt) {
     if (new Date().valueOf() - localStorage.createAt < 15 * 24 * 60 * 60 * 1000) {
       commit(types.GET_DATA_FROM_STORAGE)
@@ -21,6 +21,15 @@ export const init = ({commit}) => {
     console.log('自动切换到区域：' + region)
     commit(types.CHANGE_REGION, region)
   })
+  authApi.getUser(state.auth.user.token,
+    data => {
+      if (data.detail == "Error.Auth.INVALID_TOKEN") {
+        state.auth.isLogin = false
+      } else {
+        commit('RECEIVE_USER_INFO', data)
+      }
+    }
+  )
 }
 
 export const getProducts = ({commit, state}) => {
