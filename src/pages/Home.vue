@@ -104,23 +104,23 @@
         combos: [],
         slides: [
           {
-            image: 'wechat_banner-001.jpg',
+            image: 'mobile-banner-1.jpg',
             url: ''
           },
           {
-            image: 'wechat_banner-002.jpg',
+            image: 'mobile-banner-2.jpg',
             url: ''
           },
           {
-            image: 'wechat_banner-003.jpg',
+            image: 'mobile-banner-3.jpg',
             url: ''
           },
           {
-            image: 'wechat_banner-004.jpg',
+            image: 'mobile-banner-4.jpg',
             url: ''
           },
           {
-            image: 'wechat_banner-005.jpg',
+            image: 'mobile-banner-5.jpg',
             url: ''
           }
         ]
@@ -132,7 +132,7 @@
         'hotProducts'
       ]),
       bannerHeight() {
-        return this.screenWidth * 521 / 1334
+        return this.screenWidth * 320 / 750
       }
     },
     methods: {

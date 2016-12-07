@@ -124,6 +124,7 @@
     },
     computed: {
       ...mapGetters([
+        'isLogin',
         'getRegion'
       ])
     },
@@ -132,10 +133,16 @@
         _MEIQIA('showPanel');
       },
       handleDirectBuyButton() {
+        if (!this.isLogin) {
+          return this.$router.push({name: 'auth'})
+        }
         this.origin = 'direct-buy-button'
         this.$refs.details.open()
       },
       handleAddToCartButton() {
+        if (!this.isLogin) {
+          return this.$router.push({name: 'auth'})
+        }
         this.origin = 'add-to-cart-button'
         this.$refs.details.open()
       },
