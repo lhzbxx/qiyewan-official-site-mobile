@@ -6,7 +6,7 @@
     <div class="auth" id="has-auth" v-if="isLogin">
       <img :src="getAuth.avatar ? getAuth.avatar : 'avatar.png' | cdn-filter" alt="avatar">
       <p>{{ getAuth.nickname ? getAuth.nickname : '昵称' }}</p>
-      <div id="right-arrow"></div>
+      <!--<div id="right-arrow"></div>-->
     </div>
     <div class="auth" id="no-auth" v-else>
       <router-link to="/auth" class="link button">登录</router-link>
