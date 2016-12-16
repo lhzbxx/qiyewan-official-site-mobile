@@ -67,6 +67,7 @@ Vue.filter('cdn-filter', filters.cdnPrefix)
 Vue.filter('sub-total-price-filter', filters.totalPrice)
 Vue.filter('date-filter', filters.dateFormat)
 
+/* eslint-disable no-new */
 new Vue({
   router,
   store,
