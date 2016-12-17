@@ -19,7 +19,7 @@
         <span id="details-content-region">{{ selectedDistrict }}
           <img src="../assets/down.png" width="12" style="vertical-align: middle">
           <select v-model="selectedDistrict">
-            <option v-for="item in getRegion.areas">{{ item.name }}</option>
+            <option v-for="item in getRegion.areas">{{ item }}</option>
           </select>
         </span>
       </div>
@@ -120,7 +120,7 @@
     mounted() {
       this.form.regionCode = this.getRegion.code
       this.form.serialId = this.form.product.serialId
-      this.selectedDistrict = this.getRegion.areas[0].name
+      this.selectedDistrict = this.getRegion.areas[0]
       this.form.amount = this.form.product.isInstant ? 1 : 6
     }
   }
