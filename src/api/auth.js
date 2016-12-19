@@ -5,7 +5,7 @@ export default {
     if (process.env.NODE_ENV == "development") {
       cb("SHSH")
     } else {
-      Vue.http.get("region").then(
+      Vue.http.get("locate.do").then(
         (response) => {
           response.text().then(
             data => {
@@ -17,10 +17,10 @@ export default {
     }
   },
   login (phone, password, cb, errorCb) {
-    Vue.http.get("auth?phone=" + phone + "&password=" + password + "&mode=Mobile").then(
+    Vue.http.get("auth?phone=" + phone + "&password=" + password + "&mode=WEB_MOBILE").then(
       (response) => {
         if (response.body.error == 0) {
-          cb(response.body.detail);
+          cb(response.body.token);
         } else {
           errorCb(response.body);
         }
@@ -29,10 +29,10 @@ export default {
       })
   },
   requestCaptcha (phone, cb, errorCb) {
-    Vue.http.post("captcha/" + phone).then(
+    Vue.http.post("captcha.do?" + phone).then(
       (response) => {
-        if (response.body.error == 0) {
-          cb(response.body.detail);
+        if (response.body.error === 0) {
+          cb(response.body);
         } else {
           cb(response.body);
         }
@@ -48,7 +48,7 @@ export default {
     }).then(
       (response) => {
         if (response.body.error == 0) {
-          cb(response.body.detail);
+          cb(response.body.token);
         } else {
           errorCb(response.body)
         }
@@ -65,7 +65,7 @@ export default {
     }).then(
       (response) => {
         if (response.body.error == 0) {
-          cb(response.body.detail);
+          cb(response.body.token);
         } else {
           errorCb(response.body)
         }

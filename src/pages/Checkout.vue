@@ -89,8 +89,7 @@
             vm.$store.commit('TO_PAY', order)
             vm.$router.push({name: 'pay'})
           },
-          error => {
-          }
+          error => {}
         )
       }
     },
