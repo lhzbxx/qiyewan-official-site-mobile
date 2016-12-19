@@ -39,7 +39,7 @@
            v-on:click="form.amount > 1 ? form.amount-- : ''"
            v-bind:class="{ active: form.amount > 1 }"
            style="margin-left: 5px;">&minus;</p>
-        <p class="details-content-amount">{{ form.amount }}</p>
+        <input id="details-content-amount" type="number" v-model="form.amount">
         <p class="details-content-amount active"
            v-on:click="form.amount++">&plus;</p>
       </div>
@@ -171,6 +171,16 @@
 
   .details-content-amount:first-child {
     margin-left: 20px;
+  }
+
+  #details-content-amount {
+    outline: none;
+    padding: 0 8px 0 8px;
+    height: 32px;
+    border: none;
+    font-size: 13px;
+    width: 70px;
+    text-align: center;
   }
 
   .details-content-amount {

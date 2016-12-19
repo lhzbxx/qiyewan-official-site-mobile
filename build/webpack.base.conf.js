@@ -11,7 +11,12 @@ var cssSourceMapProd = (env === 'production' && config.build.productionSourceMap
 var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
 module.exports = {
-  entry: ['babel-polyfill', './src/main.js'],
+  entry: {
+    app: './src/main.js',
+    vendor: [
+      'babel-polyfill'
+    ]
+  },
   output: {
     path: config.build.assetsRoot,
     publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
