@@ -84,7 +84,7 @@ export const getProductDetail = ({commit, state}, serialId) => {
   })
 }
 
-export const requestCaptcha = (phone) => {
+export const requestCaptcha = ({commit}, phone) => {
   return new Promise((resolve, reject) => {
     authApi.requestCaptcha(phone,
       () => {

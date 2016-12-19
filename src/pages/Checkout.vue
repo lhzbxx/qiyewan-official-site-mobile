@@ -32,22 +32,23 @@
 <script>
   import {mapGetters} from 'vuex'
   import {Toast, Indicator} from 'mint-ui'
+  import pingpp from 'pingpp-js'
   export default {
     data () {
       return {
-        payment: 'Alipay',
+        payment: 'WXPAY_WAP',
         payments: [
           {
             label: '微信支付',
-            value: 'WeChat_PC'
+            value: 'WXPAY_WAP'
           },
           {
             label: '支付宝',
-            value: 'Alipay'
+            value: 'ALIPAY_WAP'
           },
           {
             label: '银行卡',
-            value: 'Bank'
+            value: 'UPACP_WAP'
           }
         ]
       }
@@ -72,7 +73,7 @@
     },
     methods: {
       pay () {
-        if (this.payment === 'Bank') {
+        if (this.payment === 'UPACP_WAP') {
           return Toast({
             message: '暂不支持该支付方式',
             position: 'bottom',
@@ -82,11 +83,19 @@
         Indicator.open({
           text: '跳转中...'
         })
-        let vm = this
         this.$store.dispatch('addToOrder', {carts: this.getCheckout, payment: this.payment}).then(
           order => {
-            vm.$store.commit('TO_PAY', order)
-            vm.$router.push({name: 'pay'})
+            pingpp.createPayment(order.charge, function (result, err) {
+              if (result === 'success') {
+                // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
+              } else if (result === 'fail') {
+                // charge 不正确或者微信公众账号支付失败时会在此处返回
+              } else if (result === 'cancel') {
+                // 微信公众账号支付取消支付
+              }
+            })
+//            vm.$store.commit('TO_PAY', order)
+//            vm.$router.push({name: 'pay'})
           },
           () => {}
         )

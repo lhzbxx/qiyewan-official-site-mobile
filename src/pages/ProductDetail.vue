@@ -158,7 +158,7 @@
             vm.$refs.details.close()
             switch (vm.origin) {
               case 'add-to-cart-button':
-                this.form.isOverride = false
+                this.form.isOverride = true
                 if (vm.toastInstance) vm.toastInstance.close()
                 vm.toastInstance = Toast({
                   message: '操作成功',
@@ -170,7 +170,7 @@
                 vm.form.amount = data.amount
                 break
               case 'direct-buy-button':
-                this.form.isOverride = true
+                this.form.isOverride = false
                 this.$store.dispatch('addToCart', this.form).then(
                   data => {
                     vm.$store.commit('CHECKOUT', [data])

@@ -70,9 +70,9 @@
         // 2: 忘记密码
         state: 0,
         form: {
-          phone: null,
-          password: null,
-          captcha: null
+          phone: '',
+          password: '',
+          captcha: ''
         },
         isCounting: false,
         counter: 60
@@ -80,10 +80,10 @@
     },
     methods: {
       getCaptcha () {
+        if (this.isCounting) return
+        else this.isCounting = true
         this.$store.dispatch('requestCaptcha', this.form.phone).then(
           () => {
-            if (this.isCounting) return
-            else this.isCounting = true
             this.counting()
           },
           () => {}
@@ -112,28 +112,11 @@
                 vm.$router.go(-1)
               },
               error => {
-                switch (error.detail) {
-                  case 'Error.Auth.USER_NOT_EXISTS':
-                    Toast({
-                      message: '该手机号尚未注册',
-                      position: 'bottom',
-                      duration: 3000
-                    })
-                    break
-                  case 'Error.Auth.WRONG_PASSWORD':
-                    Toast({
-                      message: '密码不正确',
-                      position: 'bottom',
-                      duration: 3000
-                    })
-                    break
-                  default:
-                    Toast({
-                      message: '登录失败',
-                      position: 'bottom',
-                      duration: 3000
-                    })
-                }
+                Toast({
+                  message: error.message,
+                  position: 'bottom',
+                  duration: 3000
+                })
               }
             )
             break
@@ -143,28 +126,11 @@
                 vm.$router.go(-1)
               },
               error => {
-                switch (error.detail) {
-                  case 'Error.Auth.USER_EXISTS':
-                    Toast({
-                      message: '该手机号已被注册',
-                      position: 'bottom',
-                      duration: 3000
-                    })
-                    break
-                  case 'Error.Action.WRONG_CAPTCHA':
-                    Toast({
-                      message: '验证码不正确',
-                      position: 'bottom',
-                      duration: 3000
-                    })
-                    break
-                  default:
-                    Toast({
-                      message: '注册失败',
-                      position: 'bottom',
-                      duration: 3000
-                    })
-                }
+                Toast({
+                  message: error.message,
+                  position: 'bottom',
+                  duration: 3000
+                })
               }
             )
             break
@@ -174,14 +140,11 @@
                 vm.$router.go(-1)
               },
               error => {
-                switch (error.detail) {
-                  default:
-                    Toast({
-                      message: '重置密码失败',
-                      position: 'bottom',
-                      duration: 3000
-                    })
-                }
+                Toast({
+                  message: error.message,
+                  position: 'bottom',
+                  duration: 3000
+                })
               }
             )
             break

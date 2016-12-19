@@ -19,24 +19,16 @@ export default {
   login (phone, password, cb, errorCb) {
     Vue.http.get('auth?phone=' + phone + '&password=' + password + '&mode=WEB_MOBILE').then(
       (response) => {
-        if (response.body.error === 0) {
-          cb(response.body.token)
-        } else {
-          errorCb(response.body)
-        }
+        cb(response.body.token)
       },
       (response) => {
         errorCb(response.body)
       })
   },
   requestCaptcha (phone, cb, errorCb) {
-    Vue.http.post('captcha.do?' + phone).then(
+    Vue.http.post('captcha.do?phone=' + phone).then(
       (response) => {
-        if (response.body.error === 0) {
-          cb(response.body)
-        } else {
-          cb(response.body)
-        }
+        cb(response.body)
       },
       (response) => {
         errorCb(response.body)
@@ -49,11 +41,7 @@ export default {
       captcha: captcha
     }).then(
       (response) => {
-        if (response.body.error === 0) {
-          cb(response.body.token)
-        } else {
-          errorCb(response.body)
-        }
+        cb(response.body.token)
       },
       (response) => {
         errorCb(response.body)
@@ -67,11 +55,7 @@ export default {
       captcha: captcha
     }).then(
       (response) => {
-        if (response.body.error === 0) {
-          cb(response.body.token)
-        } else {
-          errorCb(response.body)
-        }
+        cb(response.body.token)
       },
       (response) => {
         errorCb(response.body)
