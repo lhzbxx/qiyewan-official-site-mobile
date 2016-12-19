@@ -67,7 +67,7 @@
 <script>
   import {MessageBox} from 'mint-ui'
   export default {
-    data() {
+    data () {
       return {
         isLoading: true,
         error: null,
@@ -91,11 +91,11 @@
       }
     },
     methods: {
-      isSelected(index) {
-        return this.selection.findIndex(item => item == index) > -1
+      isSelected (index) {
+        return this.selection.findIndex(item => item === index) > -1
       },
-      select(index) {
-        let i = this.selection.findIndex(item => item == index)
+      select (index) {
+        let i = this.selection.findIndex(item => item === index)
         if (i < 0) {
           this.selection.push(index)
           this.selection.sort()
@@ -103,8 +103,8 @@
           this.selection.splice(i, 1)
         }
       },
-      selectAll() {
-        if (this.selection.length == this.carts.length) {
+      selectAll () {
+        if (this.selection.length === this.carts.length) {
           this.selection = []
         } else {
           this.selection = []
@@ -113,13 +113,13 @@
           }
         }
       },
-      openDetails(index) {
+      openDetails (index) {
         this.form = this.carts[index]
         this.form.product = this.carts[index].product
         this.$refs.details.open()
       },
-      handleCheckoutButton() {
-        if (this.selection.length == 0) return
+      handleCheckoutButton () {
+        if (this.selection.length === 0) return
         var form = []
         for (let i of this.selection.reverse()) {
           form.push(this.carts[i])
@@ -127,45 +127,43 @@
         this.$store.commit('CHECKOUT', form)
         this.$router.push({name: 'checkout'})
       },
-      handleDeleteButton() {
+      handleDeleteButton () {
         let vm = this
         MessageBox.confirm('确认从购物车中移除吗？').then(
           action => {
-            for(let i of vm.selection) {
+            for (let i of vm.selection) {
               vm.$store.dispatch('removeCart', vm.carts[i].id).then(
                 data => {
-                  vm.selection.splice(vm.selection.findIndex(item => item == i), 1)
+                  vm.selection.splice(vm.selection.findIndex(item => item === i), 1)
                   vm.carts.splice(i, 1)
                 },
-                error => {
-                }
+                () => {}
               )
             }
           },
           () => {}
         )
       },
-      handleConfirmButton() {
+      handleConfirmButton () {
         let vm = this
         this.$store.dispatch('updateCart', this.form).then(
           data => {
             vm.$refs.details.close()
           },
-          error => {
-          }
+          () => {}
         )
       }
     },
     computed: {
-      isAllSelected() {
-        return this.selection.length == this.carts.length
+      isAllSelected () {
+        return this.selection.length === this.carts.length
       },
-      totalAmount() {
+      totalAmount () {
         return this.selection.length
       },
-      totalPrice() {
+      totalPrice () {
         var total = 0
-        for(let i of this.selection) {
+        for (let i of this.selection) {
           let amount = this.carts[i].amount
           let member = this.carts[i].member
           if (this.carts[i].product.serialId.substr(4) === 'HR0003') {
@@ -176,11 +174,11 @@
         }
         return total.toFixed(2)
       },
-      canCheckout() {
+      canCheckout () {
         return this.selection.length > 0
       }
     },
-    created() {
+    created () {
       let vm = this
       this.$store.dispatch('getCarts', 1).then(
         data => {

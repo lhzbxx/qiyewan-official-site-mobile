@@ -16,15 +16,15 @@ import global from './module/global'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-    getters,
-    actions,
-    modules: {
-        auth,
-        carts,
-        orders,
-        global
-    }
-    // 注意：
-    // 在发布时需要注释该行，以免影响性能！
-    // strict: true
+  getters,
+  actions,
+  modules: {
+    auth,
+    carts,
+    orders,
+    global
+  }
+  // 注意：
+  // 在发布时需要注释该行，以免影响性能！
+  // strict: true
 })

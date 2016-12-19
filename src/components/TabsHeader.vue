@@ -12,7 +12,7 @@
 
 <script>
   export default {
-    data() {
+    data () {
       return {
         current: null
       }
@@ -22,15 +22,15 @@
       tab: String
     },
     methods: {
-      isCurrent(item) {
-        return item == this.current
+      isCurrent (item) {
+        return item === this.current
       },
-      change(item) {
+      change (item) {
         this.current = item
         this.$emit('change-current', item)
       }
     },
-    created() {
+    created () {
       this.current = this.tab
     }
   }

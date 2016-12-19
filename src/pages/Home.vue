@@ -97,7 +97,7 @@
 <script>
   import {mapGetters} from 'vuex'
   export default {
-    data() {
+    data () {
       return {
         error: null,
         screenWidth: window.screen.width,
@@ -131,19 +131,19 @@
         'getRegion',
         'hotProducts'
       ]),
-      bannerHeight() {
+      bannerHeight () {
         return this.screenWidth * 320 / 750
       }
     },
     methods: {
-      jumpToClassification(code) {
+      jumpToClassification (code) {
         this.$router.push({name: 'product-classification', params: {classificationCode: code}})
       },
-      jumpToDetail(serialId) {
+      jumpToDetail (serialId) {
         this.$router.push({name: 'product-detail', params: {serialId: serialId}})
       }
     },
-    mounted() {
+    mounted () {
       let vm = this
       this.$store.dispatch('getProductList', 'PS').then(
         data => {

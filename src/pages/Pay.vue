@@ -11,7 +11,7 @@
 <script>
   import {mapGetters} from 'vuex'
   export default {
-    data() {
+    data () {
       return {
         qr: 'http://qr.liantu.com/api.php?mhid=4xDADwDpnJ0hMHcvKtxTP6s&text='
       }
@@ -21,18 +21,18 @@
         'getToPay'
       ])
     },
-    mounted() {
+    mounted () {
       if (!this.getToPay) {
         this.$router.replace({name: 'home'})
       }
-      switch (this.getToPay.payment) {
-        case 'Alipay':
-          window.open(this.getToPay.payUrl, "_self")
-          break
-        case 'WeChat_PC':
-          console.log(this.getToPay.payUrl)
-          this.qr += (new DOMParser).parseFromString(this.getToPay.payUrl, "application/xml").childNodes[0].childNodes[20].childNodes[0].nodeValue
-          window.open((new DOMParser).parseFromString(this.getToPay.payUrl, "application/xml").childNodes[0].childNodes[20].childNodes[0].nodeValue, "_self")
+//      switch (this.getToPay.payment) {
+//        case 'Alipay':
+//          window.open(this.getToPay.payUrl, "_self")
+//          break
+//        case 'WeChat_PC':
+//          console.log(this.getToPay.payUrl)
+//          this.qr += (new DOMParser).parseFromString(this.getToPay.payUrl, 'application/xml').childNodes[0].childNodes[20].childNodes[0].nodeValue
+//          window.open((new DOMParser).parseFromString(this.getToPay.payUrl, 'application/xml').childNodes[0].childNodes[20].childNodes[0].nodeValue, "_self")
 //        function onBridgeReady() {
 //          WeixinJSBridge.invoke(
 //            'getBrandWCPayRequest', {
@@ -60,8 +60,8 @@
 //          } else {
 //            onBridgeReady();
 //          }
-          break
-      }
+//          break
+//      }
     }
   }
 </script>

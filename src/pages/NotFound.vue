@@ -14,7 +14,7 @@
 <script>
   export default {
     methods: {
-      jump() {
+      jump () {
         this.$router.replace({name: 'home'})
       }
     }

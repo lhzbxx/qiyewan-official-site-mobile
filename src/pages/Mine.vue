@@ -96,7 +96,7 @@
 <script>
   import {mapGetters} from 'vuex'
   export default {
-    data() {
+    data () {
       return {}
     },
     computed: {
@@ -106,11 +106,11 @@
       ])
     },
     methods: {
-      logout() {
+      logout () {
         this.$store.commit('USER_LOGOUT')
       }
     },
-    created() {
+    created () {
       this.$store.dispatch('getUserInfo')
     }
   }

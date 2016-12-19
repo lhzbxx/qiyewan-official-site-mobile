@@ -51,10 +51,9 @@
 </template>
 
 <script>
-  import {MessageBox} from 'mint-ui';
-
+  import {MessageBox} from 'mint-ui'
   export default {
-    data() {
+    data () {
       return {
         isLoading: true,
         error: null,
@@ -69,7 +68,7 @@
       }
     },
     methods: {
-      changeCurrent(current) {
+      changeCurrent (current) {
         switch (current) {
           case '全部':
             this.currentState = 0
@@ -86,7 +85,7 @@
         }
         this.fetchData()
       },
-      fetchData() {
+      fetchData () {
         let vm = this
         this.loading = true
         this.orders = []
@@ -112,7 +111,7 @@
           }
         )
       },
-      handleCancelButton(order) {
+      handleCancelButton (order) {
         let vm = this
         MessageBox.confirm('确认取消订单吗？').then(
           action => {
@@ -124,11 +123,11 @@
           }
         )
       },
-      handlePayButton(order) {
+      handlePayButton (order) {
         this.$store.commit('TO_PAY', order)
         this.$router.push({name: 'pay'})
       },
-      handleReviewButton(item) {
+      handleReviewButton (item) {
         let detail = item.details[item.details.findIndex(item => !item.isReviewed)]
         this.$store.commit('REVIEW', detail)
         this.$router.push({
@@ -136,11 +135,11 @@
           query: {productSerialId: detail.productSerialId, orderSerialId: item.serialId}
         })
       },
-      handleAnotherButton(item) {
+      handleAnotherButton (item) {
         // todo: 处理“再来一份”按钮
       }
     },
-    created() {
+    created () {
       this.currentState = (this.$route.query.state ? Number(this.$route.query.state) : 0) || 0
       this.fetchData()
     }

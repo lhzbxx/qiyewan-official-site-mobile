@@ -33,7 +33,7 @@
       }
     },
     methods: {
-      jump(index) {
+      jump (index) {
         switch (index) {
           case 1:
             this.$router.replace({name: 'home'})

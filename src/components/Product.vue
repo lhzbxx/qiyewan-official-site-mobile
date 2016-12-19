@@ -16,7 +16,7 @@
 
 <script>
   export default {
-    data() {
+    data () {
       return {}
     },
     props: {
@@ -29,7 +29,7 @@
       }
     },
     methods: {
-      jump() {
+      jump () {
         this.$emit('click')
       }
     }

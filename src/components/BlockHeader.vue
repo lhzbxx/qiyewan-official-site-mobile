@@ -18,7 +18,7 @@
       name: String
     },
     methods: {
-      showMore() {
+      showMore () {
         this.$router.push({name: 'product-list'})
       }
     }

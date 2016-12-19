@@ -37,10 +37,10 @@
       </mt-button>
       <a id="reset-password-button"
          v-on:click="state = 2"
-         v-if="state == 0">找回密码
+         v-if="state === 0">找回密码
       </a>
       <p id="contract-block"
-         v-if="state == 1">
+         v-if="state === 1">
         注册表示同意
         <span id="contract-button"
               v-on:click="handleContractButton">《企业湾用户服务协议》</span>
@@ -53,17 +53,17 @@
       </div>
       <div id="no-account"
            v-if="state < 2">
-        {{ state == 0 ? '没有账户？' : '已有账号？' }}
-        <a v-on:click="state = 1 - state">{{ state == 0 ? '立即注册' : '马上登录' }}</a>
+        {{ state === 0 ? '没有账户？' : '已有账号？' }}
+        <a v-on:click="state = 1 - state">{{ state === 0 ? '立即注册' : '马上登录' }}</a>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import {Toast} from 'mint-ui';
+  import {Toast} from 'mint-ui'
   export default {
-    data() {
+    data () {
       return {
         // 0: 登录
         // 1: 注册
@@ -79,20 +79,19 @@
       }
     },
     methods: {
-      getCaptcha() {
+      getCaptcha () {
         this.$store.dispatch('requestCaptcha', this.form.phone).then(
           () => {
             if (this.isCounting) return
             else this.isCounting = true
             this.counting()
           },
-          error => {
-          }
+          () => {}
         )
       },
-      counting() {
+      counting () {
         setTimeout(() => {
-          if (this.counter == 0) {
+          if (this.counter === 0) {
             this.counter = 60
             this.isCounting = false
           } else {
@@ -101,10 +100,10 @@
           }
         }, 1000)
       },
-      handleContractButton() {
+      handleContractButton () {
         this.$router.push({name: 'contract'})
       },
-      submit() {
+      submit () {
         let vm = this
         switch (this.state) {
           case 0:
@@ -190,7 +189,7 @@
       }
     },
     computed: {
-      headerTitle() {
+      headerTitle () {
         switch (this.state) {
           case 0:
             return '登 录'
@@ -200,7 +199,7 @@
             return '重置密码'
         }
       },
-      submitButton() {
+      submitButton () {
         switch (this.state) {
           case 0:
             return '登 录'
@@ -211,7 +210,7 @@
         }
       }
     },
-    mounted() {
+    mounted () {
       this.state = this.$route.query.state | 0
     }
   }

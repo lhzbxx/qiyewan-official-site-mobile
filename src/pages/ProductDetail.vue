@@ -100,20 +100,20 @@
 
 <script>
   import {mapGetters} from 'vuex'
-  import {Toast} from 'mint-ui';
+  import {Toast} from 'mint-ui'
   import productApi from '../api/product'
   export default {
-    data() {
+    data () {
       return {
         isLoading: true,
         error: null,
-        selected: "1",
+        selected: '1',
         form: {
           amount: 1,
           member: 1,
           regionCode: null,
           region: null,
-          product: null,
+          product: null
         },
         product: null,
         faqs: [],
@@ -129,28 +129,29 @@
       ])
     },
     methods: {
-      openCustomerService() {
-        _MEIQIA('showPanel');
+      openCustomerService () {
+        /* eslint-disable no-undef */
+        _MEIQIA('showPanel')
       },
-      handleDirectBuyButton() {
+      handleDirectBuyButton () {
         if (!this.isLogin) {
           return this.$router.push({name: 'auth'})
         }
         this.origin = 'direct-buy-button'
         this.$refs.details.open()
       },
-      handleAddToCartButton() {
+      handleAddToCartButton () {
         if (!this.isLogin) {
           return this.$router.push({name: 'auth'})
         }
         this.origin = 'add-to-cart-button'
         this.$refs.details.open()
       },
-      refreshForm() {
+      refreshForm () {
         this.form.regionCode = this.getRegion.code
         this.form.region = this.getRegion.pName + this.getRegion.name
       },
-      handleConfirmButton() {
+      handleConfirmButton () {
         let vm = this
         this.$store.dispatch('addToCart', this.form).then(
           data => {
@@ -189,7 +190,7 @@
         )
       }
     },
-    created() {
+    created () {
       this.loading = true
       let vm = this
       this.$store.dispatch('getProductDetail', this.$route.params.serialId).then(

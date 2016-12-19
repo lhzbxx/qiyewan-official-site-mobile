@@ -17,7 +17,7 @@
       message: String
     },
     methods: {
-      jump() {
+      jump () {
         this.$router.push({name: 'product-list'})
       }
     }

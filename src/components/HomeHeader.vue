@@ -27,10 +27,10 @@
       ])
     },
     methods: {
-      jumpToList() {
+      jumpToList () {
         this.$router.push({name: 'product-list'})
       },
-      jumpToAreas() {
+      jumpToAreas () {
         this.$router.push({name: 'areas'})
       }
     }

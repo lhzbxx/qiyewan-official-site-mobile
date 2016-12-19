@@ -23,7 +23,7 @@
 
 <script>
   export default {
-    data() {
+    data () {
       return {
         isLoading: true,
         error: null,
@@ -75,26 +75,26 @@
       }
     },
     methods: {
-      jumpToDetail(serialId) {
+      jumpToDetail (serialId) {
         this.$router.push({name: 'product-detail', params: {serialId: serialId}})
       },
-      changeCurrent(current) {
+      changeCurrent (current) {
         this.currentClassificationName = current
       }
     },
     computed: {
-      list() {
-        return this.lists.filter(item => item.classificationName == this.currentClassificationName)
+      list () {
+        return this.lists.filter(item => item.classificationName === this.currentClassificationName)
       }
     },
-    created() {
+    created () {
       let classification = this.$route.params.classificationCode
       let index = this.classifications.findIndex(
-        item => item.code == classification)
+        item => item.code === classification)
 //      @polyfill
 //      var index = -1
 //      this.classifications.forEach((item, i) =>
-//        item.code == classification ? (index = i) : -1
+//        item.code === classification ? (index = i) : -1
 //      )
       if (index < 0) {
         this.$router.replace({name: 'not-found'})

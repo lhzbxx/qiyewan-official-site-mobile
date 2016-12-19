@@ -7,27 +7,22 @@ import * as filters from './filters'
 Vue.use(VueResource)
 Vue.http.options.root = process.env.API
 
-import {Navbar, TabItem} from 'mint-ui';
-import {Swipe, SwipeItem} from 'mint-ui';
-import {TabContainer, TabContainerItem} from 'mint-ui';
-import {Lazyload} from 'mint-ui';
-import {Header} from 'mint-ui';
-import {Button} from 'mint-ui';
-import {Field} from 'mint-ui';
-import {Cell, Radio} from 'mint-ui';
+import {
+  Navbar, TabItem, Swipe, TabContainer, Lazyload, Header, Button, Field, Cell, SwipeItem, TabContainerItem, Radio
+} from 'mint-ui'
 
-Vue.component(Navbar.name, Navbar);
-Vue.component(TabItem.name, TabItem);
-Vue.component(Swipe.name, Swipe);
-Vue.component(SwipeItem.name, SwipeItem);
-Vue.component(TabContainer.name, TabContainer);
-Vue.component(TabContainerItem.name, TabContainerItem);
-Vue.use(Lazyload);
-Vue.component(Header.name, Header);
-Vue.component(Button.name, Button);
-Vue.component(Field.name, Field);
-Vue.component(Cell.name, Cell);
-Vue.component(Radio.name, Radio);
+Vue.component(Navbar.name, Navbar)
+Vue.component(TabItem.name, TabItem)
+Vue.component(Swipe.name, Swipe)
+Vue.component(SwipeItem.name, SwipeItem)
+Vue.component(TabContainer.name, TabContainer)
+Vue.component(TabContainerItem.name, TabContainerItem)
+Vue.use(Lazyload)
+Vue.component(Header.name, Header)
+Vue.component(Button.name, Button)
+Vue.component(Field.name, Field)
+Vue.component(Cell.name, Cell)
+Vue.component(Radio.name, Radio)
 
 import TableEntry from './components/TableEntry.vue'
 import Product from './components/Product.vue'

@@ -31,10 +31,9 @@
 
 <script>
   import {mapGetters} from 'vuex'
-  import {Toast} from 'mint-ui'
-  import {Indicator} from 'mint-ui'
+  import {Toast, Indicator} from 'mint-ui'
   export default {
-    data() {
+    data () {
       return {
         payment: 'Alipay',
         payments: [
@@ -57,7 +56,7 @@
       ...mapGetters([
         'getCheckout'
       ]),
-      totalPrice() {
+      totalPrice () {
         var result = 0
         for (let i of this.getCheckout) {
           let amount = i.amount
@@ -72,8 +71,8 @@
       }
     },
     methods: {
-      pay() {
-        if (this.payment == 'Bank') {
+      pay () {
+        if (this.payment === 'Bank') {
           return Toast({
             message: '暂不支持该支付方式',
             position: 'bottom',
@@ -81,7 +80,7 @@
           })
         }
         Indicator.open({
-          text: '跳转中...',
+          text: '跳转中...'
         })
         let vm = this
         this.$store.dispatch('addToOrder', {carts: this.getCheckout, payment: this.payment}).then(
@@ -89,17 +88,17 @@
             vm.$store.commit('TO_PAY', order)
             vm.$router.push({name: 'pay'})
           },
-          error => {}
+          () => {}
         )
       }
     },
-    mounted() {
-      if (this.getCheckout.length == 0) {
+    mounted () {
+      if (this.getCheckout.length === 0) {
         this.$router.replace({name: 'home'})
       }
     },
-    beforeDestroy() {
-      Indicator.close();
+    beforeDestroy () {
+      Indicator.close()
     }
   }
 </script>

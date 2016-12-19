@@ -78,7 +78,7 @@
 <script>
   import {mapGetters} from 'vuex'
   export default {
-    data() {
+    data () {
       return {
         selectedDistrict: null,
         showDetails: false
@@ -103,13 +103,13 @@
       ])
     },
     methods: {
-      open() {
+      open () {
         this.showDetails = true
       },
-      close() {
+      close () {
         this.showDetails = false
       },
-      confirm() {
+      confirm () {
         if (!this.isLogin) {
           return this.$router.push({name: 'auth'})
         }
@@ -117,7 +117,7 @@
         this.$emit('confirm')
       }
     },
-    mounted() {
+    mounted () {
       this.form.regionCode = this.getRegion.code
       this.form.serialId = this.form.product.serialId
       this.selectedDistrict = this.getRegion.areas[0]

@@ -36,7 +36,7 @@
 
 <script>
   export default {
-    data() {
+    data () {
       return {
         isLoading: true,
         error: null,
@@ -94,26 +94,26 @@
       }
     },
     methods: {
-      isCurrent(code) {
-        return code == this.currentClassification.code
+      isCurrent (code) {
+        return code === this.currentClassification.code
       },
-      switchClassification(classification) {
+      switchClassification (classification) {
         this.$router.replace({name: 'product-list', query: {code: classification.code}})
       },
-      jumpToDetail(serialId) {
+      jumpToDetail (serialId) {
         this.$router.push({name: 'product-detail', params: {serialId: serialId}})
       },
-      init() {
-        let index = this.classifications.findIndex(item => item.code == this.$route.query.code)
+      init () {
+        let index = this.classifications.findIndex(item => item.code === this.$route.query.code)
         this.currentClassification = this.classifications[(index > -1 ? index : 0)]
       }
     },
     computed: {
-      list() {
-        let list = this.lists.filter(item => item.classificationCode == this.currentClassification.code)
+      list () {
+        let list = this.lists.filter(item => item.classificationCode === this.currentClassification.code)
         var result = []
         for (let i of this.currentClassification.subs) {
-          result.push(list.filter(item => item.classificationName == i))
+          result.push(list.filter(item => item.classificationName === i))
         }
         return result
       }
@@ -121,7 +121,7 @@
     watch: {
       '$route.query.code': 'init'
     },
-    created() {
+    created () {
       this.init()
       let vm = this
       this.$store.dispatch('getProducts').then(

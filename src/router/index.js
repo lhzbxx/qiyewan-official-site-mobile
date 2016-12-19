@@ -127,13 +127,13 @@ const routes = [
 
 export default new VueRouter({
   mode: 'hash',
-  routes: routes,
+  routes: routes
   // scrollBehavior (to, from, savedPosition) {
   //   return {x: 0, y: 0}
   // }
 })
 
-function requireAuth(from, to, next) {
+function requireAuth (from, to, next) {
   if (!store.getters.isLogin) {
     next({
       path: '/auth'

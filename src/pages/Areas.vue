@@ -28,7 +28,7 @@
   import {mapGetters} from 'vuex'
 
   export default {
-    data() {
+    data () {
       return {}
     },
     computed: {
@@ -38,10 +38,10 @@
       ])
     },
     methods: {
-      isSelected(region) {
-        return region.code == this.getRegion.code
+      isSelected (region) {
+        return region.code === this.getRegion.code
       },
-      selectRegion(regionIndex) {
+      selectRegion (regionIndex) {
         this.$store.commit('CHANGE_REGION', regionIndex)
       }
     }
