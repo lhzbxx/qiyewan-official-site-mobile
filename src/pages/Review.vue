@@ -32,7 +32,7 @@
   import {mapGetters} from 'vuex'
   import {Indicator} from 'mint-ui'
   export default {
-    data() {
+    data () {
       return {
         form: {
           serialId: null,
@@ -48,7 +48,7 @@
       ])
     },
     methods: {
-      handleSubmitButton() {
+      handleSubmitButton () {
         Indicator.open({
           text: '提交中...',
           spinnerType: 'fading-circle'
@@ -58,20 +58,19 @@
           data => {
             vm.$router.push({name: 'order'})
           },
-          error => {
-          }
+          () => {}
         )
       }
     },
-    created() {
+    created () {
       this.form.serialId = this.$route.query.orderSerialId
       this.form.productSerialId = this.$route.query.productSerialId
       if (!this.getReview) {
         this.$router.replace({name: 'home'})
       }
     },
-    beforeDestroy() {
-      Indicator.close();
+    beforeDestroy () {
+      Indicator.close()
     }
   }
 </script>

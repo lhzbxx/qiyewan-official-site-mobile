@@ -2,43 +2,43 @@ import Vue from 'vue'
 
 export default {
   getProductDetail (serialId, cb, errorCb) {
-    Vue.http.get("products/" + serialId).then((response) => {
+    Vue.http.get('products/' + serialId).then((response) => {
       cb(response.body)
     }, (response) => {
       errorCb(response.body)
     })
   },
   getProductReviews (serialId, cb, errorCb) {
-    Vue.http.get("products/" + serialId + "/reviews").then((response) => {
+    Vue.http.get('products/' + serialId + '/reviews').then((response) => {
       cb(response.body)
     }, (response) => {
       errorCb(response.body)
     })
   },
   getProductFaqs (serialId, cb, errorCb) {
-    Vue.http.get("products/" + serialId + "/faq").then((response) => {
+    Vue.http.get('products/' + serialId + '/faq').then((response) => {
       cb(response.body)
     }, (response) => {
       errorCb(response.body)
     })
   },
   getProductList (regionCode, classification, cb, errorCb) {
-    Vue.http.get("products?regionCode=" + regionCode + "&classificationName=" + classification).then((response) => {
+    Vue.http.get('products?regionCode=' + regionCode + '&classificationName=' + classification).then((response) => {
       cb(response.body)
     }, (response) => {
       errorCb(response.body)
     })
   },
-  getProducts (regionCode, cb, errorCb){
-    Vue.http.get("products?regionCode=" + regionCode).then((response) => {
+  getProducts (regionCode, cb, errorCb) {
+    Vue.http.get('products?regionCode=' + regionCode).then((response) => {
       cb(response.body)
     }, (response) => {
       errorCb(response.body)
     })
   },
   sendReview (token, review, cb, errorCb) {
-    Vue.http.headers.common['Authorization'] = token;
-    Vue.http.post("reviews/", review).then((response) => {
+    Vue.http.headers.common['Authorization'] = token
+    Vue.http.post('reviews/', review).then((response) => {
       cb(response.body)
     }, (response) => {
       errorCb(response.body)

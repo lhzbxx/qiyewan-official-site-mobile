@@ -21,17 +21,17 @@ const state = {
 const mutations = {
   [types.ADD_TO_ORDER] (state) {
     // state.info.total += 1
-    localStorage.setItem("orderInfo", JSON.stringify(state.info))
+    window.localStorage.setItem('orderInfo', JSON.stringify(state.info))
   },
   [types.REMOVE_ORDER] (state) {
     // state.info.total -= 1
-    localStorage.setItem("orderInfo", JSON.stringify(state.info))
+    window.localStorage.setItem('orderInfo', JSON.stringify(state.info))
   },
   [types.CHECKOUT] (state, carts) {
     state.checkout = carts
   },
   [types.GET_DATA_FROM_STORAGE] (state) {
-    state.info = JSON.parse(localStorage.getItem('orderInfo'));
+    state.info = JSON.parse(window.localStorage.getItem('orderInfo'))
   },
   [types.TO_PAY] (state, order) {
     state.toPay = order

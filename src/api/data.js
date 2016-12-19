@@ -1,38 +1,38 @@
 export default {
   hotProducts: [
     {
-      serialId: "IC0001",
-      name: "公司注册",
-      summary: "跨过创业的第一道门槛，帮您建造梦想的第一个港湾",
-      cover: "product-SHSHIC0001-cover-1.jpg",
+      serialId: 'IC0001',
+      name: '公司注册',
+      summary: '跨过创业的第一道门槛，帮您建造梦想的第一个港湾',
+      cover: 'product-SHSHIC0001-cover-1.jpg',
       price: 1
     },
     {
-      serialId: "HR0003",
-      name: "委托代缴社保公积金服务",
-      summary: "养老无忧，住房不愁，剔除后顾之患，尽享优质生活",
-      cover: "product-SHSHHR0003-cover-1.jpg",
+      serialId: 'HR0003',
+      name: '委托代缴社保公积金服务',
+      summary: '养老无忧，住房不愁，剔除后顾之患，尽享优质生活',
+      cover: 'product-SHSHHR0003-cover-1.jpg',
       price: 18.8
     },
     {
-      serialId: "FC0001",
-      name: "零申报代理记账",
-      summary: "在企业湾代理记账，放心无忧",
-      cover: "product-SHSHFC0001-cover-1.jpg",
+      serialId: 'FC0001',
+      name: '零申报代理记账',
+      summary: '在企业湾代理记账，放心无忧',
+      cover: 'product-SHSHFC0001-cover-1.jpg',
       price: 98
     },
     {
-      serialId: "LD0013",
-      name: "商标注册",
-      summary: "商标是企业的敲门砖，让专业律师帮您紧握手中",
-      cover: "product-SHSHLD0013-cover-1.jpg",
+      serialId: 'LD0013',
+      name: '商标注册',
+      summary: '商标是企业的敲门砖，让专业律师帮您紧握手中',
+      cover: 'product-SHSHLD0013-cover-1.jpg',
       price: 199
     },
     {
-      serialId: "IT0005",
-      name: "LOGO设计",
-      summary: "独特的LOGO是创业的门面，新颖的标志是企业的形象",
-      cover: "product-SHSHIT0005-cover-1.jpg",
+      serialId: 'IT0005',
+      name: 'LOGO设计',
+      summary: '独特的LOGO是创业的门面，新颖的标志是企业的形象',
+      cover: 'product-SHSHIT0005-cover-1.jpg',
       price: 488
     }
   ],

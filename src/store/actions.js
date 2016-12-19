@@ -12,8 +12,8 @@ import productApi from '../api/product'
 import orderApi from '../api/order'
 
 export const init = ({commit, state}) => {
-  if (localStorage.createAt) {
-    if (new Date().valueOf() - localStorage.createAt < 15 * 24 * 60 * 60 * 1000) {
+  if (window.localStorage.createAt) {
+    if (new Date().valueOf() - window.localStorage.createAt < 15 * 24 * 60 * 60 * 1000) {
       commit(types.GET_DATA_FROM_STORAGE)
     }
   }
@@ -23,7 +23,7 @@ export const init = ({commit, state}) => {
   })
   authApi.getUser(state.auth.user.token,
     data => {
-      if (data.detail == "Error.Auth.INVALID_TOKEN") {
+      if (data.detail === 'Error.Auth.INVALID_TOKEN') {
         state.auth.isLogin = false
       } else {
         commit('RECEIVE_USER_INFO', data)
@@ -84,7 +84,7 @@ export const getProductDetail = ({commit, state}, serialId) => {
   })
 }
 
-export const requestCaptcha = ({}, phone) => {
+export const requestCaptcha = (phone) => {
   return new Promise((resolve, reject) => {
     authApi.requestCaptcha(phone,
       () => {
@@ -125,7 +125,7 @@ export const userLogin = ({commit}, {phone, password}) => {
       error => {
         reject(error)
       }
-    );
+    )
   })
 }
 
@@ -141,7 +141,7 @@ export const userResetPassword = ({commit}, {phone, password, captcha}) => {
       error => {
         reject(error)
       }
-    );
+    )
   })
 }
 

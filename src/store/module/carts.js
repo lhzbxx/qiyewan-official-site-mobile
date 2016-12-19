@@ -18,24 +18,24 @@ const state = {
 const mutations = {
   [types.ADD_TO_ORDER] (state, cartsNum) {
     // state.info.total -= cartsNum
-    localStorage.setItem("cartInfo", JSON.stringify(state.info))
+    window.localStorage.setItem('cartInfo', JSON.stringify(state.info))
   },
   [types.ADD_TO_CART] (state, cart) {
-    if (cart.amount == 1) {
+    if (cart.amount === 1) {
       // state.info.total += 1
-      localStorage.setItem("cartInfo", JSON.stringify(state.info))
+      window.localStorage.setItem('cartInfo', JSON.stringify(state.info))
     }
   },
   [types.REMOVE_CART] (state) {
     // state.info.total -= 1
-    localStorage.setItem("cartInfo", JSON.stringify(state.info))
+    window.localStorage.setItem('cartInfo', JSON.stringify(state.info))
   },
   [types.REMOVE_CART] (state) {
     // state.info.total -= 1
-    localStorage.setItem("cartInfo", JSON.stringify(state.info))
+    window.localStorage.setItem('cartInfo', JSON.stringify(state.info))
   },
   [types.GET_DATA_FROM_STORAGE] (state) {
-    state.info = JSON.parse(localStorage.getItem('cartInfo'));
+    state.info = JSON.parse(window.localStorage.getItem('cartInfo'))
   }
 }
 
