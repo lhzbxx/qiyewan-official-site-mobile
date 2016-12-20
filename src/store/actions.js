@@ -23,7 +23,7 @@ export const init = ({commit, state}) => {
   })
   authApi.getUser(state.auth.user.token,
     data => {
-      if (data.detail === 'Error.Auth.INVALID_TOKEN') {
+      if (data.type === 'ERROR.NO_AUTH') {
         state.auth.isLogin = false
       } else {
         commit('RECEIVE_USER_INFO', data)
@@ -215,9 +215,9 @@ export const addToOrder = ({commit, state}, {carts, payment}) => {
   })
 }
 
-export const getOrders = ({commit, state}, {page, orderState}) => {
+export const getOrders = ({commit, state}, {page, orderStage}) => {
   return new Promise((resolve, reject) => {
-    orderApi.getOrders(state.auth.user.token, page, orderState,
+    orderApi.getOrders(state.auth.user.token, page, orderStage,
       orders => {
         // commit(types.RECEIVE_ORDER, orders)
         resolve(orders)

@@ -3,8 +3,8 @@
     <lh-page-header :hasBack=false
                     title="订 单"></lh-page-header>
     <lh-home-footer :index="2"></lh-home-footer>
-    <lh-tabs-header :tabs="orderState"
-                    :tab="orderState[currentState]"
+    <lh-tabs-header :tabs="orderStage"
+                    :tab="orderStage[currentState]"
                     @change-current="changeCurrent"></lh-tabs-header>
     <lh-loading v-if="isLoading"></lh-loading>
     <div v-else>
@@ -29,20 +29,20 @@
         </lh-table-entry>
         <div class="ops-block">
           <p class="button warning"
-             v-if="order.orderState == 'Unpaid'"
+             v-if="order.orderStage == 'UNPAID'"
              v-on:click="handleCancelButton(order)">删除</p>
           <p class="button"
-             v-if="order.orderState == 'Unpaid'"
+             v-if="order.orderStage == 'UNPAID'"
              v-on:click="handlePayButton(order)">去支付</p>
           <p class="button disabled"
-             v-if="order.orderState == 'Timeout'">已超时</p>
+             v-if="order.orderStage == 'TIMEOUT'">已超时</p>
           <p class="button disabled"
-             v-if="order.orderState == 'Canceled'">已取消</p>
+             v-if="order.orderStage == 'CANCELED'">已取消</p>
           <p class="button"
-             v-if="order.orderState == 'Paid'"
+             v-if="order.orderStage == 'PAID'"
              v-on:click="handleReviewButton(order)">去评价</p>
           <p class="button"
-             v-if="order.orderState == 'Reviewed'"
+             v-if="order.orderStage == 'REVIEWED'"
              v-on:click="handleAnotherButton(order)">再来一份</p>
         </div>
       </div>
@@ -58,7 +58,7 @@
         isLoading: true,
         error: null,
         currentState: 0,
-        orderState: [
+        orderStage: [
           '全部',
           '未付款',
           '待评价',
@@ -89,19 +89,19 @@
         let vm = this
         this.loading = true
         this.orders = []
-        var orderState = 'All'
+        var orderStage = 'All'
         switch (this.currentState) {
           case 1:
-            orderState = 'Unpaid'
+            orderStage = 'UNPAID'
             break
           case 2:
-            orderState = 'Paid'
+            orderStage = 'PAID'
             break
           case 3:
-            orderState = 'Reviewed'
+            orderStage = 'REVIEWED'
             break
         }
-        this.$store.dispatch('getOrders', {page: 1, orderState: orderState}).then(
+        this.$store.dispatch('getOrders', {page: 1, orderStage: orderStage}).then(
           data => {
             vm.orders = data.content
             vm.isLoading = false
@@ -116,7 +116,7 @@
         MessageBox.confirm('确认取消订单吗？').then(
           action => {
             vm.$store.dispatch('cancelOrder', order.serialId).then(
-              order.orderState = 'Canceled'
+              order.orderStage = 'CANCELED'
             )
           },
           () => {
