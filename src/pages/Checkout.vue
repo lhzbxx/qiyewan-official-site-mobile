@@ -36,7 +36,7 @@
   export default {
     data() {
       return {
-        payment: 'Alipay',
+        payment: 'WeChat_PC',
         payments: [
           {
             label: '微信支付',
