@@ -10,10 +10,11 @@ import * as types from '../mutation-types'
 const state = {
   isLogin: false,
   user: {
-    phone: '',
     token: '',
+    phone: '',
     avatar: '',
-    nickname: ''
+    nickname: '',
+    isWxBound: false
   }
 }
 
@@ -40,6 +41,7 @@ const mutations = {
   [types.RECEIVE_USER_INFO] (state, info) {
     state.user.avatar = info.avatar
     state.user.nickname = info.nickname
+    state.user.isWxBound = info.isWxBound
   }
 }
 

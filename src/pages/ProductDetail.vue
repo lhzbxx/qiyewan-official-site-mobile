@@ -21,7 +21,7 @@
             {{ product.unitPrice.toFixed(2) }}
           </p>
           <p id="product-detail-comment">
-            （我们价格为平台服务费，官费指国家行政收费，刻章工本费由客户承担。注：不用不同，详情请咨询我公司客服，电话：400-716-8896）
+            （我们价格为平台服务费，官费指国家行政收费，刻章工本费由客户承担。注：如有不同，详情请咨询我公司客服，电话：400-716-8896）
           </p>
           <lh-services></lh-services>
           <p class="product-detail-title">您将得到</p>

@@ -25,6 +25,27 @@ export default {
         errorCb(response.body)
       })
   },
+  loginWithOpenId (openId, cb, errorCb) {
+    Vue.http.get('auth/wx.do?openId=' + openId).then(
+      (response) => {
+        cb(response.body.token)
+      },
+      (response) => {
+        errorCb(response.body)
+      }
+    )
+  },
+  bindWxOpenId (token, openId, cb, errorCb) {
+    Vue.http.headers.common['Authorization'] = token
+    Vue.http.post('auth/wx.do', openId).then(
+      (response) => {
+        cb(response.body)
+      },
+      (response) => {
+        errorCb(response.body)
+      }
+    )
+  },
   requestCaptcha (phone, cb, errorCb) {
     Vue.http.post('captcha.do?phone=' + phone).then(
       (response) => {

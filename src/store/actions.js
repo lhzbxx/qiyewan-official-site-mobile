@@ -21,6 +21,28 @@ export const init = ({commit, state}) => {
     console.log('自动切换到区域：' + region)
     commit(types.CHANGE_REGION, region)
   })
+  // 1. 如果 token 不存在，且用户在使用微信内置浏览器，则先尝试使用 openid 登录。
+  // 2. 如果 token 存在，且用户在使用微信内置浏览器，则先判断用户是否已经绑定微信，如果没有，则尝试绑定。
+  // 3. 如果用户没有在使用微信内置浏览器，则只验证 token 的有效性。
+  if (isWx() && !state.auth.user.isWxBound) {
+    window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6d3c480373a5418f&redirect_uri=' +
+      'http%3A%2F%2Flocalhost%3A8080' +
+      '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
+    let openId = ''
+    // 获得OpenId
+    if (!state.user.isLogin) {
+      authApi.loginWithOpenId(openId,
+        token => {
+          if (token) {
+            let phone = ''
+            commit(types.USER_LOGIN, {phone, token})
+          }
+        },
+        () => {}
+      )
+    }
+  }
+  // 异步验证 token 是否已经失效，同时刷新用户的信息数据（）
   authApi.getUser(state.auth.user.token,
     data => {
       if (data.type === 'ERROR.NO_AUTH') {
@@ -30,6 +52,10 @@ export const init = ({commit, state}) => {
       }
     }
   )
+}
+
+function isWx () {
+  return navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1
 }
 
 export const getProducts = ({commit, state}) => {
