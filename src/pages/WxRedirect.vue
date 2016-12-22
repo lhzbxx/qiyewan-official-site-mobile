@@ -8,7 +8,7 @@
       return {}
     },
     created () {
-      this.$store.dispatch('getOpenId', this.$route.params.code)
+      this.$store.dispatch('getOpenId', this.$route.query.code)
     }
   }
 </script>

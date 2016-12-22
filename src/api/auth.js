@@ -49,7 +49,7 @@ export default {
   getWxBaseInfo (code, cb) {
     Vue.http.get('proxy/wx/access-token?code=' + code).then(
       (response) => {
-        cb(JSON.parse(response.body))
+        cb(response.body)
       },
       () => {}
     )
