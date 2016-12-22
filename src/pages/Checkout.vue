@@ -39,17 +39,17 @@
         payment: 'WXPAY_WAP',
         payments: [
           {
-            label: '微信支付',
+            label: '微信（推荐）',
             value: 'WXPAY_WAP'
           },
           {
             label: '支付宝',
             value: 'ALIPAY_WAP'
-          },
-          {
-            label: '银行卡',
-            value: 'UPACP_WAP'
           }
+//          {
+//            label: '银行卡',
+//            value: 'UPACP_WAP'
+//          }
         ]
       }
     },

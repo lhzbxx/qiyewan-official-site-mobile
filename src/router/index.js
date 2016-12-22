@@ -22,6 +22,7 @@ import ContactUs from '../pages/ContactUs.vue'
 import BrowsingHistory from '../pages/BrowsingHistory.vue'
 import Contract from '../pages/Contract.vue'
 import Success from '../pages/Success.vue'
+import WxRedirect from '../pages/WxRedirect.vue'
 
 const routes = [
   {
@@ -113,6 +114,11 @@ const routes = [
     path: '/success',
     name: 'success',
     component: Success
+  },
+  {
+    path: '/wx-redirect',
+    name: 'wx-redirect',
+    component: WxRedirect
   },
   {
     path: '/404',
