@@ -11,6 +11,7 @@ const state = {
   isLogin: false,
   user: {
     token: '',
+    openId: '',
     phone: '',
     avatar: '',
     nickname: '',
