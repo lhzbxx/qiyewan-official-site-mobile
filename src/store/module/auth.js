@@ -29,7 +29,7 @@ const mutations = {
     state.user.phone = phone
     state.user.token = token
     window.localStorage.createAt = new Date().valueOf()
-    window.localStorage.setItem('user', JSON.stringify(state.user))
+    save(state)
   },
   [types.USER_LOGOUT] (state) {
     state.isLogin = false
@@ -43,10 +43,16 @@ const mutations = {
     state.user.avatar = info.avatar
     state.user.nickname = info.nickname
     state.user.isWxBound = info.isWxBound
+    save(state)
   },
   [types.RECEIVE_OPEN_ID] (state, openId) {
     state.user.openId = openId
+    save(state)
   }
+}
+
+function save (state) {
+  window.localStorage.setItem('user', JSON.stringify(state.user))
 }
 
 export default {

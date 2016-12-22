@@ -52,23 +52,27 @@ function isWx () {
 }
 
 export const getOpenId = ({state, commit}, code) => {
-  authApi.getWxBaseInfo(code,
-    data => {
-      console.log(data)
-      commit(types.RECEIVE_OPEN_ID, data.openid)
-      if (!state.auth.isLogin) {
-        authApi.loginWithOpenId(data.openid,
-          token => {
-            if (token) {
-              let phone = ''
-              commit(types.USER_LOGIN, {phone, token})
+  return new Promise((resolve, reject) => {
+    authApi.getWxBaseInfo(code,
+      data => {
+        commit(types.RECEIVE_OPEN_ID, data.openid)
+        if (!state.auth.isLogin) {
+          authApi.loginWithOpenId(data.openid,
+            token => {
+              if (token) {
+                let phone = ''
+                commit(types.USER_LOGIN, {phone, token})
+                resolve()
+              }
+            },
+            () => {
+              reject()
             }
-          },
-          () => {}
-        )
+          )
+        }
       }
-    }
-  )
+    )
+  })
 }
 
 export const getProducts = ({commit, state}) => {
@@ -241,7 +245,7 @@ export const removeCart = ({commit, state}, cartId) => {
 
 export const addToOrder = ({commit, state}, {carts, payment}) => {
   return new Promise((resolve, reject) => {
-    orderApi.addOrder(state.auth.user.token, carts, payment,
+    orderApi.addOrder(state.auth.user.token, carts, payment, state.auth.user.openId,
       order => {
         commit(types.ADD_TO_ORDER, carts.length)
         resolve(order)
