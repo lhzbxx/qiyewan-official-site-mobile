@@ -4,12 +4,11 @@
 
 <script>
   export default {
-    data() {
+    data () {
       return {}
     },
-    created() {
-      let state = this.$route.params.state
-      console.log(state)
+    created () {
+      this.$store.dispatch('getOpenId', this.$route.params.code)
     }
   }
 </script>

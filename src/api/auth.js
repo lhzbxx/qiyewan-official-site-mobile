@@ -46,6 +46,14 @@ export default {
       }
     )
   },
+  getWxBaseInfo (code, cb) {
+    Vue.http.get('proxy/wx/access-token?code=' + code).then(
+      (response) => {
+        cb(JSON.parse(response.body))
+      },
+      () => {}
+    )
+  },
   requestCaptcha (phone, cb, errorCb) {
     Vue.http.post('captcha.do?phone=' + phone).then(
       (response) => {

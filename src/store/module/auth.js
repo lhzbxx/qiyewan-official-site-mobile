@@ -43,6 +43,9 @@ const mutations = {
     state.user.avatar = info.avatar
     state.user.nickname = info.nickname
     state.user.isWxBound = info.isWxBound
+  },
+  [types.RECEIVE_OPEN_ID] (state, openId) {
+    state.user.openId = openId
   }
 }
 

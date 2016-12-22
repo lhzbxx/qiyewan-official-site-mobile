@@ -24,25 +24,13 @@ export const init = ({commit, state}) => {
   // 1. 如果 token 不存在，且用户在使用微信内置浏览器，则先尝试使用 openid 登录。
   // 2. 如果 token 存在，且用户在使用微信内置浏览器，则先判断用户是否已经绑定微信，如果没有，则尝试绑定。
   // 3. 如果用户没有在使用微信内置浏览器，则只验证 token 的有效性。
-  if (isWx() && !state.auth.user.openId) {
-    // window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6d3c480373a5418f&redirect_uri=' +
-    //   'http%3A%2F%2Fwww.qiyewan.com/assets/wx_redirect.htm' +
-    //   '&response_type=code&scope=snsapi_base&state=' +
-    //   'INIT' +
-    //   '#wechat_redirect'
-    let openId = ''
-    // 获得OpenId
-    if (!state.user.isLogin) {
-      authApi.loginWithOpenId(openId,
-        token => {
-          if (token) {
-            let phone = ''
-            commit(types.USER_LOGIN, {phone, token})
-          }
-        },
-        () => {}
-      )
-    }
+  if (isWx() && !state.auth.user.openId && window.localStorage.wx && new Date().valueOf() - window.localStorage.wx > 5 * 60 * 1000) {
+    window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6d3c480373a5418f&redirect_uri=' +
+      'http%3A%2F%2Fwww.qiyewan.com/assets/wx_redirect.htm' +
+      '&response_type=code&scope=snsapi_base&state=' +
+      'INIT' +
+      '#wechat_redirect'
+    window.localStorage.wx = new Date().valueOf()
   }
   // 异步验证 token 是否已经失效，同时刷新用户的信息数据（）
   authApi.getUser(state.auth.user.token,
@@ -58,6 +46,29 @@ export const init = ({commit, state}) => {
 
 function isWx () {
   return navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1
+}
+
+export const getOpenId = ({commit}, code) => {
+  authApi.getWxBaseInfo(code,
+    data => {
+      console.log(data.openid)
+      commit(types.RECEIVE_OPEN_ID, data.openid)
+    }
+  )
+}
+
+export const userLoginWithOpenId = ({state, commit}, openId) => {
+  if (!state.auth.isLogin) {
+    authApi.loginWithOpenId(openId,
+      token => {
+        if (token) {
+          let phone = ''
+          commit(types.USER_LOGIN, {phone, token})
+        }
+      },
+      () => {}
+    )
+  }
 }
 
 export const getProducts = ({commit, state}) => {
