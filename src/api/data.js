@@ -175,6 +175,22 @@ export default {
         {name: "新津县"},
       ]
     },
+    {
+      name: "合肥", code: 'AHHF', pName: "安徽",
+      areas: [
+        {name: "瑶海区"},
+        {name: "庐阳区"},
+        {name: "蜀山区"},
+        {name: "包河区"},
+        {name: "长丰县"},
+        {name: "肥东县"},
+        {name: "肥西县"},
+        {name: "庐江县"},
+        {name: "巢湖市"},
+        {name: "新开区"},
+        {name: "综开区"}
+      ]
+    }
   ]
 }
 

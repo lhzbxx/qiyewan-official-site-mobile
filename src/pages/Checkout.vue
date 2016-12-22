@@ -39,17 +39,17 @@
         payment: 'WeChat_PC',
         payments: [
           {
-            label: '微信支付',
+            label: '微信（推荐）',
             value: 'WeChat_PC'
           },
           {
             label: '支付宝',
             value: 'Alipay'
-          },
-          {
-            label: '银行卡',
-            value: 'Bank'
           }
+//          {
+//            label: '银行卡',
+//            value: 'Bank'
+//          }
         ]
       }
     },
