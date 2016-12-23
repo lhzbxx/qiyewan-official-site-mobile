@@ -161,7 +161,7 @@
   #home {
     background: #eee;
     padding-top: 44px;
-    padding-bottom: 50px;
+    padding-bottom: 44px;
     min-height: 100%;
   }
 
@@ -177,17 +177,17 @@
     flex: 1;
     text-align: center;
     background: white;
-    padding-top: 10px;
+    padding-top: 17px;
   }
 
   .category-image {
-    width: 80%;
+    width: 60%;
   }
 
   .category-desc {
-    margin-top: 5px;
-    font-size: 13px;
-    padding-bottom: 10px;
+    margin-top: 7px;
+    font-size: 11px;
+    padding-bottom: 20px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;

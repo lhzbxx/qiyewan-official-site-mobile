@@ -119,7 +119,7 @@
 <style scoped>
   #mine {
     padding-top: 59px;
-    padding-bottom: 50px;
+    padding-bottom: 44px;
     background: #fafafa;
     min-height: 100%;
   }

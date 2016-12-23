@@ -36,7 +36,9 @@
   }
 
   #block-header-title span {
-    font-size: 16px;
+    font-size: 13px;
+    line-height: 13px;
+    margin-left: 8px;
   }
 
   #block-header-title {
@@ -50,11 +52,12 @@
   }
 
   #block-header-more span {
-    font-size: 13px
+    font-size: 11px;
+    line-height: 11px;
   }
 
   #block-header img {
-    height: 20px;
+    height: 15px;
     vertical-align: middle;
   }
 </style>

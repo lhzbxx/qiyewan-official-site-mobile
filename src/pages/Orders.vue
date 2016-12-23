@@ -167,7 +167,7 @@
 <style scoped>
   #orders {
     padding-top: 44px;
-    padding-bottom: 50px;
+    padding-bottom: 44px;
     background: #f9f9f9;
     min-height: 100%;
   }

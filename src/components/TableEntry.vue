@@ -77,7 +77,7 @@
 
   #table-entry-name {
     line-height: 25px;
-    font-size: 15px;
+    font-size: 11px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -85,7 +85,7 @@
 
   #table-entry-summary {
     line-height: 15px;
-    font-size: 13px;
+    font-size: 10px;
     color: #aaa;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -97,17 +97,14 @@
 
   #table-entry-price {
     line-height: 38px;
+    color: red;
+    font-size: 12px;
   }
 
   #table-entry-cover {
     float: left;
     width: 30%;
     height: 80px;
-  }
-
-  #table-entry-price {
-    color: red;
-    font-size: 20px;
   }
 
   span {

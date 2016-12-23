@@ -49,18 +49,18 @@
   }
 
   #product-name {
-    font-size: 12px;
-    margin-top: 5px;
+    font-size: 11px;
+    margin-top: 2px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    line-height: 14px;
+    line-height: 22px;
   }
 
   #product-price {
     color: red;
-    margin: 5px 0;
-    font-size: 15px;
-    line-height: 15px;
+    margin-bottom: 12px;
+    font-size: 12px;
+    line-height: 12px;
   }
 </style>

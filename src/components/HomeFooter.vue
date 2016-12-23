@@ -55,7 +55,7 @@
 
 <style scoped>
   #home-footer {
-    height: 50px;
+    height: 44px;
     position: fixed;
     display: flex;
     bottom: 0;
@@ -70,16 +70,18 @@
     flex: 1;
     text-align: center;
     height: 100%;
-    padding: 5px 0;
+    padding-top: 8px;
+    padding-bottom: 4px;
   }
 
   .tab img {
-    height: 25px;
+    height: 18px;
   }
 
   .tab p {
-    font-size: 13px;
-    line-height: 15px;
+    font-size: 10px;
+    line-height: 10px;
+    margin-top: 4px;
   }
 
   p.active {

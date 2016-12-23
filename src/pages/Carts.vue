@@ -199,7 +199,7 @@
 <style scoped>
   #carts {
     padding-top: 44px;
-    padding-bottom: 50px;
+    padding-bottom: 44px;
     min-height: 100%;
   }
 
