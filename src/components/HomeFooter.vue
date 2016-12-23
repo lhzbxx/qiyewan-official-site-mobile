@@ -70,7 +70,7 @@
     flex: 1;
     text-align: center;
     height: 100%;
-    padding-top: 8px;
+    padding-top: 6px;
     padding-bottom: 4px;
   }
 
@@ -81,7 +81,6 @@
   .tab p {
     font-size: 10px;
     line-height: 10px;
-    margin-top: 4px;
   }
 
   p.active {

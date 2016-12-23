@@ -54,18 +54,20 @@
 
   #menu {
     width: 70px;
+    height: 16px;
   }
 
   #menu img {
-    height: 20px;
+    height: 16px;
   }
 
   #logo {
-    height: 36px;
+    height: 28px;
   }
 
   #area {
     width: 70px;
     text-align: right;
+    font-size: 15px;
   }
 </style>
