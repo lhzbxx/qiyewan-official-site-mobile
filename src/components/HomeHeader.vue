@@ -63,6 +63,7 @@
 
   #logo {
     height: 28px;
+    margin-left: -5px;
   }
 
   #area {
