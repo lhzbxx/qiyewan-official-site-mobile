@@ -90,7 +90,7 @@
             pingpp.createPayment(order.charge, function (result, err) {
               if (result === 'success') {
                 // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
-                vm.$router.replace({name: 'order'})
+                vm.$router.replace({name: 'success'})
               } else if (result === 'fail') {
                 // charge 不正确或者微信公众账号支付失败时会在此处返回
                 vm.$router.replace({name: 'order'})
@@ -109,6 +109,14 @@
     mounted () {
       if (this.getCheckout.length === 0) {
         this.$router.replace({name: 'home'})
+      }
+      if (navigator.userAgent.toLowerCase().indexOf('micromessenger') === -1) {
+        this.payments = [
+          {
+            label: '支付宝',
+            value: 'ALIPAY_WAP'
+          }
+        ]
       }
     },
     beforeDestroy () {
