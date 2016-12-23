@@ -243,7 +243,7 @@
     position: fixed;
     align-items: baseline;
     justify-content: flex-end;
-    bottom: 50px;
+    bottom: 44px;
     width: 100%;
     height: 50px;
     z-index: 99;

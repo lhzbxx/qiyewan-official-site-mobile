@@ -66,7 +66,7 @@
                     :name="item.name"
                     :price="item.price"
                     @click="jumpToDetail(getRegion.code + item.serialId)"
-                    :coverHeight="(screenWidth - 20) / 2 * 0.8"
+                    :coverHeight="(screenWidth - 20) / 2 * 0.75"
                     v-for="item in hotProducts.slice(0, 2)">
         </lh-product>
       </div>

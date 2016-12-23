@@ -76,7 +76,7 @@
   }
 
   #table-entry-name {
-    line-height: 25px;
+    line-height: 20px;
     font-size: 11px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -96,7 +96,7 @@
   }
 
   #table-entry-price {
-    line-height: 38px;
+    line-height: 22px;
     color: red;
     font-size: 12px;
   }
