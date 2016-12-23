@@ -83,16 +83,20 @@
         Indicator.open({
           text: '跳转中...'
         })
+        let vm = this
         this.$store.dispatch('addToOrder', {carts: this.getCheckout, payment: this.payment}).then(
           order => {
             pingpp.setAPURL('/static/pay.htm')
             pingpp.createPayment(order.charge, function (result, err) {
               if (result === 'success') {
                 // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
+                vm.$router.replace({name: 'order'})
               } else if (result === 'fail') {
                 // charge 不正确或者微信公众账号支付失败时会在此处返回
+                vm.$router.replace({name: 'order'})
               } else if (result === 'cancel') {
                 // 微信公众账号支付取消支付
+                vm.$router.replace({name: 'order'})
               }
             })
 //            vm.$store.commit('TO_PAY', order)
