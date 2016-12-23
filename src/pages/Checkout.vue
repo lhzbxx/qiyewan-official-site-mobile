@@ -117,6 +117,7 @@
             value: 'ALIPAY_WAP'
           }
         ]
+        this.payment = 'ALIPAY_WAP'
       }
     },
     beforeDestroy () {
