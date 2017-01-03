@@ -8,7 +8,10 @@
       <mt-swipe-item class="slide"
                      v-bind:style="{ height: bannerHeight + 'px' }"
                      v-for="(item, index) in slides">
-        <img :src="item.image | cdn-filter" :alt="index" width="100%">
+        <router-link
+          :to="{ name: 'product-detail', params: { serialId: getRegion.code + item.serialId }}">
+          <img :src="item.image | cdn-filter" :alt="index" width="100%">
+        </router-link>
       </mt-swipe-item>
     </mt-swipe>
     <div id="categories"
@@ -82,7 +85,7 @@
       </div>
     </div>
     <div id="hot-products" class="clearfix">
-      <lh-block-header name="套餐服务"></lh-block-header>
+      <lh-block-header name="套餐服务" :isMore="false"></lh-block-header>
       <lh-table-entry v-for="item in combos"
                       :name="item.name"
                       :cover="item.cover"
@@ -104,24 +107,24 @@
         combos: [],
         slides: [
           {
-            image: 'mobile-banner-1.jpg',
-            url: ''
+            serialId: 'FC0001',
+            image: 'mobile-banner-1.jpg'
           },
           {
-            image: 'mobile-banner-2.jpg',
-            url: ''
+            serialId: 'IC0001',
+            image: 'mobile-banner-2.jpg'
           },
           {
-            image: 'mobile-banner-3.jpg',
-            url: ''
+            serialId: 'IC0001',
+            image: 'mobile-banner-3.jpg'
           },
           {
-            image: 'mobile-banner-4.jpg',
-            url: ''
+            serialId: 'FC0001',
+            image: 'mobile-banner-4.jpg'
           },
           {
-            image: 'mobile-banner-5.jpg',
-            url: ''
+            serialId: 'LD0001',
+            image: 'mobile-banner-5.jpg'
           }
         ]
       }
