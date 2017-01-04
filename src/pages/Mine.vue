@@ -1,7 +1,8 @@
 <template>
   <div id="mine">
-    <lh-page-header :hasBack=false
-                    title="个人中心"></lh-page-header>
+    <lh-page-header
+      title="个人中心">
+    </lh-page-header>
     <lh-home-footer :index="4"></lh-home-footer>
     <div class="auth" id="has-auth" v-if="isLogin">
       <img :src="getAuth.avatar ? getAuth.avatar : 'avatar.png' | cdn-filter" alt="avatar">
@@ -15,70 +16,45 @@
     <div id="bought">
       <div class="bought-block"
            style="border-right: 1px solid #eee;">
-        <router-link to="/order?state=3"
-                     class="link">使用中
+        <img src="../assets/service-node.png" class="gray">
+        <router-link to="#"
+                     class="link">服务节点
         </router-link>
-        <img src="../assets/using.png">
       </div>
       <div class="bought-block">
+        <img src="../assets/unreviewed.png">
         <router-link to="/order?state=2"
                      class="link">待评价
         </router-link>
-        <img src="../assets/unreviewed.png">
       </div>
     </div>
     <div class="block">
-      <mt-cell
-        title="购物车"
-        to="/cart"
-        is-link>
-        <img slot="icon"
-             src="../assets/cart.png"
-             class="cell-icon"
-             width="28"
-             style="margin-right: 3px;">
+      <mt-cell class="row"
+               title="购物车"
+               to="/cart"
+               is-link>
       </mt-cell>
-      <mt-cell
-        title="订单"
-        to="/order"
-        is-link>
-        <img slot="icon"
-             src="../assets/order.png"
-             class="cell-icon"
-             width="28"
-             style="margin-right: 3px;">
+      <mt-cell class="row"
+               title="订单"
+               to="/order"
+               is-link>
       </mt-cell>
-      <mt-cell
-        title="浏览记录"
-        to="/browsing-history"
-        is-link>
-        <img slot="icon"
-             src="../assets/history.png"
-             class="cell-icon"
-             width="28"
-             style="margin-right: 3px;">
+      <mt-cell class="row"
+               title="浏览记录"
+               to="/browsing-history"
+               is-link>
       </mt-cell>
     </div>
     <div class="block">
-      <mt-cell
-        title="关于我们"
-        to="/about-us"
-        is-link>
-        <img slot="icon"
-             src="../assets/logo.png"
-             class="cell-icon"
-             width="28"
-             style="margin-right: 3px;">
+      <mt-cell class="row"
+               title="关于我们"
+               to="/about-us"
+               is-link>
       </mt-cell>
-      <mt-cell
-        title="联系我们"
-        to="/contact-us"
-        is-link>
-        <img slot="icon"
-             src="../assets/contact-us.png"
-             class="cell-icon"
-             width="28"
-             style="margin-right: 3px;">
+      <mt-cell class="row"
+               title="联系我们"
+               to="/contact-us"
+               is-link>
       </mt-cell>
     </div>
     <div style="margin: 15px 10px 10px;"
@@ -141,7 +117,13 @@
 
   .bought-block img {
     vertical-align: middle;
-    height: 24px;
+    width: 16px;
+    height: 14px;
+  }
+
+  .gray {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
   }
 
   .bought-block span {
@@ -163,6 +145,8 @@
 
   #no-auth {
     justify-content: center;
+    height: 119px;
+    background-color: #00A1E8;
   }
 
   #has-auth img {
@@ -180,19 +164,27 @@
   }
 
   .link {
-    font-weight: 500;
     text-decoration: none;
-    color: black;
+    color: #8D8D8D;
+    font-size: 15px;
   }
 
   .button {
-    padding: 6px 30px;
+    color: #fff;
     margin: 0 15px;
     line-height: 20px;
     font-size: 16px;
-    border: 1px solid #26a2ff;
+    border: 1px solid #fff;
     border-radius: 20px;
-    color: #26a2ff;
+    width: 92px;
+    height: 28px;
+    text-align: center;
+    padding: 3px;
+  }
+
+  .row {
+    color: #8D8D8D;
+    font-size: 15px;
   }
 
   #right-arrow:after {

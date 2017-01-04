@@ -128,6 +128,7 @@
         this.$router.push({name: 'checkout'})
       },
       handleDeleteButton () {
+        if (this.selection.length === 0) return
         let vm = this
         MessageBox.confirm('确认从购物车中移除吗？').then(
           action => {
