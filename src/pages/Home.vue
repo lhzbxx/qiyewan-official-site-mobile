@@ -189,7 +189,7 @@
 
   .category-desc {
     margin-top: 7px;
-    font-size: 11px;
+    font-size: 12px;
     padding-bottom: 20px;
     text-overflow: ellipsis;
     white-space: nowrap;

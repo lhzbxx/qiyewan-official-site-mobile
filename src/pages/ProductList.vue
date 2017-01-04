@@ -18,8 +18,8 @@
       <div id="content">
         <div class="classification" v-for="(item, index) in list">
           <div class="content-header">
-            <div class="dot">&#8226;</div>
-            <div>{{ currentClassification.subs[index] }}</div>
+            <div class="splitter"></div>
+            <div class="category-name">{{ currentClassification.subs[index] }}</div>
           </div>
           <div class="content-body">
             <div v-for="i in item"
@@ -155,16 +155,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 90px;
-    max-width: 90px;
+    min-width: 77px;
+    max-width: 77px;
+    background-color: #F8F8F8;
+    margin-right: 1px;
   }
 
   .list {
-    padding-bottom: 15px;
     width: 70px;
     text-align: center;
-    border-bottom: 1px solid #aaa;
-    color: #aaa;
+    border-bottom: 1px solid #ededed;
+    color: #666;
+    font-size: 14px;
+    padding-bottom: 22px;
+    margin-top: 5px;
   }
 
   .list.active {
@@ -173,59 +177,19 @@
     margin-bottom: -2px;
   }
 
+  .classification {
+    margin-top: 6px;
+  }
+
   .classification-icon {
     margin: 15px auto 8px;
-    width: 35px;
-    height: 35px;
     text-align: center;
     display: block;
     background: no-repeat center;
     background-size: 100%;
   }
 
-  .HR {
-    background-image: url("../assets/HR.png");
-  }
-
-  .HR.active {
-    background-image: url("../assets/HR-active.png");
-  }
-
-  .FC {
-    background-image: url("../assets/FC.png");
-    background-size: 70%;
-  }
-
-  .FC.active {
-    background-image: url("../assets/FC-active.png");
-  }
-
-  .IC {
-    background-image: url("../assets/IC.png");
-  }
-
-  .IC.active {
-    background-image: url("../assets/IC-active.png");
-  }
-
-  .LD {
-    background-image: url("../assets/LD.png");
-  }
-
-  .LD.active {
-    background-image: url("../assets/LD-active.png");
-  }
-
-  .IT {
-    background-image: url("../assets/IT.png");
-  }
-
-  .IT.active {
-    background-image: url("../assets/IT-active.png");
-  }
-
   #content {
-    background: #eee;
     flex-grow: 1;
     padding-bottom: 2px;
   }
@@ -238,8 +202,15 @@
     color: #666;
   }
 
-  .dot {
+  .splitter {
+    background-color: #1994F3;
+    width: 4px;
+    height: 15px;
     margin-right: 5px;
+  }
+
+  .category-name {
+    font-size: 16px;
   }
 
   .content-body {
@@ -251,12 +222,13 @@
   }
 
   .product {
-    border: 1px solid #aaa;
-    border-radius: 5px;
+    border: 1px solid #ddd;
     padding: 5px;
     font-size: 13px;
-    margin-top: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
     margin-right: 10px;
     line-height: 15px;
+    color: #666;
   }
 </style>

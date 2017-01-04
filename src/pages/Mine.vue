@@ -147,6 +147,7 @@
     justify-content: center;
     height: 119px;
     background-color: #00A1E8;
+    margin-top: -14px;
   }
 
   #has-auth img {
