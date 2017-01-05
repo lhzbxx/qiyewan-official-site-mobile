@@ -4,7 +4,7 @@
       <img src="../assets/hot.png" alt="recommends">
       <span>{{ name }}</span>
     </div>
-    <div id="block-header-more"
+    <div id="block-header-more" v-if="isMore"
          v-on:click="showMore">
       <span>更多</span>
       <img src="../assets/more.png" alt="more">
@@ -15,7 +15,11 @@
 <script>
   export default {
     props: {
-      name: String
+      name: String,
+      isMore: {
+        type: Boolean,
+        default: true
+      }
     },
     methods: {
       showMore () {

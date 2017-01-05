@@ -5,7 +5,7 @@ export default {
       name: '公司注册',
       summary: '跨过创业的第一道门槛，帮您建造梦想的第一个港湾',
       cover: 'product-SHSHIC0001-cover-1.jpg',
-      price: 1
+      price: 400
     },
     {
       serialId: 'HR0003',
