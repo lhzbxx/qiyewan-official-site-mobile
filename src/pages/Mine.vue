@@ -1,7 +1,7 @@
 <template>
   <div id="mine">
-    <lh-page-header
-      title="个人中心">
+    <lh-page-header :hasBack=false
+                    title="个人中心">
     </lh-page-header>
     <lh-home-footer :index="4"></lh-home-footer>
     <div class="auth" id="has-auth" v-if="isLogin">
@@ -16,7 +16,8 @@
     <div id="bought">
       <div class="bought-block"
            style="border-right: 1px solid #eee;">
-        <img src="../assets/service-node.png" class="gray">
+        <img src="../assets/service-node.png"
+             style="filter: grayscale(100%);">
         <router-link to="#"
                      class="link">服务节点
         </router-link>
@@ -33,16 +34,31 @@
                title="购物车"
                to="/cart"
                is-link>
+        <!--<img slot="icon" -->
+             <!--src="../assets/cart.png"-->
+             <!--class="cell-icon"-->
+             <!--width="28"-->
+             <!--style="margin-right: 3px;">-->
       </mt-cell>
       <mt-cell class="row"
                title="订单"
                to="/order"
                is-link>
+        <!--<img slot="icon"-->
+             <!--src="../assets/order.png"-->
+             <!--class="cell-icon"-->
+             <!--width="28"-->
+             <!--style="margin-right: 3px;">-->
       </mt-cell>
       <mt-cell class="row"
                title="浏览记录"
                to="/browsing-history"
                is-link>
+        <!--<img slot="icon"-->
+             <!--src="../assets/history.png"-->
+             <!--class="cell-icon"-->
+             <!--width="28"-->
+             <!--style="margin-right: 3px;">-->
       </mt-cell>
     </div>
     <div class="block">
@@ -50,11 +66,21 @@
                title="关于我们"
                to="/about-us"
                is-link>
+        <!--<img slot="icon"-->
+             <!--src="../assets/logo.png"-->
+             <!--class="cell-icon"-->
+             <!--width="28"-->
+             <!--style="margin-right: 3px;">-->
       </mt-cell>
       <mt-cell class="row"
                title="联系我们"
                to="/contact-us"
                is-link>
+        <!--<img slot="icon"-->
+             <!--src="../assets/contact-us.png"-->
+             <!--class="cell-icon"-->
+             <!--width="28"-->
+             <!--style="margin-right: 3px;">-->
       </mt-cell>
     </div>
     <div style="margin: 15px 10px 10px;"
@@ -119,11 +145,6 @@
     vertical-align: middle;
     width: 16px;
     height: 14px;
-  }
-
-  .gray {
-    -webkit-filter: grayscale(100%);
-    filter: grayscale(100%);
   }
 
   .bought-block span {

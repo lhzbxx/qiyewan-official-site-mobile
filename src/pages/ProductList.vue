@@ -19,7 +19,7 @@
         <div class="classification" v-for="(item, index) in list">
           <div class="content-header">
             <div class="splitter"></div>
-            <div class="category-name">{{ currentClassification.subs[index] }}</div>
+            <div class="classification-name">{{ currentClassification.subs[index] }}</div>
           </div>
           <div class="content-body">
             <div v-for="i in item"
@@ -209,7 +209,7 @@
     margin-right: 5px;
   }
 
-  .category-name {
+  .classification-name {
     font-size: 16px;
   }
 
@@ -231,4 +231,45 @@
     line-height: 15px;
     color: #666;
   }
+
+  /*.HR {*/
+    /*background-image: url("../assets/HR.png");*/
+  /*}*/
+
+  /*.HR.active {*/
+    /*background-image: url("../assets/HR-active.png");*/
+  /*}*/
+
+  /*.FC {*/
+    /*background-image: url("../assets/FC.png");*/
+    /*background-size: 70%;*/
+  /*}*/
+
+  /*.FC.active {*/
+    /*background-image: url("../assets/FC-active.png");*/
+  /*}*/
+
+  /*.IC {*/
+    /*background-image: url("../assets/IC.png");*/
+  /*}*/
+
+  /*.IC.active {*/
+    /*background-image: url("../assets/IC-active.png");*/
+  /*}*/
+
+  /*.LD {*/
+    /*background-image: url("../assets/LD.png");*/
+  /*}*/
+
+  /*.LD.active {*/
+    /*background-image: url("../assets/LD-active.png");*/
+  /*}*/
+
+  /*.IT {*/
+    /*background-image: url("../assets/IT.png");*/
+  /*}*/
+
+  /*.IT.active {*/
+    /*background-image: url("../assets/IT-active.png");*/
+  /*}*/
 </style>
