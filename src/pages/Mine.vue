@@ -189,6 +189,7 @@
     text-decoration: none;
     color: #8D8D8D;
     font-size: 15px;
+    line-height: 25px;
   }
 
   .button {
