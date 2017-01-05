@@ -15,8 +15,10 @@
       <div v-for="order in orders"
            id="order">
         <lh-order-header :serialId="order.serialId"
-                         :createAt="order.createAt"></lh-order-header>
-        <lh-table-entry :name="item.name"
+                         :createAt="order.createAt">
+        </lh-order-header>
+        <lh-table-entry v-on:click="goToProductDetail(item.productSerialId)"
+                        :name="item.name"
                         :cover="item.cover"
                         :summary="item.summary"
                         :price="item.unitPrice"
@@ -25,7 +27,8 @@
                         :isLast="order.details.length == index + 1"
                         class="product"
                         :isSplit=false
-                        v-for="(item, index) in order.details">
+                        v-for="(item, index) in order.details"
+                        >
         </lh-table-entry>
         <div class="ops-block">
           <p class="button warning"
@@ -63,7 +66,7 @@
           '全部',
           '未付款',
           '待评价',
-          '已完成'
+          '已评价'
         ],
         orders: []
       }
@@ -155,6 +158,10 @@
       },
       handleAnotherButton (item) {
         // todo: 处理“再来一份”按钮
+      },
+      goToProductDetail (productSerialId) {
+        console.log(productSerialId)
+        this.$router.push({name: 'product-detail', params: { serialId: productSerialId }})
       }
     },
     created () {

@@ -45,7 +45,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 10px;
-    box-shadow: 0 0 10px #aaa;
+    box-shadow: 0 0 1px #aaa;
     position: fixed;
     width: 100%;
     background: white;

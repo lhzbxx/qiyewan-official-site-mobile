@@ -43,6 +43,7 @@
       },
       selectRegion (regionIndex) {
         this.$store.commit('CHANGE_REGION', regionIndex)
+        this.$router.go(-1)
       }
     }
   }
