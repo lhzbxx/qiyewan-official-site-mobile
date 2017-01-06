@@ -5,7 +5,8 @@
     <mt-button type="primary"
                size="small"
                @click.native="jump"
-               id="button">
+               id="button"
+               style="width: 77px;background-color: #DDDDDD;color: #555;">
       去逛逛
     </mt-button>
   </div>
