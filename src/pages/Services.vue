@@ -30,6 +30,15 @@
         <img src="../assets/right-arrow.png"
              v-bind:class="{active: isContractsOpen(customerIndex)}">订单
       </div>
+      <div class="customer-contracts"
+           v-show="isContractsOpen(customerIndex)">
+        <div class="customer-info-detail customer-contract"
+             v-for="(contract, contractIndex) in customer.contracts">
+          <p>{{contract.contractDate.substr(0, 10)}}</p>
+          <p>订单编号：{{contract.contractSno}}</p>
+          <img src="../assets/right-arrow.png">
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -129,7 +138,7 @@
     border-bottom: 1px solid #eee;
   }
 
-  .customer-info img {
+  img {
     vertical-align: middle;
     margin-right: 8px;
     height: 13px;
@@ -137,7 +146,7 @@
     transition: transform 0.2s ease-in-out;
   }
 
-  .customer-info img.active {
+  img.active {
     transform: rotate(90deg);
   }
 
@@ -149,5 +158,11 @@
     color: #666;
     background: white;
     border-bottom: 1px solid #eee;
+  }
+
+  .customer-contract {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 </style>

@@ -61,6 +61,7 @@ store.dispatch('init')
 Vue.filter('cdn-filter', filters.cdnPrefix)
 Vue.filter('sub-total-price-filter', filters.totalPrice)
 Vue.filter('date-filter', filters.dateFormat)
+Vue.filter('region-filter', filters.regionFormat)
 
 /* eslint-disable no-new */
 new Vue({

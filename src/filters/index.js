@@ -1,3 +1,5 @@
+import dataApi from '../api/data'
+
 export function cdnPrefix (value) {
   return 'http://cdn.qiyewan.com/' + value
 }
@@ -17,6 +19,11 @@ export function dateFormat (timestamp) {
   return date.getFullYear() + '/' + format(date.getMonth() + 1) + '/' + format(date.getDate()) + ' ' +
     (date.getHours() < 12 ? '上午' + date.getHours() : '下午' + (date.getHours() - 12)) +
     ':' + format(date.getMinutes()) + ':' + format(date.getSeconds())
+}
+
+export function regionFormat (regionCode) {
+  let index = dataApi.regions.findIndex(item => item.code === regionCode)
+  return index === -1 ? '上海' : dataApi.regions[index].name
 }
 
 function format (num) {

@@ -23,6 +23,7 @@ import Contract from '../pages/Contract.vue'
 import Success from '../pages/Success.vue'
 import WxRedirect from '../pages/WxRedirect.vue'
 import Services from '../pages/Services.vue'
+import ServiceDetails from '../pages/ServiceDetails.vue'
 
 const routes = [
   {
@@ -119,6 +120,12 @@ const routes = [
     name: 'service',
     beforeEnter: requireAuth,
     component: Services
+  },
+  {
+    path: '/service/:serviceId',
+    name: 'service-detail',
+    beforeEnter: requireAuth,
+    component: ServiceDetails
   },
   {
     path: '/404',
