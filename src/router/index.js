@@ -13,7 +13,6 @@ import ProductDetail from '../pages/ProductDetail.vue'
 import ProductList from '../pages/ProductList.vue'
 import Auth from '../pages/Auth.vue'
 import Checkout from '../pages/Checkout.vue'
-import Pay from '../pages/Pay.vue'
 import NotFound from '../pages/NotFound.vue'
 import Areas from '../pages/Areas.vue'
 import Review from '../pages/Review.vue'
@@ -23,6 +22,7 @@ import BrowsingHistory from '../pages/BrowsingHistory.vue'
 import Contract from '../pages/Contract.vue'
 import Success from '../pages/Success.vue'
 import WxRedirect from '../pages/WxRedirect.vue'
+import Services from '../pages/Services.vue'
 
 const routes = [
   {
@@ -75,12 +75,6 @@ const routes = [
     component: Checkout
   },
   {
-    path: '/pay',
-    name: 'pay',
-    beforeEnter: requireAuth,
-    component: Pay
-  },
-  {
     path: '/browsing-history',
     name: 'browsing-history',
     component: BrowsingHistory
@@ -119,6 +113,12 @@ const routes = [
     path: '/wx-redirect',
     name: 'wx-redirect',
     component: WxRedirect
+  },
+  {
+    path: '/service',
+    name: 'service',
+    beforeEnter: requireAuth,
+    component: Services
   },
   {
     path: '/404',

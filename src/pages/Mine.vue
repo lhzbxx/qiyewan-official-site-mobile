@@ -16,9 +16,8 @@
     <div id="bought">
       <div class="bought-block"
            style="border-right: 1px solid #eee;">
-        <img src="../assets/service-node.png"
-             style="filter: grayscale(100%);">
-        <router-link to="#"
+        <img src="../assets/service-node.png">
+        <router-link to="/service"
                      class="link">服务节点
         </router-link>
       </div>
