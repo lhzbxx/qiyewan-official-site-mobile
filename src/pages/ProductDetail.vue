@@ -75,7 +75,7 @@
       </mt-tab-container>
       <div id="bottom">
         <div class="bottom-button"
-             v-on:click="openCustomerService()"
+             v-on:click="openCustomerService"
              style="width: 30%; margin-left: 0;">
           <img src="../assets/customer-service.png"
                style="margin-top: 11px; height: 28px;">
