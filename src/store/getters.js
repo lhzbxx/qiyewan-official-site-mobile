@@ -22,6 +22,10 @@ export const isLogin = state => {
   return state.auth.isLogin
 }
 
+export const getPhone = state => {
+  return state.auth.user.phone
+}
+
 export const getHistory = state => {
   return state.global.history
 }
