@@ -26,10 +26,6 @@
       <div class="details-content" v-if="!form.product.isInstant">
         <p class="details-content-title">服务时长</p>
         <p class="details-content-period"
-           v-on:click="form.amount = 6"
-           v-bind:class="{ active: form.amount == 6}"
-           style="margin-left: 5px;">半年</p>
-        <p class="details-content-period"
            v-on:click="form.amount = 12"
            v-bind:class="{ active: form.amount == 12 }">一年</p>
       </div>
@@ -199,8 +195,8 @@
     font-size: 14px;
     line-height: 24px;
     padding: 3px 10px;
-    margin-left: 15px;
-    width: 70px;
+    margin-left: 5px;
+    width: 94px;
     text-align: center;
     border: 1px solid #ddd;
   }
