@@ -93,15 +93,36 @@
         </table>
       </div>
       <div class="card">
-        <p class="title">成都分公司</p>
+        <p class="title">成都总部</p>
         <table>
           <tr>
-            <td class="label">地址</td>
-            <td>成都市高新益州大道1800号移动互联创业大厦G1，201</td>
+            <td class="label">地址1</td>
+            <td>成都市高新益州大道中段1800号移动互联网大厦G1楼2楼</td>
+          </tr>
+          <tr>
+            <td class="label">地址2</td>
+            <td>成都市高新区天府五街200号芙蓉国际广场6栋A区2楼</td>
+          </tr>
+          <tr>
+            <td class="label">地址3</td>
+            <td>成都市锦江区新光华街7号航天科技大厦43楼</td>
           </tr>
           <tr>
             <td class="label">电 话</td>
             <td><a href="tel:13518211800">13518211800</a></td>
+          </tr>
+        </table>
+      </div>
+      <div class="card">
+        <p class="title">合肥分公司</p>
+        <table>
+          <tr>
+            <td class="label">地址</td>
+            <td>合肥市高新区云飞路文曲路交叉口中安创谷基金大厦E1栋209室</td>
+          </tr>
+          <tr>
+            <td class="label">电 话</td>
+            <td><a href="tel:13518211800">17352984451</a></td>
           </tr>
         </table>
       </div>
@@ -112,9 +133,9 @@
 <style scoped>
   #contact-us {
     padding-top: 44px;
-    background: #f9f9f9;
+    background: #fafafa;
     min-height: 100%;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
   }
 
   #content {
@@ -126,30 +147,38 @@
   }
 
   .card {
-    margin-top: 10px;
+    margin-top: 15px;
     background: white;
     padding: 10px;
     font-size: 14px;
     line-height: 20px;
-    box-shadow:2px 2px 5px #aaa;
+    box-shadow: 0 0 2px #aaa;
   }
 
   td {
-    border: 1px solid #999;
+    border: 1px solid #ddd;
     padding: 6px 8px;
   }
 
+  tr {
+    color: #666;
+  }
+
   .title {
+    color: #444;
     font-size: 16px;
     line-height: 30px;
-    font-weight: bold;
+    font-weight: 400;
     text-align: center;
   }
 
   .label {
     width: 75px;
-    font-weight: bold;
     text-align: center;
+  }
+
+  a {
+    color: #0069C2;
   }
 
 </style>

@@ -25,10 +25,10 @@
       </div>
       <div class="details-content" v-if="!form.product.isInstant">
         <p class="details-content-title">服务时长</p>
-        <p class="details-content-period"
-           v-on:click="form.amount = 6"
-           v-bind:class="{ active: form.amount == 6}"
-           style="margin-left: 5px;">半年</p>
+        <!--<p class="details-content-period"-->
+           <!--v-on:click="form.amount = 6"-->
+           <!--v-bind:class="{ active: form.amount == 6}"-->
+           <!--style="margin-left: 5px;">半年</p>-->
         <p class="details-content-period"
            v-on:click="form.amount = 12"
            v-bind:class="{ active: form.amount == 12 }">一年</p>
@@ -121,7 +121,7 @@
       this.form.regionCode = this.getRegion.code
       this.form.serialId = this.form.product.serialId
       this.selectedDistrict = this.getRegion.areas[0]
-      this.form.amount = this.form.product.isInstant ? 1 : 6
+      this.form.amount = this.form.product.isInstant ? 1 : 12
     }
   }
 </script>
@@ -199,8 +199,8 @@
     font-size: 14px;
     line-height: 24px;
     padding: 3px 10px;
-    margin-left: 15px;
-    width: 70px;
+    margin-left: 5px;
+    width: 94px;
     text-align: center;
     border: 1px solid #ddd;
   }

@@ -7,7 +7,7 @@
     <div v-else>
       <lh-no-things v-if="carts.length == 0"
                     message="购物车为空">
-        <img src="../assets/empty-cart.png">
+        <img src="../assets/empty-cart.png" style="width: 110px; height: 110px;">
       </lh-no-things>
       <div style="padding-bottom: 50px;"
            v-else>
@@ -202,6 +202,7 @@
     padding-top: 44px;
     padding-bottom: 44px;
     min-height: 100%;
+    background-color: #f9f9f9;
   }
 
   #carts-header {

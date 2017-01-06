@@ -10,7 +10,7 @@
     <div v-else>
       <lh-no-things v-if="orders.length == 0"
                     message="暂无订单">
-        <img src="../assets/empty-order.png">
+        <img src="../assets/empty-order.png" style="width: 110px; height: 110px;">
       </lh-no-things>
       <div v-for="order in orders"
            id="order">

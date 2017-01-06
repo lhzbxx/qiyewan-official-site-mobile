@@ -1,7 +1,7 @@
 <template>
   <div id="product-detail">
     <lh-page-header :title="product ? product.name : '产品详情'"></lh-page-header>
-    <mt-navbar v-model="selected">
+    <mt-navbar v-model="selected" style="font-size: 18px;">
       <mt-tab-item id="1">商品详情</mt-tab-item>
       <mt-tab-item id="2">常见问题</mt-tab-item>
       <mt-tab-item id="3">用户评论（{{ product ? product.purchaseNumber : 0 }}）</mt-tab-item>
@@ -46,7 +46,7 @@
             </p>
           </div>
         </mt-tab-container-item>
-        <mt-tab-container-item id="2">
+        <mt-tab-container-item id="2" style="background-color: #f9f9f9; text-align: left">
           <div class="faq"
                v-for="item in faqs">
             <p class="faq-question">
@@ -291,12 +291,12 @@
   }
 
   .product-detail-process:after, .product-detail-process:before {
-    border: 7px solid transparent;
-    border-left: 7px solid #fff;
+    border: 5px solid transparent;
+    border-left: 5px solid #fff;
     width: 0;
     height: 0;
     position: absolute;
-    top: 10px;
+    top: 13px;
     right: -19px;
     content: ' '
   }
@@ -329,12 +329,13 @@
   }
 
   .product-detail-block {
-    padding: 10px 5px;
+    padding: 7px 5px;
     font-size: 13px;
-    border: 1px solid #eee;
-    margin-bottom: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
     margin-right: 8px;
-    line-height: 13px;
+    line-height: 17px;
+    color: #666;
   }
 
   .faq {
@@ -343,9 +344,8 @@
   }
 
   .faq-question {
-    font-size: 16px;
+    font-size: 14px;
     color: #333;
-    background: #eee;
     line-height: 20px;
     padding-left: 5px;
   }
@@ -354,7 +354,7 @@
     margin-top: 8px;
     font-size: 13px;
     color: #aaa;
-    padding-left: 10px;
+    padding-left: 3px;
   }
 
   #bottom {
