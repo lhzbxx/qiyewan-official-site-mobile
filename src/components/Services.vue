@@ -53,13 +53,14 @@
   }
 
   .service img {
-    height: 10px;
+    height: 14px;
+    width: 14px;
     display: inline-block;
     vertical-align: middle;
   }
 
   .service p {
-    font-size: 11px;
+    font-size: 12px;
     display: inline-block;
     line-height: 40px;
   }
