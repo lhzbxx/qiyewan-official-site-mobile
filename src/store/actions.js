@@ -17,7 +17,8 @@ export const init = ({commit, state}) => {
       commit(types.GET_DATA_FROM_STORAGE)
     }
   }
-  if (!window.localStorage.locate || new Date().valueOf() - window.localStorage.locate > 24 * 60 * 60 * 1000) {
+  // if (!window.localStorage.locate || new Date().valueOf() - window.localStorage.locate > 24 * 60 * 60 * 1000) {
+  if (!window.localStorage.locate || new Date().valueOf() - window.localStorage.locate > 60 * 1000) {
     authApi.getRegion(region => {
       console.log('自动切换到区域：' + region)
       commit(types.CHANGE_REGION, region)
