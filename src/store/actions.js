@@ -23,6 +23,11 @@ export const init = ({commit, state}) => {
       commit(types.CHANGE_REGION, region)
     })
     window.localStorage.locate = new Date().valueOf()
+  } else {
+    let region = window.localStorage.getItem('region')
+    if (region) {
+      state.global.region = region
+    }
   }
   // 1. 如果 token 不存在，且用户在使用微信内置浏览器，则先尝试使用 openid 登录。
   // 2. 如果 token 存在，且用户在使用微信内置浏览器，则先判断用户是否已经绑定微信，如果没有，则尝试绑定。

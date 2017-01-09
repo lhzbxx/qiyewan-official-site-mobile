@@ -9,7 +9,7 @@ import * as types from '../mutation-types'
 import data from '../../api/data'
 
 const state = {
-  region: 1,
+  region: 0,
   history: [],
   cache: []
 }
@@ -25,6 +25,7 @@ const mutations = {
     } else {
       state.region = regionIndex
     }
+    window.localStorage.setItem('region', state.region)
   },
   [types.BROWSE_PRODUCT] (state, product) {
     state.history.push(product)

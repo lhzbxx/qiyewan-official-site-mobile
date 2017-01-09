@@ -12,16 +12,21 @@
       <div class="product">
         <div class="flex-2 product-info">
           <img :src="'product-' + contractDetail.product + '-cover-1.jpg' | cdn-filter"
-               style="height: 60px;">
+               height="50">
           <div class="product-info-name">
-            <p>{{contractDetail.product}}</p><br>
-            <p>区域：</p>
+            <p>{{contractDetail.product}}</p>
+            <p>区域：{{$route.query.region | region-filter}}</p>
           </div>
         </div>
         <div class="flex-1">&times;{{contractDetail.number || 1}}</div>
         <p class="flex-1" style="color: red;">￥{{contractDetail.totalPrice}}</p>
       </div>
-      <p>服务节点</p>
+      <div class="service-nodes"
+           v-on:click="collapseServices(contractDetail, contractDetailIndex)">
+        <img src="../assets/right-arrow.png"
+             v-bind:class="{active: isServicesOpen(contractDetailIndex)}">服务节点
+      </div>
+      <div v-show="isServicesOpen(contractDetailIndex)"></div>
     </div>
   </div>
 </template>
@@ -31,7 +36,37 @@
   export default {
     data () {
       return {
-        contractDetails: null
+        contractDetails: null,
+        openingServices: []
+      }
+    },
+    method: {
+      getServices (detail) {
+        if (detail.services) return
+        crmApi.getContractServices(detail.contractSno,
+          services => {
+            for (let i of detail.services) {
+              crmApi.getContractServiceDetails(i.sno,
+                details => {
+                  i.details = details
+                  detail.services = services
+                }
+              )
+            }
+          }
+        )
+      },
+      collapseServices (contractDetail, contractDetailIndex) {
+        this.getContracts(contractDetail)
+        let index = this.openingContracts.findIndex(item => item === contractDetailIndex)
+        if (index > -1) {
+          this.openingContracts.splice(index, 1)
+        } else {
+          this.openingContracts.push(contractDetailIndex)
+        }
+      },
+      isServicesOpen (index) {
+        return this.openingServices.findIndex(item => item === index) > -1
       }
     },
     created () {
@@ -49,6 +84,7 @@
   #service-details {
     padding-top: 44px;
     background: #eee;
+    font-size: 14px;
   }
 
   .product-title {
@@ -75,6 +111,7 @@
     text-align: left;
     margin-left: 8px;
     font-size: 14px;
+    line-height: 20px;
   }
 
   .product-info {
@@ -89,5 +126,24 @@
 
   .flex-2 {
     flex: 2;
+  }
+
+  .service-nodes img {
+    vertical-align: middle;
+    margin-right: 8px;
+    height: 13px;
+    margin-top: -1px;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .service-nodes img.active {
+    transform: rotate(90deg);
+  }
+
+  .service-nodes {
+    background: white;
+    height: 35px;
+    padding-left: 20px;
+    line-height: 35px;
   }
 </style>

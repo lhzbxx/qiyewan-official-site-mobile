@@ -33,7 +33,8 @@
       <div class="customer-contracts"
            v-show="isContractsOpen(customerIndex)">
         <div class="customer-info-detail customer-contract"
-             v-for="(contract, contractIndex) in customer.contracts">
+             v-for="(contract, contractIndex) in customer.contracts"
+             v-on:click="jumpToDetail(contract.contractSno, contract.area)">
           <p>{{contract.contractDate.substr(0, 10)}}</p>
           <p>订单编号：{{contract.contractSno}}</p>
           <img src="../assets/right-arrow.png">
@@ -101,6 +102,9 @@
       },
       isContractsOpen (index) {
         return this.openingContracts.findIndex(item => item === index) > -1
+      },
+      jumpToDetail (sno, area) {
+        this.$router.push({name: 'service-detail', params: {serviceId: sno}, query: {region: area}})
       }
     }
   }
