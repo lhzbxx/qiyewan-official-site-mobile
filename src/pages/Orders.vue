@@ -39,7 +39,10 @@
              v-on:click="handlePayButton(order)">去支付</p>
           <p class="button disabled"
              v-if="order.orderStage == 'TIMEOUT'">已超时</p>
-          <p class="button disabled"
+          <p class="button"
+             v-if="order.orderStage == 'CANCELED'"
+             v-on:click="handleCancelButton(order)">删除</p>
+          <p style="margin-right: 20px;font-size: 12px;color: #aaa;"
              v-if="order.orderStage == 'CANCELED'">已取消</p>
           <p class="button"
              v-if="order.orderStage == 'PAID'"
@@ -83,7 +86,7 @@
           case '待评价':
             this.currentState = 2
             break
-          case '已完成':
+          case '已评价':
             this.currentState = 3
             break
         }
@@ -157,10 +160,9 @@
         })
       },
       handleAnotherButton (item) {
-        // todo: 处理“再来一份”按钮
+        this.$router.push({name: 'product-detail', params: { serialId: item.details[0].productSerialId }})
       },
       goToProductDetail (productSerialId) {
-        console.log(productSerialId)
         this.$router.push({name: 'product-detail', params: { serialId: productSerialId }})
       }
     },
@@ -200,15 +202,11 @@
     margin-right: 15px;
     font-size: 14px;
     border-radius: 5px;
-    border: 1px solid #26a2ff;
+    border: 1px solid #c6cbd0;
     font-weight: 500;
-    padding: 5px 10px;
-    color: #26a2ff;
-  }
-
-  .button.warning {
-    color: red;
-    border-color: red;
+    padding: 3px 5px 19px 5px;
+    color: #999;
+    height: 24px;
   }
 
   .button.disabled {
