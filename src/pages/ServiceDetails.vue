@@ -40,7 +40,7 @@
         openingServices: []
       }
     },
-    method: {
+    methods: {
       getServices (detail) {
         if (detail.services) return
         crmApi.getContractServices(detail.contractSno,
@@ -57,12 +57,12 @@
         )
       },
       collapseServices (contractDetail, contractDetailIndex) {
-        this.getContracts(contractDetail)
-        let index = this.openingContracts.findIndex(item => item === contractDetailIndex)
+        this.getServices(contractDetail)
+        let index = this.openingServices.findIndex(item => item === contractDetailIndex)
         if (index > -1) {
-          this.openingContracts.splice(index, 1)
+          this.openingServices.splice(index, 1)
         } else {
-          this.openingContracts.push(contractDetailIndex)
+          this.openingServices.push(contractDetailIndex)
         }
       },
       isServicesOpen (index) {

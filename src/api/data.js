@@ -26,7 +26,7 @@ export default {
       name: '商标注册',
       summary: '商标是企业的敲门砖，让专业律师帮您紧握手中',
       cover: 'product-SHSHLD0013-cover-1.jpg',
-      price: 199
+      price: 799
     },
     {
       serialId: 'IT0005',
