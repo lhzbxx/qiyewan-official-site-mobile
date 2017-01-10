@@ -104,7 +104,8 @@
   #table-entry-cover {
     float: left;
     width: 30%;
-    height: 80px;
+    height: 75px;
+    margin-top: 2px;
   }
 
   span {

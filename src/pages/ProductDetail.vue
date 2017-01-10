@@ -46,7 +46,7 @@
             </p>
           </div>
         </mt-tab-container-item>
-        <mt-tab-container-item id="2" style="background-color: #f9f9f9; text-align: left">
+        <mt-tab-container-item id="2" style="background-color: #f9f9f9; text-align: left; margin-top: 4px">
           <div class="faq"
                v-for="item in faqs">
             <p class="faq-question">
@@ -238,7 +238,7 @@
   }
 
   #product-detail-name {
-    font-size: 18px;
+    font-size: 16px;
     margin-top: 10px;
     padding: 0 10px;
   }
@@ -271,7 +271,7 @@
   .product-detail-title {
     margin-top: 10px;
     margin-left: 10px;
-    font-size: 18px;
+    font-size: 14px;
     color: #333;
   }
 
@@ -280,6 +280,7 @@
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
     padding: 0 10px;
+    color: #666;
   }
 
   .product-detail-process {
@@ -330,7 +331,7 @@
 
   .product-detail-block {
     padding: 7px 5px;
-    font-size: 13px;
+    font-size: 12px;
     border: 1px solid #ddd;
     margin-bottom: 12px;
     margin-right: 8px;

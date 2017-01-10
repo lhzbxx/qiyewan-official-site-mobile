@@ -1,4 +1,4 @@
-<template>
+\<template>
   <div id="carts">
     <lh-page-header :hasBack=false
                     title="购物车"></lh-page-header>
@@ -263,7 +263,7 @@
   #bottom-button {
     background: #aaa;
     height: 100%;
-    line-height: 50px;
+    line-height: 54px;
     color: white;
     font-size: 18px;
     text-align: center;

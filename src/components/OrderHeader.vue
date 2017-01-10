@@ -16,7 +16,7 @@
 
 <style scoped>
   #order-header {
-    height: 45px;
+    height: 55px;
     padding: 5px 10px;
     border-bottom: 1px solid #eee;
     background: white;
@@ -24,7 +24,8 @@
   }
 
   #serialId {
-    font-size: 14px;
+    margin-top: 5px;
+    font-size: 13px;
     line-height: 20px;
   }
 
@@ -32,5 +33,6 @@
     font-size: 12px;
     color: #aaa;
     line-height: 15px;
+    margin-top: 4px;
   }
 </style>
