@@ -21,6 +21,15 @@ export function dateFormat (timestamp) {
     ':' + format(date.getMinutes()) + ':' + format(date.getSeconds())
 }
 
+export function timeFormat (timestamp) {
+  timestamp /= 1000
+  let hours = Math.floor(timestamp / 3600)
+  timestamp %= 3600
+  let minutes = Math.floor(timestamp / 60)
+  let seconds = Math.floor(timestamp % 60)
+  return hours + '时' + minutes + '分' + seconds + '秒'
+}
+
 export function regionFormat (regionCode) {
   let index = dataApi.regions.findIndex(item => item.code === regionCode)
   return index === -1 ? '上海' : dataApi.regions[index].name

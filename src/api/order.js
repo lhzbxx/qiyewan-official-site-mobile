@@ -33,9 +33,17 @@ export default {
       errorCb(response.body)
     })
   },
-  removeOrder (token, orderId, cb, errorCb) {
+  cancelOrder (token, orderId, cb, errorCb) {
     Vue.http.headers.common['Authorization'] = token
     Vue.http.delete('orders/' + orderId).then((response) => {
+      cb(response.body)
+    }, (response) => {
+      errorCb(response.body)
+    })
+  },
+  removeOrder (token, orderId, cb, errorCb) {
+    Vue.http.headers.common['Authorization'] = token
+    Vue.http.delete('orders?serialId=' + orderId).then((response) => {
       cb(response.body)
     }, (response) => {
       errorCb(response.body)

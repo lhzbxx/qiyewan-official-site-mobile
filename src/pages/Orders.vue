@@ -12,7 +12,7 @@
                     message="暂无订单">
         <img src="../assets/empty-order.png" style="width: 110px; height: 110px;">
       </lh-no-things>
-      <div v-for="order in orders"
+      <div v-for="(order, orderIndex) in orders"
            id="order">
         <lh-order-header :serialId="order.serialId"
                          :createAt="order.createAt">
@@ -27,22 +27,24 @@
                         :isLast="order.details.length == index + 1"
                         class="product"
                         :isSplit=false
-                        v-for="(item, index) in order.details"
-                        >
+                        v-for="(item, index) in order.details">
         </lh-table-entry>
         <div class="ops-block">
-          <p class="button warning"
+          <p class="button"
              v-if="order.orderStage == 'UNPAID'"
-             v-on:click="handleCancelButton(order)">删除</p>
+             v-on:click="handleCancelButton(order)">取消</p>
           <p class="button"
              v-if="order.orderStage == 'UNPAID'"
              v-on:click="handlePayButton(order)">去支付</p>
-          <p class="button disabled"
-             v-if="order.orderStage == 'TIMEOUT'">已超时</p>
+          <!--<p class="status"-->
+             <!--v-if="order.orderStage == 'UNPAID'">-->
+            <!--剩余支付时间：{{order.updateAt - new Date() + 2 * 60 * 60 * 1000 | time-filter}}</p>-->
           <p class="button"
-             v-if="order.orderStage == 'CANCELED'"
-             v-on:click="handleCancelButton(order)">删除</p>
-          <p style="margin-right: 20px;font-size: 12px;color: #aaa;"
+             v-if="order.orderStage == 'CANCELED' || order.orderStage == 'TIMEOUT'"
+             v-on:click="handleRemoveButton(order, orderIndex)">删除</p>
+          <p class="status"
+             v-if="order.orderStage == 'TIMEOUT'">已超时</p>
+          <p class="status"
              v-if="order.orderStage == 'CANCELED'">已取消</p>
           <p class="button"
              v-if="order.orderStage == 'PAID'"
@@ -130,6 +132,18 @@
           }
         )
       },
+      handleRemoveButton (order, index) {
+        let vm = this
+        MessageBox.confirm('确认删除订单吗？').then(
+          action => {
+            vm.$store.dispatch('removeOrder', order.serialId).then(
+              vm.orders.splice(index, 1)
+            )
+          },
+          () => {
+          }
+        )
+      },
       handlePayButton (order) {
         if (order.payment.substr(-3) !== 'WAP') {
           return Toast({
@@ -160,10 +174,10 @@
         })
       },
       handleAnotherButton (item) {
-        this.$router.push({name: 'product-detail', params: { serialId: item.details[0].productSerialId }})
+        this.$router.push({name: 'product-detail', params: {serialId: item.details[0].productSerialId}})
       },
       goToProductDetail (productSerialId) {
-        this.$router.push({name: 'product-detail', params: { serialId: productSerialId }})
+        this.$router.push({name: 'product-detail', params: {serialId: productSerialId}})
       }
     },
     created () {
@@ -200,21 +214,22 @@
 
   .button {
     margin-right: 15px;
-    font-size: 14px;
+    font-size: 13px;
+    line-height: 13px;
     border-radius: 5px;
     border: 1px solid #c6cbd0;
     font-weight: 500;
-    padding: 3px 5px 19px 5px;
+    padding: 5px;
     color: #999;
-    height: 24px;
-  }
-
-  .button.disabled {
-    color: gray;
-    border-color: gray;
   }
 
   .product {
     padding: 0 10px;
+  }
+
+  .status {
+    margin-right: 20px;
+    font-size: 12px;
+    color: #aaa;
   }
 </style>

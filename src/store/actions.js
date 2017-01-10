@@ -280,6 +280,20 @@ export const getOrders = ({commit, state}, {page, orderStage}) => {
 
 export const cancelOrder = ({commit, state}, serialId) => {
   return new Promise((resolve, reject) => {
+    orderApi.cancelOrder(state.auth.user.token, serialId,
+      result => {
+        commit(types.REMOVE_ORDER, serialId)
+        resolve(result)
+      },
+      error => {
+        reject(error)
+      }
+    )
+  })
+}
+
+export const removeOrder = ({commit, state}, serialId) => {
+  return new Promise((resolve, reject) => {
     orderApi.removeOrder(state.auth.user.token, serialId,
       result => {
         commit(types.REMOVE_ORDER, serialId)
