@@ -93,6 +93,7 @@
             break
         }
         this.fetchData()
+        this.$router.replace({name: 'order', query: {state: this.currentState}})
       },
       fetchData () {
         let vm = this
