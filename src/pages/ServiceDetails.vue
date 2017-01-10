@@ -21,12 +21,20 @@
         <div class="flex-1">&times;{{contractDetail.number || 1}}</div>
         <p class="flex-1" style="color: red;">￥{{contractDetail.totalPrice}}</p>
       </div>
-      <div class="service-nodes"
+      <div class="service-nodes-button"
            v-on:click="collapseServices(contractDetail, contractDetailIndex)">
         <img src="../assets/right-arrow.png"
              v-bind:class="{active: isServicesOpen(contractDetailIndex)}">服务节点
       </div>
-      <div v-show="isServicesOpen(contractDetailIndex)"></div>
+      <div class="service-nodes"
+           v-show="isServicesOpen(contractDetailIndex)"
+           v-for="service in contractDetail.services">
+        <p>{{service.productSeries}}</p>
+        <div class="service-node"
+             v-for="serviceDetail in service.details">
+
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -45,6 +53,7 @@
         if (detail.services) return
         crmApi.getContractServices(detail.contractSno,
           services => {
+            detail.services = services
             for (let i of detail.services) {
               crmApi.getContractServiceDetails(i.sno,
                 details => {
@@ -128,7 +137,7 @@
     flex: 2;
   }
 
-  .service-nodes img {
+  .service-nodes-button img {
     vertical-align: middle;
     margin-right: 8px;
     height: 13px;
@@ -136,14 +145,20 @@
     transition: transform 0.2s ease-in-out;
   }
 
-  .service-nodes img.active {
+  .service-nodes-button img.active {
     transform: rotate(90deg);
   }
 
-  .service-nodes {
+  .service-nodes-button {
     background: white;
     height: 35px;
     padding-left: 20px;
     line-height: 35px;
+  }
+
+  .service-detail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 </style>

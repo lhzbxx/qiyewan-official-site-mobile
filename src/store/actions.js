@@ -27,7 +27,7 @@ export const init = ({commit, state}) => {
   } else {
     let region = window.localStorage.getItem('region')
     if (region) {
-      state.global.region = region
+      commit(types.CHANGE_REGION, region)
     }
   }
   // 1. 如果 token 不存在，且用户在使用微信内置浏览器，则先尝试使用 openid 登录。
