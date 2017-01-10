@@ -75,7 +75,7 @@
       </mt-tab-container>
       <div id="bottom">
         <div class="bottom-button"
-             v-on:click="openCustomerService"
+             onclick="window.location.href='https://static.meiqia.com/dist/standalone.html?eid=39063'"
              style="width: 30%; margin-left: 0;">
           <img src="../assets/customer-service.png"
                style="margin-top: 11px; height: 28px;">
@@ -129,10 +129,6 @@
       ])
     },
     methods: {
-      openCustomerService () {
-        /* eslint-disable no-undef */
-        _MEIQIA('showPanel')
-      },
       handleDirectBuyButton () {
         if (!this.isLogin) {
           return this.$router.push({name: 'auth'})
