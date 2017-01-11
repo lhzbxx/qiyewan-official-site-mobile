@@ -82,11 +82,30 @@
       getCaptcha () {
         if (this.isCounting) return
         else this.isCounting = true
-        this.$store.dispatch('requestCaptcha', this.form.phone).then(
-          () => {
-            this.counting()
-          },
-          () => {}
+        let reg = /^1[3|4|5|7|8][0-9]{9}$/
+        if (!reg.test(this.form.phone)) {
+          Toast({
+            message: '手机号格式不正确',
+            position: 'bottom',
+            duration: 3000
+          })
+          this.isCounting = false
+        }
+        let vm = this
+        vm.$store.dispatch('isRegistered', vm.form.phone).then(
+          data => {
+            if (!data.registered) {
+              vm.$store.dispatch('requestCaptcha', vm.form.phone)
+              vm.counting()
+            } else {
+              vm.isCounting = false
+              Toast({
+                message: '手机号已被注册',
+                position: 'bottom',
+                duration: 3000
+              })
+            }
+          }
         )
       },
       counting () {

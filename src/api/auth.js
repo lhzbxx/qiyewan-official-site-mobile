@@ -54,6 +54,14 @@ export default {
       () => {}
     )
   },
+  isRegistered (phone, cb) {
+    Vue.http.get('check-phone.do?phone=' + phone).then(
+      (response) => {
+        cb(response.body)
+      },
+      () => {}
+    )
+  },
   requestCaptcha (phone, cb, errorCb) {
     Vue.http.post('captcha.do?phone=' + phone).then(
       (response) => {

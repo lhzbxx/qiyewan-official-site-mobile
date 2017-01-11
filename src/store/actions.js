@@ -133,6 +133,19 @@ export const getProductDetail = ({commit, state}, serialId) => {
   })
 }
 
+export const isRegistered = ({commit}, phone) => {
+  return new Promise((resolve, reject) => {
+    authApi.isRegistered(phone,
+      response => {
+        resolve(response)
+      },
+      error => {
+        reject(error)
+      }
+    )
+  })
+}
+
 export const requestCaptcha = ({commit}, phone) => {
   return new Promise((resolve, reject) => {
     authApi.requestCaptcha(phone,
