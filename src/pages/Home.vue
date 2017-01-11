@@ -138,24 +138,30 @@
         return this.screenWidth * 320 / 750
       }
     },
+    watch: {
+      'getRegion': 'fetchPS'
+    },
     methods: {
       jumpToClassification (code) {
         this.$router.push({name: 'product-classification', params: {classificationCode: code}})
       },
       jumpToDetail (serialId) {
         this.$router.push({name: 'product-detail', params: {serialId: serialId}})
+      },
+      fetchPS () {
+        let vm = this
+        this.$store.dispatch('getProductList', 'PS').then(
+          data => {
+            vm.combos = data
+          },
+          error => {
+            vm.error = error
+          }
+        )
       }
     },
     mounted () {
-      let vm = this
-      this.$store.dispatch('getProductList', 'PS').then(
-        data => {
-          vm.combos = data
-        },
-        error => {
-          vm.error = error
-        }
-      )
+      this.fetchPS()
     }
   }
 </script>
