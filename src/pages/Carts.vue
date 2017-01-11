@@ -132,15 +132,22 @@
         let vm = this
         MessageBox.confirm('确认从购物车中移除吗？').then(
           action => {
+            let cartIds = []
             for (let i of vm.selection) {
-              vm.$store.dispatch('removeCart', vm.carts[i].id).then(
-                data => {
-                  vm.selection.splice(vm.selection.findIndex(item => item === i), 1)
-                  vm.carts.splice(i, 1)
-                },
-                () => {}
-              )
+              cartIds.push(vm.carts[i].id)
             }
+            vm.$store.dispatch('removeCart', cartIds).then(
+              data => {
+                let selections = vm.selection.slice()
+                selections.sort().reverse()
+                console.log(selections)
+                vm.selection = []
+                for (let i of selections) {
+                  vm.carts.splice(i, 1)
+                }
+              },
+              () => {}
+            )
           },
           () => {}
         )

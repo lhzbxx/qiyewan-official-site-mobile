@@ -235,9 +235,9 @@ export const updateCart = ({commit, state}, cart) => {
   })
 }
 
-export const removeCart = ({commit, state}, cartId) => {
+export const removeCart = ({commit, state}, cartIds) => {
   return new Promise((resolve, reject) => {
-    cartApi.removeCart(state.auth.user.token, cartId,
+    cartApi.removeCart(state.auth.user.token, cartIds,
       response => {
         commit(types.REMOVE_CART)
         resolve(response)

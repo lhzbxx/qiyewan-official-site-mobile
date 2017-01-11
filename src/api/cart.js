@@ -26,10 +26,10 @@ export default {
       errorCb(response.body)
     })
   },
-  removeCart (token, cartId, cb, errorCb) {
+  removeCart (token, cartIds, cb, errorCb) {
     Vue.http.headers.common['Authorization'] = token
     Vue.http.options.emulateHTTP = true
-    Vue.http.delete('carts/' + cartId).then((response) => {
+    Vue.http.delete('carts', {body: {carts: cartIds}}).then((response) => {
       cb(response.body)
     }, (response) => {
       errorCb(response.body)
