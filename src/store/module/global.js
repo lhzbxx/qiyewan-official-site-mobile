@@ -9,7 +9,7 @@ import * as types from '../mutation-types'
 import data from '../../api/data'
 
 const state = {
-  region: 0,
+  region: 1,
   history: [],
   cache: []
 }
