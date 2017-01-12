@@ -26,13 +26,27 @@
         <img src="../assets/right-arrow.png"
              v-bind:class="{active: isServicesOpen(contractDetailIndex)}">服务节点
       </div>
+      <div class="service-nodes-button"
+           v-show="isServicesOpen(contractDetailIndex) && !contractDetail.services">
+        获取中……
+      </div>
       <div class="service-nodes"
-           v-show="isServicesOpen(contractDetailIndex)"
-           v-for="service in contractDetail.services">
-        <p>{{service.productSeries}}</p>
+           v-for="service in contractDetail.services"
+           v-show="isServicesOpen(contractDetailIndex)">
+        <p class="service-nodes-header">{{service.productSeries}}</p>
         <div class="service-node"
-             v-for="serviceDetail in service.details">
-
+             v-for="(serviceDetail, serviceDetailIndex) in service.details">
+          <div style="text-align: center; width: 20px;">
+            <div class="vertical-line"></div>
+            <div class="node-circle"
+                 v-bind:class="{active: serviceDetailIndex === service.details.length - 1}"></div>
+            <div class="vertical-line"></div>
+          </div>
+          <div class="node-name">
+            <p>{{serviceDetail.productServiceName}}</p>
+            <p class="node-name-subtitle">{{statusFormat(serviceDetail.status)}}</p>
+          </div>
+          <p>{{serviceDetail.updDate.substr(0, 10)}}</p>
         </div>
       </div>
     </div>
@@ -40,6 +54,7 @@
 </template>
 
 <script>
+  import Vue from 'vue'
   import crmApi from '../api/crm'
   export default {
     data () {
@@ -49,8 +64,9 @@
       }
     },
     methods: {
-      getServices (detail) {
+      getServices (detail, contractDetailIndex) {
         if (detail.services) return
+        let vm = this
         crmApi.getContractServices(detail.contractSno,
           services => {
             detail.services = services
@@ -59,6 +75,7 @@
                 details => {
                   i.details = details
                   detail.services = services
+                  Vue.set(vm.contractDetails, contractDetailIndex, vm.contractDetails[contractDetailIndex])
                 }
               )
             }
@@ -66,7 +83,7 @@
         )
       },
       collapseServices (contractDetail, contractDetailIndex) {
-        this.getServices(contractDetail)
+        this.getServices(contractDetail, contractDetailIndex)
         let index = this.openingServices.findIndex(item => item === contractDetailIndex)
         if (index > -1) {
           this.openingServices.splice(index, 1)
@@ -76,6 +93,16 @@
       },
       isServicesOpen (index) {
         return this.openingServices.findIndex(item => item === index) > -1
+      },
+      statusFormat (status) {
+        switch (status) {
+          case '1':
+            return '未开始'
+          case '2':
+            return '进行中'
+          case '3':
+            return '已完成'
+        }
       }
     },
     created () {
@@ -160,5 +187,53 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+
+  .service-nodes {
+    padding: 5px 20px 10px 20px;
+    border: 1px solid #eee;
+    background: white;
+  }
+
+  .service-nodes-header {
+    line-height: 30px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .service-node {
+    height: 40px;
+    display: flex;
+    align-items: center;
+  }
+
+  .vertical-line {
+    height: 10px;
+    width: 0;
+    border: 1px solid #333;
+  }
+
+  .node-circle {
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    border: 2px solid gray;
+    margin: 5px 0 5px -4px;
+  }
+
+  .node-circle.active {
+    width: 16px;
+    height: 16px;
+    margin: 2px 0 2px -7px;
+    background: #e6f7ff;
+    border: 2px solid #00a0ea;
+  }
+
+  .node-name {
+    flex-grow: 1;
+  }
+
+  .node-name-subtitle {
+    color: #aaa;
   }
 </style>

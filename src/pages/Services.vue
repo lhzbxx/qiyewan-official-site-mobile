@@ -33,6 +33,10 @@
       <div class="customer-contracts"
            v-show="isContractsOpen(customerIndex)">
         <div class="customer-info-detail customer-contract"
+             v-if="customer.contracts && customer.contracts.length === 0">
+          <p>暂无</p>
+        </div>
+        <div class="customer-info-detail customer-contract"
              v-for="(contract, contractIndex) in customer.contracts"
              v-on:click="jumpToDetail(contract.contractSno, contract.area)">
           <p>{{contract.contractDate.substr(0, 10)}}</p>
