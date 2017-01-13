@@ -11,7 +11,7 @@
       </div>
       <div class="product">
         <div class="flex-2 product-info">
-          <img :src="'product-' + contractDetail.product + '-cover-1.jpg' | cdn-filter"
+          <img :src="'product-' + contractDetail.product.substr(4, 6) + '-cover.jpg' | cdn-filter"
                height="50">
           <div class="product-info-name">
             <p>{{contractDetail.product}}</p>
