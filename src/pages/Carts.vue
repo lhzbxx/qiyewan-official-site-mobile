@@ -172,13 +172,7 @@
       totalPrice () {
         var total = 0
         for (let i of this.selection) {
-          let amount = this.carts[i].amount
-          let member = this.carts[i].member
-          if (this.carts[i].product.serialId.substr(4) === 'HR0003') {
-            total += member > 3 ? ((98.8 + 18.8 * (member - 3)) * amount) : (98.8 * amount)
-          } else {
-            total += (amount * this.carts[i].product.unitPrice)
-          }
+          total += i.amount * (i.product.unitPrice + i.product.perPrice * (i.member - i.product.minMember))
         }
         return total.toFixed(2)
       },
