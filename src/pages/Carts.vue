@@ -172,7 +172,12 @@
       totalPrice () {
         var total = 0
         for (let i of this.selection) {
-          total += i.amount * (i.product.unitPrice + i.product.perPrice * (i.member - i.product.minMember))
+          let member = i.member - i.product.minMember
+          if (member > 0) {
+            total += i.amount * (i.product.unitPrice + i.product.perPrice * (i.member - i.product.minMember))
+          } else {
+            total += i.amount * i.product.unitPrice
+          }
         }
         return total.toFixed(2)
       },

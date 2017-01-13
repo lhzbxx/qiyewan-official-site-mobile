@@ -43,7 +43,7 @@
         <p class="details-content-amount active"
            v-on:click="form.amount++">&plus;</p>
       </div>
-      <div class="details-content" v-if="form.product.serialId.substr(4) === 'HR0003'">
+      <div class="details-content" v-if="form.product.perPrice > 0">
         <p class="details-content-title">人数</p>
         <p class="details-content-amount"
            v-on:click="form.member > 1 ? form.member-- : ''"
