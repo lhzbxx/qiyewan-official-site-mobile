@@ -132,7 +132,8 @@
         faqs: [],
         reviews: [],
         toastInstance: null,
-        origin: ''
+        origin: '',
+        isValid: true
       }
     },
     computed: {
@@ -141,7 +142,7 @@
         'getRegion'
       ]),
       isExist () {
-        return this.product.serialId
+        return this.product.serialId && this.isValid
       }
     },
     methods: {
@@ -200,38 +201,49 @@
             console.log(error)
           }
         )
+      },
+      fetchData () {
+        this.loading = true
+        let vm = this
+        this.$store.dispatch('getProductDetail', this.$route.params.serialId).then(
+          data => {
+            if (data.serialId) {
+              vm.product = data
+              vm.product.rate = Math.round(vm.product.rate * 10) / 10
+              vm.form.product = data
+              productApi.getProductFaqs(vm.$route.params.serialId,
+                data => {
+                  vm.faqs = data.content
+                },
+                error => {
+                  vm.error = error
+                }
+              )
+              productApi.getProductReviews(vm.$route.params.serialId,
+                data => {
+                  vm.reviews = data.content
+                },
+                error => {
+                  vm.error = error
+                }
+              )
+            } else {
+              vm.isValid = false
+            }
+            vm.isLoading = false
+          },
+          error => {
+            vm.error = error
+          }
+        )
       }
     },
-    created () {
-      this.loading = true
-      let vm = this
-      this.$store.dispatch('getProductDetail', this.$route.params.serialId).then(
-        data => {
-          vm.product = data
-          vm.product.rate = Math.round(vm.product.rate * 10) / 10
-          vm.form.product = data
-          vm.isLoading = false
-        },
-        error => {
-          vm.error = error
-        }
-      )
-      productApi.getProductFaqs(vm.$route.params.serialId,
-        data => {
-          vm.faqs = data.content
-        },
-        error => {
-          vm.error = error
-        }
-      )
-      productApi.getProductReviews(vm.$route.params.serialId,
-        data => {
-          vm.reviews = data.content
-        },
-        error => {
-          vm.error = error
-        }
-      )
+    mounted () {
+      this.fetchData()
+      if (this.getRegion.code !== this.$route.params.serialId.substr(0, 4)) {
+        this.$router.replace({name: 'product-detail', params: {'serialId': this.getRegion.code + this.$route.params.serialId.substr(4)}})
+        this.fetchData()
+      }
     }
   }
 </script>
