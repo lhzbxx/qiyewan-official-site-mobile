@@ -1,7 +1,7 @@
 <template>
   <div id="product-detail">
     <lh-page-header :title="product ? product.name : '产品详情'"></lh-page-header>
-    <mt-navbar v-model="selected" style="font-size: 18px;">
+    <mt-navbar v-if="isValid" v-model="selected" style="font-size: 18px;">
       <mt-tab-item id="1">商品详情</mt-tab-item>
       <mt-tab-item id="2">常见问题</mt-tab-item>
       <mt-tab-item id="3">用户评论（{{ product ? product.purchaseNumber : 0 }}）</mt-tab-item>
@@ -16,8 +16,8 @@
           <p id="product-detail-name">{{ isExist ? product.name : '未知产品' }}</p>
           <p id="product-detail-summary">{{ isExist ? product.summary : '未知产品' }}</p>
           <p id="product-detail-price">
-            <span v-if="isExist">&yen;&nbsp;</span>
-            {{ isExist ? product.unitPrice.toFixed(2) : '该城市不可用本产品' }}
+            <span v-if="isExist && isValid">&yen;&nbsp;</span>
+            {{ isExist && isValid ? product.unitPrice.toFixed(2) : '该城市不可用本产品' }}
           </p>
           <p id="product-detail-comment">
             （我们价格为平台服务费，官费指国家行政收费，刻章工本费由客户承担。注：如有疑问，详情请咨询我公司客服，电话：400-716-8896）
@@ -150,7 +150,7 @@
         if (vm.toastInstance) vm.toastInstance.close()
         vm.toastInstance = Toast({
           message: '产品不可用',
-          position: 'bottom'
+          iconClass: 'mintui mintui-field-error'
         })
         setTimeout(function () {
           vm.toastInstance.close()
@@ -243,6 +243,7 @@
                   vm.error = error
                 }
               )
+              vm.isValid = true
             } else {
               vm.isValid = false
             }
