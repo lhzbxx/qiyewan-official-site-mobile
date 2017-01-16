@@ -84,7 +84,8 @@
             serialId: '',
             cover: 'logo.png',
             summary: '',
-            unitPrice: 0
+            unitPrice: 0,
+            minMember: 1
           }
         },
         selection: []
@@ -172,11 +173,11 @@
       totalPrice () {
         var total = 0
         for (let i of this.selection) {
-          let member = i.member - i.product.minMember
+          let member = this.carts[i].member - this.carts[i].product.minMember
           if (member > 0) {
-            total += i.amount * (i.product.unitPrice + i.product.perPrice * (i.member - i.product.minMember))
+            total += this.carts[i].amount * (this.carts[i].product.unitPrice + this.carts[i].product.perPrice * (this.carts[i].member - this.carts[i].product.minMember))
           } else {
-            total += i.amount * i.product.unitPrice
+            total += this.carts[i].amount * this.carts[i].product.unitPrice
           }
         }
         return total.toFixed(2)
