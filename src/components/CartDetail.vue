@@ -16,6 +16,7 @@
       </div>
       <div class="details-content">
         <p class="details-content-title">服务区域</p>
+        <span>{{ getRegion.name }}</span>
         <span id="details-content-region">{{ selectedDistrict }}
           <img src="../assets/down.png" width="12" style="vertical-align: middle">
           <select v-model="selectedDistrict">

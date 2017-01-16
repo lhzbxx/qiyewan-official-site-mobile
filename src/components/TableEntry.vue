@@ -1,5 +1,6 @@
 <template>
   <div id="table-entry"
+       v-bind:class="{ 'no-border': !isSplit }"
        class="clearfix"
        v-on:click="jump()">
     <img id="table-entry-cover"
@@ -57,6 +58,10 @@
     height: 95px;
   }
 
+  #table-entry.no-border {
+    height: 90px;
+  }
+
   #table-entry-body {
     float: left;
     width: 70%;
@@ -76,7 +81,7 @@
   }
 
   #table-entry-name {
-    line-height: 20px;
+    line-height: 25px;
     font-size: 11px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -96,7 +101,7 @@
   }
 
   #table-entry-price {
-    line-height: 22px;
+    line-height: 25px;
     color: red;
     font-size: 12px;
   }

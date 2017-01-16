@@ -11,7 +11,8 @@ import data from '../../api/data'
 const state = {
   region: 1,
   history: [],
-  cache: []
+  cache: [],
+  storage: []
 }
 
 const mutations = {
@@ -37,6 +38,10 @@ const mutations = {
   [types.CACHE_DATA] (state, payload) {
     console.log('已缓存：' + payload.index)
     state.cache[payload.index] = payload.data
+  },
+  [types.STORAGE_DATA] (state, payload) {
+    console.log('已缓存：' + payload.index)
+    state.storage[payload.index] = payload.data
   }
 }
 

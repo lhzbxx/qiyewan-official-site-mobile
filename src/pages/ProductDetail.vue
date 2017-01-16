@@ -12,10 +12,9 @@
                         :swipeable=false>
         <mt-tab-container-item id="1">
           <img id="product-detail-cover"
-               :src="isExist ? product.cover : 'product-' + $route.params.serialId.substr(4) + '-cover.jpg' | cdn-filter"
-               :alt="product.name">
-          <p id="product-detail-name">{{ product.name }}</p>
-          <p id="product-detail-summary">{{ product.summary }}</p>
+               :src="isExist ? product.cover : 'product-' + $route.params.serialId.substr(4) + '-cover.jpg' | cdn-filter">
+          <p id="product-detail-name">{{ isExist ? product.name : '未知产品' }}</p>
+          <p id="product-detail-summary">{{ isExist ? product.summary : '未知名称' }}</p>
           <p id="product-detail-price">
             <span v-if="isExist">&yen;&nbsp;</span>
             {{ isExist ? product.unitPrice.toFixed(2) : '该城市不可用本产品' }}
@@ -142,7 +141,7 @@
         'getRegion'
       ]),
       isExist () {
-        return this.product.serialId && this.isValid
+        return this.product && this.product.serialId && this.isValid
       }
     },
     methods: {
