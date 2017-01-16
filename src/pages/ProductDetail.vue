@@ -14,7 +14,7 @@
           <img id="product-detail-cover"
                :src="isExist ? product.cover : 'product-' + $route.params.serialId.substr(4) + '-cover.jpg' | cdn-filter">
           <p id="product-detail-name">{{ isExist ? product.name : '未知产品' }}</p>
-          <p id="product-detail-summary">{{ isExist ? product.summary : '未知名称' }}</p>
+          <p id="product-detail-summary">{{ isExist ? product.summary : '未知产品' }}</p>
           <p id="product-detail-price">
             <span v-if="isExist">&yen;&nbsp;</span>
             {{ isExist ? product.unitPrice.toFixed(2) : '该城市不可用本产品' }}
@@ -141,11 +141,25 @@
         'getRegion'
       ]),
       isExist () {
-        return this.product && this.product.serialId && this.isValid
+        return this.product && this.product.serialId
       }
     },
     methods: {
+      warningExist () {
+        let vm = this
+        if (vm.toastInstance) vm.toastInstance.close()
+        vm.toastInstance = Toast({
+          message: '产品不可用',
+          position: 'bottom'
+        })
+        setTimeout(function () {
+          vm.toastInstance.close()
+        }, 2000)
+      },
       handleDirectBuyButton () {
+        if (!this.isValid) {
+          return this.warningExist()
+        }
         if (!this.isLogin) {
           return this.$router.push({name: 'auth'})
         }
@@ -153,6 +167,9 @@
         this.$refs.details.open()
       },
       handleAddToCartButton () {
+        if (!this.isValid) {
+          return this.warningExist()
+        }
         if (!this.isLogin) {
           return this.$router.push({name: 'auth'})
         }
@@ -240,7 +257,10 @@
     mounted () {
       this.fetchData()
       if (this.getRegion.code !== this.$route.params.serialId.substr(0, 4)) {
-        this.$router.replace({name: 'product-detail', params: {'serialId': this.getRegion.code + this.$route.params.serialId.substr(4)}})
+        this.$router.replace({
+          name: 'product-detail',
+          params: {'serialId': this.getRegion.code + this.$route.params.serialId.substr(4)}
+        })
         this.fetchData()
       }
     }
