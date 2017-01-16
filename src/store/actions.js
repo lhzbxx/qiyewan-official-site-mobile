@@ -121,15 +121,21 @@ export const getProductList = ({commit, state}, classification) => {
 
 export const getProductDetail = ({commit, state}, serialId) => {
   return new Promise((resolve, reject) => {
-    productApi.getProductDetail(serialId,
-      data => {
-        commit(types.BROWSE_PRODUCT, data)
-        resolve(data)
-      },
-      error => {
-        reject(error)
-      }
-    )
+    if (state.global.cache[serialId]) {
+      resolve(state.global.cache[serialId])
+    } else {
+      productApi.getProductDetail(serialId,
+        data => {
+          let index = serialId
+          commit(types.CACHE_DATA, {index, data})
+          commit(types.BROWSE_PRODUCT, data)
+          resolve(data)
+        },
+        error => {
+          reject(error)
+        }
+      )
+    }
   })
 }
 

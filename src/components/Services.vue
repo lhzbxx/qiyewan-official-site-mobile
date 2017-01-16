@@ -36,14 +36,14 @@
 
 <style scoped>
   #service-list {
-    margin-top: 20px;
+    margin-top: -1px;
     margin-bottom: 20px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
   }
 
   .service {

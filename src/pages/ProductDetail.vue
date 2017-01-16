@@ -12,38 +12,50 @@
                         :swipeable=false>
         <mt-tab-container-item id="1">
           <img id="product-detail-cover"
-               :src="product.cover | cdn-filter"
+               :src="isExist ? product.cover : 'product-' + $route.params.serialId.substr(4) + '-cover.jpg' | cdn-filter"
                :alt="product.name">
           <p id="product-detail-name">{{ product.name }}</p>
           <p id="product-detail-summary">{{ product.summary }}</p>
           <p id="product-detail-price">
-            <span>&yen;&nbsp;</span>
-            {{ product.unitPrice.toFixed(2) }}
+            <span v-if="isExist">&yen;&nbsp;</span>
+            {{ isExist ? product.unitPrice.toFixed(2) : '该城市不可用本产品' }}
           </p>
           <p id="product-detail-comment">
             （我们价格为平台服务费，官费指国家行政收费，刻章工本费由客户承担。注：如有疑问，详情请咨询我公司客服，电话：400-716-8896）
           </p>
+          <div id="product-region"
+               v-on:click="$router.push({name: 'areas'})">
+            <p style="color: gray;">地区：</p>
+            <p style="flex-grow: 1;">{{ getRegion.name }}</p>
+            <p style="color: #199cd8; line-height: 40px; padding: 0 10px;">更改&nbsp;
+              <img src="../assets/right-arrow.png"
+                   height="12"
+                   style="vertical-align: middle;">
+            </p>
+          </div>
           <lh-services></lh-services>
-          <p class="product-detail-title">您将得到</p>
-          <div id="product-detail-what-obtain">
-            <p class="product-detail-block"
-               v-for="item in JSON.parse(product.twhatObtain)">
-              {{ item }}
-            </p>
-          </div>
-          <p class="product-detail-title">所需材料</p>
-          <div id="product-detail-what-need">
-            <p class="product-detail-block"
-               v-for="item in JSON.parse(product.twhatNeed)">
-              {{ item }}
-            </p>
-          </div>
-          <p class="product-detail-title">服务流程&服务周期</p>
-          <div id="product-detail-processes">
-            <p class="product-detail-process"
-               v-for="item in JSON.parse(product.process)">
-              {{ item }}
-            </p>
+          <div v-if="isExist">
+            <p class="product-detail-title">您将得到</p>
+            <div id="product-detail-what-obtain">
+              <p class="product-detail-block"
+                 v-for="item in JSON.parse(product.twhatObtain)">
+                {{ item }}
+              </p>
+            </div>
+            <p class="product-detail-title">所需材料</p>
+            <div id="product-detail-what-need">
+              <p class="product-detail-block"
+                 v-for="item in JSON.parse(product.twhatNeed)">
+                {{ item }}
+              </p>
+            </div>
+            <p class="product-detail-title">服务流程&服务周期</p>
+            <div id="product-detail-processes">
+              <p class="product-detail-process"
+                 v-for="item in JSON.parse(product.process)">
+                {{ item }}
+              </p>
+            </div>
           </div>
         </mt-tab-container-item>
         <mt-tab-container-item id="2" style="background-color: #f9f9f9; text-align: left; margin-top: 4px">
@@ -89,7 +101,8 @@
              style="background: #f7a82d;">加入购物车
         </div>
       </div>
-      <lh-cart-detail :form="form"
+      <lh-cart-detail v-if="isExist"
+                      :form="form"
                       :product="product"
                       :from="origin"
                       @confirm="handleConfirmButton"
@@ -126,7 +139,10 @@
       ...mapGetters([
         'isLogin',
         'getRegion'
-      ])
+      ]),
+      isExist () {
+        return this.product.serialId
+      }
     },
     methods: {
       handleDirectBuyButton () {
@@ -269,6 +285,16 @@
     margin-left: 10px;
     font-size: 14px;
     color: #333;
+  }
+
+  #product-region {
+    margin-top: 15px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    border: 1px solid #eee;
+    padding-left: 10px;
   }
 
   #product-detail-processes {
