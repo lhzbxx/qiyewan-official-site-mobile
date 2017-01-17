@@ -50,7 +50,8 @@
            v-on:click="form.member > 1 ? form.member-- : ''"
            v-bind:class="{ active: form.member > 1 }"
            style="margin-left: 5px;">&minus;</p>
-        <p class="details-content-amount" style="width: 50px;">{{ form.member }}</p>
+        <p class="details-content-amount"
+           style="width: 70px; font-size: 13px; background: white;">{{ form.member }}</p>
         <p class="details-content-amount active"
            v-on:click="form.member++">&plus;</p>
       </div>
@@ -143,10 +144,11 @@
 <style scoped>
   #close-button {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 15px;
+    right: 15px;
     width: 30px;
     height: 30px;
+    padding: 5px;
   }
 
   #details-header {

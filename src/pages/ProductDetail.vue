@@ -8,6 +8,9 @@
     </mt-navbar>
     <lh-loading v-if="isLoading"></lh-loading>
     <div v-else>
+      <img src="../assets/carts.png"
+           style="position: fixed; left: 0; bottom: 50px; z-index: 100; width: 60px; padding: 10px;"
+           v-on:click="$router.push({name: 'cart'})">
       <mt-tab-container v-model="selected"
                         :swipeable=false>
         <mt-tab-container-item id="1">
