@@ -2,6 +2,7 @@
   <div id="home">
     <lh-home-header></lh-home-header>
     <lh-home-footer :index="1"></lh-home-footer>
+    <lh-customer-service></lh-customer-service>
     <mt-swipe v-bind:style="{ height: bannerHeight + 'px' }"
               :auto="4000"
               :show-indicators="true">

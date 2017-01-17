@@ -38,6 +38,7 @@ import CartDetail from './components/CartDetail.vue'
 import Loading from './components/Loading.vue'
 import NoThings from './components/NoThings.vue'
 import Rater from './components/Rater.vue'
+import CustomerService from './components/CustomerService.vue'
 
 Vue.component('lh-table-entry', TableEntry)
 Vue.component('lh-product', Product)
@@ -53,6 +54,7 @@ Vue.component('lh-order-header', OrderHeader)
 Vue.component('lh-loading', Loading)
 Vue.component('lh-no-things', NoThings)
 Vue.component('lh-rater', Rater)
+Vue.component('lh-customer-service', CustomerService)
 
 import App from './App'
 
