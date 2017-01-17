@@ -16,8 +16,8 @@
       </div>
       <div class="details-content">
         <p class="details-content-title">服务区域</p>
-        <span>{{ getRegion.name }}</span>
-        <span id="details-content-region">{{ selectedDistrict }}
+        <span class="details-content-region" style="border-color: #aaa;">{{ getRegion.name }}</span>
+        <span class="details-content-region" style="margin-left: 10px;">{{ selectedDistrict }}
           <img src="../assets/down.png" width="12" style="vertical-align: middle">
           <select v-model="selectedDistrict">
             <option v-for="item in getRegion.areas">{{ item }}</option>
@@ -40,7 +40,7 @@
            v-on:click="form.amount > 1 ? form.amount-- : ''"
            v-bind:class="{ active: form.amount > 1 }"
            style="margin-left: 5px;">&minus;</p>
-        <input id="details-content-amount" type="number" v-model="form.amount">
+        <input class="details-content--amount" type="number" v-model="form.amount">
         <p class="details-content-amount active"
            v-on:click="form.amount++">&plus;</p>
       </div>
@@ -54,9 +54,15 @@
         <p class="details-content-amount active"
            v-on:click="form.member++">&plus;</p>
       </div>
+      <div class="details-content">
+        <p class="details-content-title">补 差 价</p>
+        <p>{{form.aaaa}}</p>
+        <input class="details-content--amount" type="number" min="0" v-model="form.aaaa">
+        <input class="details-content--amount" type="number" min="0" v-model="form.premium">
+      </div>
       <div id="details-bottom">
         <div id="confirm-price">
-          <span style="font-size: 16px;">总计</span>
+          <span style="font-size: 13px;">总计</span>
           <span style="color: red;">
           <span style="font-size: 10px;">&yen;</span>
             <b>{{ form | sub-total-price-filter }}</b>
@@ -93,7 +99,8 @@
         serialId: String,
         regionCode: String,
         region: String,
-        product: Object
+        product: Object,
+        premium: Number
       },
       from: String
     },
@@ -148,11 +155,11 @@
     display: flex;
     margin: 0 10px;
     align-items: center;
-    height: 50px;
-    min-height: 50px;
+    height: 45px;
+    min-height: 45px;
   }
 
-  #details-content-region {
+  .details-content-region {
     margin-left: 5px;
     padding: 0 15px;
     line-height: 30px;
@@ -174,7 +181,7 @@
     margin-left: 20px;
   }
 
-  #details-content-amount {
+  .details-content--amount {
     outline: none;
     padding: 0 8px 0 8px;
     height: 32px;
@@ -186,7 +193,7 @@
 
   .details-content-amount {
     line-height: 30px;
-    font-size: 18px;
+    font-size: 13px;
     border: 1px solid #ddd;
     width: 30px;
     text-align: center;
@@ -213,7 +220,7 @@
 
   .details-content-title {
     width: 70px;
-    font-size: 16px;
+    font-size: 13px;
     line-height: 40px;
     text-align: right;
     margin-right: 10px;
@@ -243,7 +250,7 @@
     width: 40%;
     line-height: 50px;
     text-align: center;
-    font-size: 18px;
+    font-size: 15px;
     margin-left: auto;
   }
 
@@ -286,7 +293,7 @@
 
   b {
     color: red;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 700;
     font-family: arial, serif;
   }

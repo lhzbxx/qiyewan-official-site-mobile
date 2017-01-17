@@ -76,6 +76,7 @@
           id: '',
           amount: 1,
           member: 1,
+          premium: 0,
           serialId: '',
           regionCode: '',
           region: '',
@@ -175,9 +176,9 @@
         for (let i of this.selection) {
           let member = this.carts[i].member - this.carts[i].product.minMember
           if (member > 0) {
-            total += this.carts[i].amount * (this.carts[i].product.unitPrice + this.carts[i].product.perPrice * (this.carts[i].member - this.carts[i].product.minMember))
+            total += this.carts[i].amount * (this.carts[i].product.unitPrice + this.carts[i].product.perPrice * (this.carts[i].member - this.carts[i].product.minMember)) + this.carts[i].premium
           } else {
-            total += this.carts[i].amount * this.carts[i].product.unitPrice
+            total += this.carts[i].amount * this.carts[i].product.unitPrice + this.carts[i].premium
           }
         }
         return total.toFixed(2)

@@ -123,6 +123,7 @@
         form: {
           amount: 1,
           member: 1,
+          premium: 0,
           regionCode: null,
           region: null,
           product: null

@@ -8,9 +8,9 @@ export function totalPrice (checkout) {
   let member = checkout.member - checkout.product.minMember
   if (member > 0) {
     return (checkout.amount * (checkout.product.unitPrice +
-    checkout.product.perPrice * (checkout.member - checkout.product.minMember))).toFixed(2)
+    checkout.product.perPrice * (checkout.member - checkout.product.minMember)) + checkout.premium).toFixed(2)
   } else {
-    return (checkout.amount * checkout.product.unitPrice).toFixed(2)
+    return (checkout.amount * checkout.product.unitPrice + checkout.premium).toFixed(2)
   }
 }
 

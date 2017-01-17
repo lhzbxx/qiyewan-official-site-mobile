@@ -62,9 +62,9 @@
         for (let i of this.getCheckout) {
           let member = i.member - i.product.minMember
           if (member > 0) {
-            result += i.amount * (i.product.unitPrice + i.product.perPrice * (i.member - i.product.minMember))
+            result += i.amount * (i.product.unitPrice + i.product.perPrice * (i.member - i.product.minMember)) + i.premium
           } else {
-            result += i.amount * i.product.unitPrice
+            result += i.amount * i.product.unitPrice + i.premium
           }
         }
         return result
