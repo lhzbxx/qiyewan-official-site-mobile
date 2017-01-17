@@ -430,7 +430,7 @@
     line-height: 50px;
     text-align: center;
     color: white;
-    font-size: 18px;
+    font-size: 15px;
     border-top: 1px solid #199cd8;
   }
 
