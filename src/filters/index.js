@@ -6,11 +6,13 @@ export function cdnPrefix (value) {
 
 export function totalPrice (checkout) {
   let member = checkout.member - checkout.product.minMember
+  console.log(checkout)
+  console.log(checkout.premium)
   if (member > 0) {
     return (checkout.amount * (checkout.product.unitPrice +
-    checkout.product.perPrice * (checkout.member - checkout.product.minMember)) + checkout.premium).toFixed(2)
+    checkout.product.perPrice * (checkout.member - checkout.product.minMember)) + checkout.premium * 1).toFixed(2)
   } else {
-    return (checkout.amount * checkout.product.unitPrice + checkout.premium).toFixed(2)
+    return (checkout.amount * checkout.product.unitPrice + checkout.premium * 1).toFixed(2)
   }
 }
 

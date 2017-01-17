@@ -6,6 +6,7 @@
                :title="item.product.name"
                :label="item.amount + '×' + item.product.unit">
         <span>&yen; {{ item | sub-total-price-filter }}</span>
+        <span style="font-size: 12px;" v-if="item.premium > 0">&nbsp;( + {{ item.premium.toFixed(2) }} ) </span>
       </mt-cell>
     </div>
     <div style="margin-top: 10px;">

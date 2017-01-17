@@ -16,7 +16,7 @@
       </div>
       <div class="details-content">
         <p class="details-content-title">服务区域</p>
-        <span class="details-content-region" style="border-color: #aaa;">{{ getRegion.name }}</span>
+        <span class="details-content-region" style="border-color: #eee;">{{ getRegion.name }}</span>
         <span class="details-content-region" style="margin-left: 10px;">{{ selectedDistrict }}
           <img src="../assets/down.png" width="12" style="vertical-align: middle">
           <select v-model="selectedDistrict">
@@ -56,16 +56,20 @@
       </div>
       <div class="details-content">
         <p class="details-content-title">补 差 价</p>
-        <p>{{form.aaaa}}</p>
-        <input class="details-content--amount" type="number" min="0" v-model="form.aaaa">
-        <input class="details-content--amount" type="number" min="0" v-model="form.premium">
+        <p class="details-content-amount"
+           v-on:click="form.premium > 0 ? form.premium-- : ''"
+           v-bind:class="{ active: form.premium > 0 }"
+           style="margin-left: 5px;">&minus;</p>
+        <input class="details-content--amount" type="number" v-model="form.premium">
+        <p class="details-content-amount active"
+           v-on:click="form.premium++">&plus;</p>
       </div>
       <div id="details-bottom">
         <div id="confirm-price">
-          <span style="font-size: 13px;">总计</span>
+          <!--<span style="font-size: 13px;">总计</span>-->
           <span style="color: red;">
-          <span style="font-size: 10px;">&yen;</span>
-            <b>{{ form | sub-total-price-filter }}</b>
+            <b>&yen; {{ form | sub-total-price-filter }}</b>
+            <span style="font-size: 13px;" v-if="form.premium > 0">( + {{ form.premium.toFixed(2) }} )</span>
           </span>
         </div>
         <div id="confirm-button"
@@ -121,6 +125,8 @@
         if (!this.isLogin) {
           return this.$router.push({name: 'auth'})
         }
+        this.form.amount *= 1
+        this.form.premium *= 1
         this.form.region = this.getRegion.pName + '-' + this.getRegion.name + '-' + this.selectedDistrict
         this.$emit('confirm')
       }
@@ -163,7 +169,7 @@
     margin-left: 5px;
     padding: 0 15px;
     line-height: 30px;
-    font-size: 14px;
+    font-size: 12px;
     border: 1px solid #26a2ff;
     position: relative;
   }
@@ -185,16 +191,17 @@
     outline: none;
     padding: 0 8px 0 8px;
     height: 32px;
-    border: none;
     font-size: 13px;
     width: 70px;
     text-align: center;
+    margin-left: -1px;
+    border: 1px solid #eee;
   }
 
   .details-content-amount {
     line-height: 30px;
-    font-size: 13px;
-    border: 1px solid #ddd;
+    font-size: 20px;
+    border: 1px solid #eee;
     width: 30px;
     text-align: center;
     margin-left: -1px;
@@ -205,13 +212,13 @@
   }
 
   .details-content-period {
-    font-size: 14px;
+    font-size: 12px;
     line-height: 24px;
     padding: 3px 10px;
     margin-left: 5px;
     width: 94px;
     text-align: center;
-    border: 1px solid #ddd;
+    border: 1px solid #eee;
   }
 
   .details-content-period.active {
@@ -234,7 +241,8 @@
     background: #efefef;
     align-items: center;
     border-top: 1px solid #ddd;
-    min-height: 50px;
+    height: 49px;
+    min-height: 49px;
     margin-top: auto;
   }
 
