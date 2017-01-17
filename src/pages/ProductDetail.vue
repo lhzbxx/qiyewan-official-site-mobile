@@ -185,14 +185,21 @@
         this.form.region = this.getRegion.pName + this.getRegion.name
       },
       handleConfirmButton () {
+        switch (this.origin) {
+          case 'add-to-cart-button':
+            this.form.isOverride = true
+            break
+          case 'direct-buy-button':
+            this.form.isOverride = false
+            break
+        }
         let vm = this
         this.$store.dispatch('addToCart', this.form).then(
           data => {
-            vm.$refs.details.close()
             switch (vm.origin) {
               case 'add-to-cart-button':
-                this.form.isOverride = true
-                if (vm.toastInstance) vm.toastInstance.close()
+                vm.$refs.details.close()
+                if (this.toastInstance) this.toastInstance.close()
                 vm.toastInstance = Toast({
                   message: '操作成功',
                   iconClass: 'mintui mintui-success'
@@ -203,16 +210,8 @@
                 vm.form.amount = data.amount
                 break
               case 'direct-buy-button':
-                this.form.isOverride = false
-                this.$store.dispatch('addToCart', this.form).then(
-                  data => {
-                    vm.$store.commit('CHECKOUT', [data])
-                    vm.$router.push({name: 'checkout'})
-                  },
-                  error => {
-                    console.log(error)
-                  }
-                )
+                vm.$store.commit('CHECKOUT', [data])
+                vm.$router.push({name: 'checkout'})
                 break
             }
           },
