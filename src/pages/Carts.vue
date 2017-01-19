@@ -142,7 +142,6 @@
               data => {
                 let selections = vm.selection.slice()
                 selections.sort().reverse()
-                console.log(selections)
                 vm.selection = []
                 for (let i of selections) {
                   vm.carts.splice(i, 1)

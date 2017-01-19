@@ -1,18 +1,20 @@
 <template>
   <div id="pay">
     <lh-page-header title="结 算"></lh-page-header>
-    <div style="margin-top: 10px;">
-      <mt-cell v-for="item in getOrder.details"
-               :title="item.name"
-               :label="item.amount + '×' + item.unit">
-        <span>&yen; {{ item | sub-total-price-filter }}</span>
-        <span style="font-size: 12px;" v-if="item.premium > 0">&nbsp;( + {{ item.premium.toFixed(2) }} ) </span>
-      </mt-cell>
-    </div>
-    <div style="margin-top: 10px;">
-      <mt-cell title="实付金额">
-        <span>&yen; {{ totalPrice.toFixed(2) }}</span>
-      </mt-cell>
+    <div v-if="getOrder">
+      <div style="margin-top: 10px;">
+        <mt-cell v-for="item in getOrder.details"
+                 :title="item.name"
+                 :label="item.amount + '×' + item.unit">
+          <span>&yen; {{ totalPrice(item) }}</span>
+          <span style="font-size: 12px;" v-if="item.premium > 0">&nbsp;( + {{ item.premium.toFixed(2) }} ) </span>
+        </mt-cell>
+      </div>
+      <div style="margin-top: 10px;">
+        <mt-cell title="实付金额">
+          <span>&yen; {{ getOrder.totalPrice.toFixed(2) }}</span>
+        </mt-cell>
+      </div>
     </div>
     <mt-radio
       align="right"
@@ -53,19 +55,7 @@
     computed: {
       ...mapGetters([
         'getOrder'
-      ]),
-      totalPrice () {
-        var result = 0
-        for (let i of this.getCheckout) {
-          let member = i.member - i.product.minMember
-          if (member > 0) {
-            result += i.amount * (i.product.unitPrice + i.product.perPrice * (i.member - i.product.minMember)) + i.premium
-          } else {
-            result += i.amount * i.product.unitPrice + i.premium
-          }
-        }
-        return result
-      }
+      ])
     },
     methods: {
       pay () {
@@ -91,12 +81,23 @@
           },
           () => {}
         )
+      },
+      totalPrice (detail) {
+        let member = detail.member - detail.minMember
+        if (member > 0) {
+          return (detail.amount * (detail.unitPrice +
+          detail.perPrice * (detail.member - detail.minMember)) + detail.premium * 1).toFixed(2)
+        } else {
+          return (detail.amount * detail.unitPrice + detail.premium * 1).toFixed(2)
+        }
+      }
+    },
+    created () {
+      if (!this.getOrder) {
+        this.$router.replace({name: 'order'})
       }
     },
     mounted () {
-      if (!this.getOrder) {
-        this.$router.replace({name: 'home'})
-      }
       if (navigator.userAgent.toLowerCase().indexOf('micromessenger') === -1) {
         this.payments = [
           {

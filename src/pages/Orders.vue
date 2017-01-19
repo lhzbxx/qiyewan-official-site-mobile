@@ -59,8 +59,7 @@
 </template>
 
 <script>
-  import pingpp from 'pingpp-js'
-  import {MessageBox, Toast} from 'mint-ui'
+  import {MessageBox} from 'mint-ui'
   export default {
     data () {
       return {
@@ -129,8 +128,7 @@
               order.orderStage = 'CANCELED'
             )
           },
-          () => {
-          }
+          () => {}
         )
       },
       handleRemoveButton (order, index) {
@@ -141,8 +139,7 @@
               vm.orders.splice(index, 1)
             )
           },
-          () => {
-          }
+          () => {}
         )
       },
       handlePayButton (order) {
