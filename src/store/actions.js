@@ -298,6 +298,19 @@ export const getOrders = ({commit, state}, {page, orderStage}) => {
   })
 }
 
+export const changePayment = ({commit, state}, {serialId, payment}) => {
+  return new Promise((resolve, reject) => {
+    orderApi.changePayment(state.auth.user.token, serialId, payment, state.auth.user.openId,
+      order => {
+        resolve(order)
+      },
+      error => {
+        reject(error)
+      }
+    )
+  })
+}
+
 export const cancelOrder = ({commit, state}, serialId) => {
   return new Promise((resolve, reject) => {
     orderApi.cancelOrder(state.auth.user.token, serialId,

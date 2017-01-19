@@ -33,6 +33,14 @@ export default {
       errorCb(response.body)
     })
   },
+  changePayment (token, serialId, payment, openId, cb, errorCb) {
+    Vue.http.headers.common['Authorization'] = token
+    Vue.http.patch('orders', {'serialId': serialId, 'payment': payment, 'openId': openId}).then((response) => {
+      cb(response.body)
+    }, (response) => {
+      errorCb(response.body)
+    })
+  },
   cancelOrder (token, orderId, cb, errorCb) {
     Vue.http.headers.common['Authorization'] = token
     Vue.http.delete('orders/' + orderId).then((response) => {

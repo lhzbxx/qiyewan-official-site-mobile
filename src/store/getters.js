@@ -54,6 +54,10 @@ export const getCheckout = state => {
   return state.orders.checkout
 }
 
+export const getOrder = state => {
+  return state.orders.order
+}
+
 export const getToPay = state => {
   return state.orders.toPay
 }
