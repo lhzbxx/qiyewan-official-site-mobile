@@ -47,9 +47,9 @@
     <div id="bottom"
          v-if="carts.length > 0">
       <div class="bottom-info" style="min-width: 150px;">
-        <span style="font-size: 16px;">总计</span>
+        <span>总计</span>
         <span style="color: red;">
-          <span style="font-size: 10px;">&yen;</span><b>{{ totalPrice }}</b>
+          <span style="font-size: 10px;">&yen;&nbsp;</span><b>{{ totalPrice }}</b>
         </span>
       </div>
       <div class="bottom-info" style="max-width: 90px;">
@@ -220,6 +220,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    font-size: 13px;
   }
 
   .choice {
@@ -250,7 +251,7 @@
   #bottom {
     display: flex;
     position: fixed;
-    align-items: baseline;
+    align-items: center;
     justify-content: flex-end;
     bottom: 44px;
     width: 100%;
@@ -264,15 +265,16 @@
     height: 100%;
     line-height: 50px;
     text-align: center;
+    font-size: 13px;
     flex: 1;
   }
 
   #bottom-button {
     background: #aaa;
     height: 100%;
-    line-height: 54px;
+    line-height: 50px;
     color: white;
-    font-size: 18px;
+    font-size: 15px;
     text-align: center;
     flex: 1;
   }

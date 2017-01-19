@@ -40,18 +40,18 @@
   #tabs-header {
     display: flex;
     align-items: center;
-    height: 60px;
+    height: 50px;
     padding: 0 10px;
     border-bottom: 1px solid #eee;
     background: white;
   }
 
   .tab {
-    font-size: 15px;
+    font-size: 13px;
     margin-right: 8px;
     border: 1px solid #eee;
-    height: 34px;
-    line-height: 32px;
+    height: 30px;
+    line-height: 28px;
     padding: 0 8px;
   }
 
