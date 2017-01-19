@@ -1,5 +1,8 @@
 <template>
   <div id="customer-service">
+    <div class="mask"
+         v-bind:class="{active: !isHidden}"
+         v-on:click="isHidden = !isHidden"></div>
     <img v-on:click="isHidden = !isHidden"
          src="../assets/customer-service-main.png"
          style="bottom: 80px;">
@@ -26,6 +29,18 @@
 </script>
 
 <style scoped>
+  .mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
+  }
+  .mask.active {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    transition: background-color 0.3s ease-in-out, z-index 0s;
+  }
+
   img {
     position: fixed;
     right: 10px;
