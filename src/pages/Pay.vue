@@ -107,6 +107,11 @@
         ]
         this.payment = 'ALIPAY_WAP'
       }
+      for (let i of this.payments) {
+        if (this.getOrder.payment === i.value) {
+          this.payment = i.value
+        }
+      }
     },
     beforeDestroy () {
       Indicator.close()
