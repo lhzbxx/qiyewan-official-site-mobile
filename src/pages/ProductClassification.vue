@@ -31,11 +31,11 @@
         currentClassificationName: null,
         classifications: [
           {
-            name: '人事服务',
+            name: '人力资源服务',
             code: 'HR',
             subs: [
-              '社保',
-              '公司人事'
+              '企业',
+              '个人'
             ]
           },
           {
