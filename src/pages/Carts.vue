@@ -265,7 +265,7 @@
     height: 100%;
     line-height: 50px;
     text-align: center;
-    font-size: 13px;
+    font-size: 12px;
     flex: 1;
   }
 
