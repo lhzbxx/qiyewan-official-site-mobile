@@ -91,6 +91,11 @@
           })
           this.isCounting = false
         }
+        if (this.state === 2) {
+          vm.$store.dispatch('requestCaptcha', vm.form.phone)
+          vm.counting()
+          return
+        }
         let vm = this
         vm.$store.dispatch('isRegistered', vm.form.phone).then(
           data => {
