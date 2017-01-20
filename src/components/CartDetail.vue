@@ -130,7 +130,18 @@
         this.form.premium *= 1
         this.form.region = this.getRegion.pName + '-' + this.getRegion.name + '-' + this.selectedDistrict
         this.$emit('confirm')
+      },
+      init () {
+        if (this.form.region) {
+          let index = this.form.region.indexOf('-', 5)
+          if (index > 0) {
+            this.selectedDistrict = this.form.region.substr(index + 1)
+          }
+        }
       }
+    },
+    watch: {
+      form: 'init'
     },
     mounted () {
       this.form.regionCode = this.getRegion.code
