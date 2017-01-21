@@ -20,6 +20,8 @@
       title="选择支付方式"
       :options="payments">
     </mt-radio>
+    <input placeholder="订单备注（非必填）"
+           v-model="comment">
     <div style="margin: 15px 10px 0;">
       <mt-button type="primary"
                  @click.native="pay()"
@@ -51,7 +53,8 @@
 //            label: '银行卡',
 //            value: 'UPACP_WAP'
 //          }
-        ]
+        ],
+        comment: ''
       }
     },
     computed: {
@@ -84,7 +87,8 @@
           text: '跳转中...'
         })
         let vm = this
-        this.$store.dispatch('addToOrder', {carts: this.getCheckout, payment: this.payment}).then(
+        this.$store.dispatch('addToOrder',
+          {carts: this.getCheckout, payment: this.payment, comment: this.comment}).then(
           order => {
             pingpp.setAPURL('/static/pay.htm')
             pingpp.createPayment(order.charge, function (result, err) {
@@ -102,7 +106,8 @@
 //            vm.$store.commit('TO_PAY', order)
 //            vm.$router.push({name: 'pay'})
           },
-          () => {}
+          () => {
+          }
         )
       }
     },
@@ -135,6 +140,14 @@
 
   p {
     line-height: 30px;
+  }
 
+  input {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    font-size: 13px;
+    margin-top: 15px;
+    outline: none;
   }
 </style>

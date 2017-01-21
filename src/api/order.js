@@ -21,13 +21,13 @@ export default {
       errorCb(response.body)
     })
   },
-  addOrder (token, carts, payment, openId, cb, errorCb) {
+  addOrder (token, carts, payment, comment, openId, cb, errorCb) {
     Vue.http.headers.common['Authorization'] = token
     var checkout = []
     for (let i of carts) {
       checkout.push(i.id)
     }
-    Vue.http.post('orders', {'carts': checkout, 'payment': payment, 'openId': openId}).then((response) => {
+    Vue.http.post('orders', {'carts': checkout, 'payment': payment, 'comment': comment, 'openId': openId}).then((response) => {
       cb(response.body)
     }, (response) => {
       errorCb(response.body)
